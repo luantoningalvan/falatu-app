@@ -3,7 +3,12 @@ import Button from '../../components/Button';
 import { Input } from '../../components/Form';
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/mobile';
-import { Container } from './styles';
+import {
+  Container,
+  BottomInfo,
+  BottomInfoLink,
+  BottomInfoLinkText,
+} from './styles';
 
 const SignIn: React.FC = () => {
   const formRef = React.useRef<FormHandles>(null);
@@ -31,6 +36,14 @@ const SignIn: React.FC = () => {
           Entrar
         </Button>
       </Form>
+      <BottomInfo>
+        <BottomInfoLink>
+          <BottomInfoLinkText>Esqueceu sua senha?</BottomInfoLinkText>
+        </BottomInfoLink>
+        <BottomInfoLink>
+          <BottomInfoLinkText>Ajuda e suporte</BottomInfoLinkText>
+        </BottomInfoLink>
+      </BottomInfo>
     </Container>
   );
 };
