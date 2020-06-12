@@ -1,5 +1,6 @@
 const theme = {
   palette: {
+    white: '#fff',
     pink: '#D90368',
     lilac: '#F7ACCF',
     purple: '#543A6A',

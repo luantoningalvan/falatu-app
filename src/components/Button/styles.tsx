@@ -3,8 +3,7 @@ import styled from 'styled-components/native';
 export const ButtonContainer = styled.TouchableOpacity<{ grow?: boolean }>`
   padding: 16px;
   border-radius: 24px;
-  width: ${props => (props.grow ? '100%' : 'auto')};
-  background-color: ${props => props.theme.palette.purple};
+  background-color: #0a82c6;
 `;
 
 export const ButtonText = styled.Text`
