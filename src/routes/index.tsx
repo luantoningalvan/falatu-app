@@ -1,15 +1,15 @@
 import React from 'react';
-import {ActivityIndicator} from 'react-native';
+import { ActivityIndicator } from 'react-native';
 import AuthRotes from './auth.routes';
-import AppRotes from './app.routes';
+import AppRoutes from './app.routes';
 
 const Routes: React.FC = () => {
-  const {user, loading} = {user: true, loading: false};
+  const { user, loading } = { user: false, loading: false };
 
   if (loading) {
     return <ActivityIndicator size="large" color="#999" />;
   }
-  return user ? <AppRotes /> : <AuthRotes />;
+  return user ? <AppRoutes /> : <AuthRotes />;
 };
 
 export default Routes;

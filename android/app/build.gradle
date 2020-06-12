@@ -223,3 +223,10 @@ task copyDownloadableDepsToLibs(type: Copy) {
 }
 
 apply from: file("../../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesAppBuildGradle(project)
+
+// Vector icons configuration
+project.ext.vectoricons = [
+    iconFontNames: ['Feather.ttf'] // Use only Feather icons
+];
+
+apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
