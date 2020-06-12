@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useCallback } from 'react';
+import { Alert } from 'react-native';
 import Button from '../../components/Button';
 import { Input } from '../../components/Form';
 import { FormHandles } from '@unform/core';
@@ -14,14 +15,47 @@ import {
 import { useNavigation } from '@react-navigation/native';
 import { Form } from '@unform/mobile';
 import LinearGradient from 'react-native-linear-gradient';
+import { useAuth } from '../../hooks/Auth';
+import * as Yup from 'yup';
+import getValidationErrros from '../../utils/getValidationErrors';
+
+interface SingInFormData {
+  email: string;
+  password: string;
+}
 
 const SignIn: React.FC = () => {
   const formRef = React.useRef<FormHandles>(null);
   const navigation = useNavigation();
-  const handleSubmit = (data: any) => {
-    console.log(data);
-  };
 
+  const { signIn } = useAuth();
+
+  const handleSubmit = useCallback(
+    async (data: SingInFormData) => {
+      try {
+        formRef.current?.setErrors({});
+
+        const schema = Yup.object().shape({
+          email: Yup.string()
+            .required('O e-mail é obrigatório')
+            .email('E-mail inválido'),
+          password: Yup.string().required('A senha é obrigatória'),
+        });
+
+        await schema.validate(data, { abortEarly: false });
+        await signIn({ email: data.email, password: data.password });
+      } catch (err) {
+        if (err instanceof Yup.ValidationError) {
+          const errors = getValidationErrros(err);
+          formRef.current?.setErrors(errors);
+
+          return;
+        }
+        Alert.alert('Erro na autenticação', 'Tá errado essa porra');
+      }
+    },
+    [signIn]
+  );
   return (
     <Container>
       <Header>
