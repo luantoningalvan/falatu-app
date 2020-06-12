@@ -13,16 +13,7 @@ import {
 } from './styles';
 import { useNavigation } from '@react-navigation/native';
 import { Form } from '@unform/mobile';
-<<<<<<< HEAD
-import {
-  Container,
-  BottomInfo,
-  BottomInfoLink,
-  BottomInfoLinkText,
-} from './styles';
-=======
 import LinearGradient from 'react-native-linear-gradient';
->>>>>>> 58fa777ca3900f6bf86dc98085120e138d02b394
 
 const SignIn: React.FC = () => {
   const formRef = React.useRef<FormHandles>(null);
@@ -33,35 +24,8 @@ const SignIn: React.FC = () => {
 
   return (
     <Container>
-<<<<<<< HEAD
-      <Form ref={formRef} onSubmit={handleSubmit}>
-        <Input
-          icon="user"
-          name="email"
-          keyboardType="email-address"
-          placeholder="voce@email.com"
-        />
-        <Input
-          icon="lock"
-          name="password"
-          secureTextEntry={true}
-          placeholder="Senha"
-        />
-        <Button grow onPress={() => (formRef.current as any).submitForm()}>
-          Entrar
-        </Button>
-      </Form>
-      <BottomInfo>
-        <BottomInfoLink>
-          <BottomInfoLinkText>Esqueceu sua senha?</BottomInfoLinkText>
-        </BottomInfoLink>
-        <BottomInfoLink>
-          <BottomInfoLinkText>Ajuda e suporte</BottomInfoLinkText>
-        </BottomInfoLink>
-      </BottomInfo>
-=======
       <Header>
-        <LinearGradient colors={['#0a82c6', '#00A3FF']} style={{ flex: 1 }} />
+        <LinearGradient colors={['#D90368', '#543A6A']} style={{ flex: 1 }} />
       </Header>
       <FormContainer>
         <Title>ENTRAR</Title>
@@ -90,7 +54,6 @@ const SignIn: React.FC = () => {
           </SignUp>
         </Form>
       </FormContainer>
->>>>>>> 58fa777ca3900f6bf86dc98085120e138d02b394
     </Container>
   );
 };
