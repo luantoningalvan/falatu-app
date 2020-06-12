@@ -8,7 +8,7 @@ export const Container = styled.View`
 `;
 
 export const Header = styled.View`
-  background: #0a82c6;
+  background: ${props => props.theme.palette.pink};
   position: absolute;
   top: 0;
   left: 0;
@@ -25,6 +25,7 @@ export const FormContainer = styled.View`
 `;
 
 export const Title = styled.Text`
+  font-family: 'Comfortaa-Bold';
   font-size: 28px;
   text-align: center;
   margin-bottom: 24px;
@@ -44,7 +45,22 @@ export const SignUpText = styled.Text`
 `;
 
 export const SignUpTextHighlighted = styled(SignUpText)`
-  color: #0a82c6;
+  color: ${props => props.theme.palette.pink};
   font-weight: bold;
   margin-left: 4px;
+`;
+
+export const BottomInfo = styled.View`
+  margin-top: 16px;
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-between;
+`;
+
+export const BottomInfoLink = styled.TouchableOpacity`
+  padding: 4px;
+`;
+
+export const BottomInfoLinkText = styled.Text`
+  color: ${props => props.theme.palette.grey};
 `;

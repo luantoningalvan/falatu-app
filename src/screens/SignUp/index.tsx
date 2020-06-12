@@ -25,7 +25,7 @@ const SignUp: React.FC = () => {
   return (
     <Container>
       <Header>
-        <LinearGradient colors={['#0a82c6', '#00A3FF']} style={{ flex: 1 }} />
+        <LinearGradient colors={['#D90368', '#543A6A']} style={{ flex: 1 }} />
       </Header>
       <FormContainer>
         <Title>CADASTRO</Title>
@@ -46,7 +46,7 @@ const SignUp: React.FC = () => {
             placeholder="Senha"
           />
 
-          <Button grow onPress={() => (formRef.current as any).submitForm()}>
+          <Button grow onPress={() => formRef.current!.submitForm()}>
             CRIAR CONTA
           </Button>
 

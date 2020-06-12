@@ -59,7 +59,7 @@ const SignIn: React.FC = () => {
   return (
     <Container>
       <Header>
-        <LinearGradient colors={['#0a82c6', '#00A3FF']} style={{ flex: 1 }} />
+        <LinearGradient colors={['#D90368', '#543A6A']} style={{ flex: 1 }} />
       </Header>
       <FormContainer>
         <Title>ENTRAR</Title>

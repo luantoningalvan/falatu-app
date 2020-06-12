@@ -8,7 +8,7 @@ import HooksProvider from './hooks';
 const App = () => {
   return (
     <NavigationContainer>
-      <StatusBar barStyle="light-content" backgroundColor="#0a82c6" />
+      <StatusBar barStyle="light-content" backgroundColor="#543A6A" />
       <HooksProvider>
         <StyleProvider>
           <Routes />
