@@ -10,24 +10,22 @@ interface ContainerProps {
 export const Container = styled.View<ContainerProps>`
   width: 100%;
   height: 60px;
-  background: ${props => props.theme.palette.dark};
+  background: #efefef;
   padding: 0 16px;
   border-radius: 10px;
   margin-bottom: 8px;
   flex-direction: row;
   align-items: center;
-  border-width: 2px;
 
-  border-color: ${props => props.theme.palette.purple};
   ${props =>
     props.isErrored &&
     css`
-      border-color: #c53030;
+      color: #c53030;
     `}
   ${props =>
     props.isFocused &&
     css`
-      border-color: ${props => props.theme.palette.purple};
+      color: ${props => props.theme.palette.purple};
     `}
 `;
 
