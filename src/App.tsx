@@ -4,14 +4,16 @@ import { NavigationContainer } from '@react-navigation/native';
 import StyleProvider from './components/Provider';
 import Routes from './routes';
 import HooksProvider from './hooks';
-
+import { MenuProvider } from 'react-native-popup-menu';
 const App = () => {
   return (
     <NavigationContainer>
       <StatusBar barStyle="light-content" backgroundColor="#543A6A" />
       <HooksProvider>
         <StyleProvider>
-          <Routes />
+          <MenuProvider>
+            <Routes />
+          </MenuProvider>
         </StyleProvider>
       </HooksProvider>
     </NavigationContainer>

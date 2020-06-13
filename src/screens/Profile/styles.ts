@@ -6,5 +6,8 @@ export const Container = styled.View`
 
 export const Header = styled.View`
   flex-direction: row;
-  justify-content: flex-end;
+  justify-content: space-between;
+  align-items: center;
+  height: 86px;
+  padding: 16px;
 `;
