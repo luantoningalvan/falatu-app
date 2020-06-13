@@ -14,14 +14,18 @@ import Logo from '../../../assets/static/wdyt-logo.svg';
 
 import YestOrNot from './templates/YesOrNo';
 import ImageComparision from './templates/ImageComparision';
+import MultiChoice from './templates/MultiChoice';
+import Written from './templates/Written';
 
 const Play: React.FC = () => {
   const templates = {
     yesornot: YestOrNot,
     imagecomparision: ImageComparision,
+    multi: MultiChoice,
+    written: Written,
   };
 
-  const Template = templates.imagecomparision;
+  const Template = templates.written;
 
   return (
     <LinearGradient colors={['#D90368', '#741960']} style={{ flex: 1 }}>

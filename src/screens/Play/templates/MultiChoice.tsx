@@ -8,9 +8,8 @@ import {
   OptionText,
   QuestionTitle,
 } from './styles';
-import Icon from 'react-native-vector-icons/Feather';
 
-const YesOrNo: React.FC = () => {
+const MultiChoice: React.ComponentType = () => {
   return (
     <QuestionWrapper>
       <QuestionCard>
@@ -21,16 +20,16 @@ const YesOrNo: React.FC = () => {
               'https://pbs.twimg.com/profile_images/1263694342247583744/I6oEWdq__400x400.jpg',
           }}
         />
-
-        <QuestionTitle>Tenho cara de milionário?</QuestionTitle>
-        <Options>
-          <Option>
-            <OptionText>Sim</OptionText>
-            <Icon name="check" size={22} />
+        <QuestionTitle>O quanto você me acha bonitão?</QuestionTitle>
+        <Options multi>
+          <Option grow>
+            <OptionText>Bastante</OptionText>
           </Option>
-          <Option>
-            <Icon name="x" size={22} />
-            <OptionText>Não</OptionText>
+          <Option grow>
+            <OptionText>Mais ou menos</OptionText>
+          </Option>
+          <Option grow>
+            <OptionText>Não te acho bonito</OptionText>
           </Option>
         </Options>
       </QuestionCard>
@@ -38,4 +37,4 @@ const YesOrNo: React.FC = () => {
   );
 };
 
-export default YesOrNo;
+export default MultiChoice;
