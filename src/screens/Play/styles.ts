@@ -37,6 +37,6 @@ export const SkipButton = styled.TouchableOpacity`
 export const SkipButtonText = styled.Text`
   color: white;
   font-size: 20px;
-  margin-left: 8px;
+  margin-right: 8px;
   font-family: 'Comfortaa-Regular';
 `;

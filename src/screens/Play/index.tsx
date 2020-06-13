@@ -8,12 +8,19 @@ import {
   Header,
   PlayArea,
 } from './styles';
-import { Text } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import Icon from 'react-native-vector-icons/Feather';
 import Logo from '../../../assets/static/wdyt-logo.svg';
 
+import YestOrNot from './templates/YesOrNo';
+
 const Play: React.FC = () => {
+  const templates = {
+    yesornot: YestOrNot,
+  };
+
+  const Template = templates.yesornot;
+
   return (
     <LinearGradient colors={['#D90368', '#741960']} style={{ flex: 1 }}>
       <Container>
@@ -26,10 +33,10 @@ const Play: React.FC = () => {
         </Header>
 
         <PlayArea>
-          <Text>Play</Text>
+          <Template />
           <SkipButton>
-            <Icon size={28} name="skip-forward" color="white" />
             <SkipButtonText>Pular</SkipButtonText>
+            <Icon size={28} name="skip-forward" color="white" />
           </SkipButton>
         </PlayArea>
       </Container>
