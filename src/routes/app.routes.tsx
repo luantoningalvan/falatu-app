@@ -1,10 +1,25 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createStackNavigator } from '@react-navigation/stack';
 import Play from '../screens/Play';
 import Questions from '../screens/Questions';
 import Profile from '../screens/Profile';
+import Settings from '../screens/Settings';
 import Icon from 'react-native-vector-icons/Feather';
 const App = createBottomTabNavigator();
+
+const ProfileStack = createStackNavigator();
+
+const ProfileStackScreen = () => (
+  <ProfileStack.Navigator>
+    <ProfileStack.Screen
+      component={Profile}
+      name="Profile"
+      options={{ headerShown: false }}
+    />
+    <ProfileStack.Screen component={Settings} name="Settings" />
+  </ProfileStack.Navigator>
+);
 
 const AppRoutes: React.FC = () => {
   return (
@@ -27,7 +42,7 @@ const AppRoutes: React.FC = () => {
       }}>
       <App.Screen
         name="Profile"
-        component={Profile}
+        component={ProfileStackScreen}
         options={{
           tabBarIcon: ({ color, size }) => (
             <Icon name="user" color={color} size={size} />
