@@ -2,6 +2,7 @@ import styled from 'styled-components/native';
 
 export const Container = styled.View`
   flex: 1;
+  position: relative;
   background: #ececec;
   align-items: center;
   justify-content: center;
@@ -53,8 +54,9 @@ export const SignUpTextHighlighted = styled(SignUpText)`
 export const BottomInfo = styled.View`
   margin-top: 16px;
   width: 100%;
-  flex-direction: row;
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const BottomInfoLink = styled.TouchableOpacity`
@@ -62,5 +64,5 @@ export const BottomInfoLink = styled.TouchableOpacity`
 `;
 
 export const BottomInfoLinkText = styled.Text`
-  color: ${props => props.theme.palette.grey};
+  color: ${props => props.theme.palette.dark};
 `;
