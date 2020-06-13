@@ -23,7 +23,7 @@ import { useAuth } from '../../hooks/Auth';
 import * as Yup from 'yup';
 import getValidationErrros from '../../utils/getValidationErrors';
 
-interface SingInFormData {
+interface SignInFormData {
   email: string;
   password: string;
 }
@@ -35,7 +35,7 @@ const SignIn: React.FC = () => {
   const { signIn } = useAuth();
 
   const handleSubmit = useCallback(
-    async (data: SingInFormData) => {
+    async (data: SignInFormData) => {
       try {
         formRef.current?.setErrors({});
 
