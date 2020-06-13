@@ -1,7 +1,6 @@
 import React from 'react';
 import {
   Container,
-  Header,
   ProfileCard,
   ProfilePicture,
   ProfileName,
@@ -19,8 +18,8 @@ import {
   MenuOption,
   MenuTrigger,
 } from 'react-native-popup-menu';
+import Header from '../../components/Header';
 import Icon from 'react-native-vector-icons/Feather';
-import Logo from '../../../assets/static/wdyt-logo.svg';
 
 const Profile: React.FC = () => {
   const navigation = useNavigation();
@@ -29,10 +28,9 @@ const Profile: React.FC = () => {
     <Container>
       <LinearGradient colors={['#D90368', '#741960']} style={{ flex: 1 }}>
         <Header>
-          <Logo width={100} height={44} />
           <Menu>
             <MenuTrigger>
-              <Icon name="settings" size={30} color="#fff" />
+              <Icon name="settings" size={24} color="#fff" />
             </MenuTrigger>
             <MenuOptions>
               <MenuOption

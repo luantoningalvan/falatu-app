@@ -5,13 +5,11 @@ import {
   ReportButtonText,
   SkipButton,
   SkipButtonText,
-  Header,
   PlayArea,
 } from './styles';
 import LinearGradient from 'react-native-linear-gradient';
 import Icon from 'react-native-vector-icons/Feather';
-import Logo from '../../../assets/static/wdyt-logo.svg';
-
+import Header from '../../components/Header';
 import YestOrNot from './templates/YesOrNo';
 import ImageComparision from './templates/ImageComparision';
 import MultiChoice from './templates/MultiChoice';
@@ -31,10 +29,9 @@ const Play: React.FC = () => {
     <LinearGradient colors={['#D90368', '#741960']} style={{ flex: 1 }}>
       <Container>
         <Header>
-          <Logo width={100} height={44} />
           <ReportButton>
             <ReportButtonText>DENUNCIAR</ReportButtonText>
-            <Icon size={20} name="info" color="white" />
+            <Icon name="info" size={24} color="#fff" />
           </ReportButton>
         </Header>
 
