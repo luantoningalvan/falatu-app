@@ -4,6 +4,14 @@ export interface QuestionCardProps {
   showAvatar?: boolean;
 }
 
+export interface OptionsProps {
+  multi?: boolean;
+}
+
+export interface OptionProps {
+  grow?: boolean;
+}
+
 export interface QuestionAvatarProps {
   size?: 'small' | 'big';
 }
@@ -50,28 +58,30 @@ export const QuestionButtonText = styled.Text<QuestionButtonTextProps>`
   font-size: ${props => (props.size === 'big' ? '24px' : '14px')};
 `;
 
-export const YestOrNotContainer = styled.View`
+export const QuestionWrapper = styled.View`
   flex: 1;
   width: 100%;
   margin-top: 36px;
   justify-content: center;
 `;
 
-export const Options = styled.View`
-  flex-direction: row;
-  justify-content: space-between;
+export const Options = styled.View<OptionsProps>`
+  flex-direction: ${props => (props.multi ? 'column' : 'row')};
+  align-items: center;
+  justify-content: ${props => (props.multi ? 'center' : 'space-between')};
   margin-top: 16px;
+  width: 90%;
 `;
 
-export const Option = styled.TouchableOpacity`
-  margin: 0px 8px;
-  padding: 16px 16px 10px 16px;
+export const Option = styled.TouchableOpacity<OptionProps>`
+  margin: 8px 8px;
+  padding: 16px;
   border-radius: 32px;
   background-color: #ececec;
   flex-direction: row;
   align-items: center;
-  flex: 1;
-  justify-content: space-between;
+  justify-content: ${props => (props.grow ? 'center' : 'space-between')};
+  width: ${props => (props.grow ? '100%' : 'auto')};
 `;
 
 export const OptionText = styled.Text`

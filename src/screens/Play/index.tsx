@@ -13,13 +13,17 @@ import Icon from 'react-native-vector-icons/Feather';
 import Logo from '../../../assets/static/wdyt-logo.svg';
 
 import YestOrNot from './templates/YesOrNo';
+import MultiChoice from './templates/MultiChoice';
+import Written from './templates/Written';
 
 const Play: React.FC = () => {
   const templates = {
     yesornot: YestOrNot,
+    multi: MultiChoice,
+    written: Written,
   };
 
-  const Template = templates.yesornot;
+  const Template = templates.written;
 
   return (
     <LinearGradient colors={['#D90368', '#741960']} style={{ flex: 1 }}>

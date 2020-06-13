@@ -3,8 +3,8 @@ import styled, { css } from 'styled-components/native';
 import FeatherIcon from 'react-native-vector-icons/Feather';
 
 interface ContainerProps {
-  isFocused: boolean;
-  isErrored: boolean;
+  isFocused?: boolean;
+  isErrored?: boolean;
 }
 
 export const Container = styled.View<ContainerProps>`
@@ -33,7 +33,7 @@ export const TextInput = styled.TextInput`
   flex: 1;
   color: #333;
   font-size: 16px;
-  font-family: 'RobotoSlab-Regular';
+  font-family: 'Comfortaa-Regular';
 `;
 
 export const Icon = styled(FeatherIcon)`
