@@ -1,5 +1,15 @@
 import React from 'react';
-import { Container, Header } from './styles';
+import {
+  Container,
+  Header,
+  ProfileCard,
+  ProfilePicture,
+  ProfileName,
+  InfoCards,
+  InfoCard,
+  InfoCardTitle,
+  InfoCardNumber,
+} from './styles';
 import LinearGradient from 'react-native-linear-gradient';
 import { useNavigation } from '@react-navigation/native';
 import { useAuth } from '../../hooks/Auth';
@@ -33,6 +43,27 @@ const Profile: React.FC = () => {
             </MenuOptions>
           </Menu>
         </Header>
+        <ProfileCard>
+          <ProfilePicture
+            source={{
+              uri:
+                'https://scontent.fcxj1-1.fna.fbcdn.net/v/t1.0-9/90864277_1143914932612369_1772337165435404288_o.jpg?_nc_cat=102&_nc_sid=09cbfe&_nc_ohc=QUNGoVuQIUoAX95XxK8&_nc_ht=scontent.fcxj1-1.fna&oh=7fdacdeccaaddd9247d08133391dfbc9&oe=5F0A4B0E',
+            }}
+          />
+          <ProfileName>Luan</ProfileName>
+        </ProfileCard>
+
+        <InfoCards>
+          <InfoCard>
+            <InfoCardNumber>23</InfoCardNumber>
+            <InfoCardTitle>respostas</InfoCardTitle>
+          </InfoCard>
+
+          <InfoCard style={{ marginLeft: 16 }}>
+            <InfoCardNumber>5</InfoCardNumber>
+            <InfoCardTitle>perguntas</InfoCardTitle>
+          </InfoCard>
+        </InfoCards>
       </LinearGradient>
     </Container>
   );
