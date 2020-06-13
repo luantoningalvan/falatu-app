@@ -13,13 +13,15 @@ import Icon from 'react-native-vector-icons/Feather';
 import Logo from '../../../assets/static/wdyt-logo.svg';
 
 import YestOrNot from './templates/YesOrNo';
+import ImageComparision from './templates/ImageComparision';
 
 const Play: React.FC = () => {
   const templates = {
     yesornot: YestOrNot,
+    imagecomparision: ImageComparision,
   };
 
-  const Template = templates.yesornot;
+  const Template = templates.imagecomparision;
 
   return (
     <LinearGradient colors={['#D90368', '#741960']} style={{ flex: 1 }}>

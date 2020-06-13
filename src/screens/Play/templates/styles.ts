@@ -2,6 +2,7 @@ import styled from 'styled-components/native';
 
 export interface QuestionCardProps {
   showAvatar?: boolean;
+  noPadding?: boolean;
 }
 
 export interface QuestionAvatarProps {
@@ -24,7 +25,7 @@ export const QuestionCard = styled.View<QuestionCardProps>`
   position: relative;
   background-color: white;
   border-radius: 16px;
-  padding: 16px 8px;
+  padding: ${props => (props.noPadding ? '0px' : '16px 8px')};
 `;
 
 export const QuestionAvatar = styled.Image<QuestionAvatarProps>`
@@ -85,4 +86,34 @@ export const QuestionTitle = styled.Text`
   font-family: 'Comfortaa-Regular';
   line-height: 18px;
   margin-top: 24px;
+`;
+
+export const ImageComparisionContainer = styled.View`
+  flex: 1;
+  width: 100%;
+  overflow: hidden;
+  margin-bottom: 16px;
+  background: white;
+  border-radius: 16px;
+`;
+
+export const ImageComparisionQuestion = styled.Text`
+  padding: 16px;
+  font-size: 18px;
+  font-family: 'Comfortaa-Regular';
+  line-height: 18px;
+  text-align: center;
+`;
+
+export const ImageOptions = styled.View`
+  flex-direction: row;
+  overflow: hidden;
+`;
+export const ImageOption = styled.TouchableOpacity`
+  flex: 1;
+`;
+
+export const ImageOptionImage = styled.Image`
+  height: 100%;
+  width: 100%;
 `;

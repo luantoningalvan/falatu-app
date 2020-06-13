@@ -8,15 +8,15 @@ export const Header = styled.View`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  height: 86px;
-  padding: 16px;
+  margin: 16px 0px;
+  padding: 0px 16px;
 `;
 
 export const PlayArea = styled.View`
   flex: 1;
   justify-content: space-between;
   align-items: flex-end;
-  padding: 32px;
+  padding: 0px 32px 16px;
 `;
 
 export const ReportButton = styled.TouchableOpacity`
