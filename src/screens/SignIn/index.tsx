@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import { Alert } from 'react-native';
+import { View, Alert } from 'react-native';
 import Button from '../../components/Button';
 import { Input } from '../../components/Form';
 import { FormHandles } from '@unform/core';
@@ -11,10 +11,15 @@ import {
   Header,
   FormContainer,
   Title,
+  BottomInfo,
+  BottomInfoLink,
+  BottomInfoLinkText,
 } from './styles';
 import { useNavigation } from '@react-navigation/native';
 import { Form } from '@unform/mobile';
 import LinearGradient from 'react-native-linear-gradient';
+// @ts-ignore
+import Logo from '../../../assets/static/wdyt-logo.svg';
 import { useAuth } from '../../hooks/Auth';
 import * as Yup from 'yup';
 import getValidationErrros from '../../utils/getValidationErrors';
@@ -59,6 +64,14 @@ const SignIn: React.FC = () => {
   return (
     <Container>
       <Header>
+        <View
+          style={{
+            width: '100%',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}>
+          <Logo width={150} height={150} />
+        </View>
         <LinearGradient colors={['#D90368', '#543A6A']} style={{ flex: 1 }} />
       </Header>
       <FormContainer>
@@ -88,6 +101,14 @@ const SignIn: React.FC = () => {
           </SignUp>
         </Form>
       </FormContainer>
+      <BottomInfo>
+        <BottomInfoLink>
+          <BottomInfoLinkText>Política de privacidade</BottomInfoLinkText>
+        </BottomInfoLink>
+        <BottomInfoLink>
+          <BottomInfoLinkText>Ajuda e suporte</BottomInfoLinkText>
+        </BottomInfoLink>
+      </BottomInfo>
     </Container>
   );
 };
