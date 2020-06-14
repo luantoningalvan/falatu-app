@@ -30,7 +30,18 @@ const QuestionsStackScreen = () => (
       name="Questions"
       options={{ headerShown: false }}
     />
-    <QuestionsStack.Screen component={CreateQuestion} name="CreateQuestion" />
+    <QuestionsStack.Screen
+      component={CreateQuestion}
+      options={{
+        title: 'Criar Pergunta',
+        headerTintColor: '#fff',
+        headerStyle: {
+          backgroundColor: '#571145',
+          elevation: 0,
+        },
+      }}
+      name="CreateQuestion"
+    />
   </QuestionsStack.Navigator>
 );
 
