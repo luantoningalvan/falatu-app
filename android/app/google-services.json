@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "839399547123",
+    "firebase_url": "https://wdyt-6eb8b.firebaseio.com",
+    "project_id": "wdyt-6eb8b",
+    "storage_bucket": "wdyt-6eb8b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:839399547123:android:4cda06e78ed12587fad786",
+        "android_client_info": {
+          "package_name": "com.wdyt"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "839399547123-59d5n6c9fgj3crda2ql7prenkgta40ia.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDS7nw8RT4DTECfP8gwAS565O7tuY6lhIw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "839399547123-59d5n6c9fgj3crda2ql7prenkgta40ia.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

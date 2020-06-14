@@ -14,6 +14,7 @@ import YestOrNot from './templates/YesOrNo';
 import ImageComparision from './templates/ImageComparision';
 import MultiChoice from './templates/MultiChoice';
 import Written from './templates/Written';
+import Add from './templates/Add';
 
 const Play: React.FC = () => {
   const templates = {
@@ -21,9 +22,10 @@ const Play: React.FC = () => {
     imagecomparision: ImageComparision,
     multi: MultiChoice,
     written: Written,
+    add: Add,
   };
 
-  const Template = templates.written;
+  const Template = templates.add;
 
   return (
     <LinearGradient colors={['#D90368', '#741960']} style={{ flex: 1 }}>
