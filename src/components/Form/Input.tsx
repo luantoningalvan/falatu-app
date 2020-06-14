@@ -12,7 +12,7 @@ import { useField } from '@unform/core';
 
 interface InputProps extends TextInputProps {
   name: string;
-  icon: string;
+  icon?: string;
 }
 
 interface InputValueRereference {
@@ -67,11 +67,13 @@ const Input: React.RefForwardingComponent<InputRef, InputProps> = (
 
   return (
     <Container isFocused={isFocused} isErrored={!!error}>
-      <Icon
-        name={icon}
-        size={20}
-        color={isFocused || isFilled ? '#543A6A' : '#666360'}
-      />
+      {!!icon && (
+        <Icon
+          name={icon}
+          size={20}
+          color={isFocused || isFilled ? '#543A6A' : '#666360'}
+        />
+      )}
       <TextInput
         ref={inputElementRef}
         keyboardAppearance="dark"
