@@ -56,7 +56,7 @@ export const AuthProvider: React.FC = ({ children }) => {
 
     await AsyncStorage.multiSet([
       ['@WDYT:token', token],
-      ['@WDYT:user', user],
+      ['@WDYT:user', JSON.stringify(user)],
     ]);
 
     setData({ user, token });
