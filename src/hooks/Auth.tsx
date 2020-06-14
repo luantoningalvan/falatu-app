@@ -7,6 +7,7 @@ import React, {
 } from 'react';
 import api from '../services/apiClient';
 import AsyncStorage from '@react-native-community/async-storage';
+import setAuthToken from '../utils/setAuthToken';
 interface SingInCredentials {
   email: string;
   password: string;
@@ -44,6 +45,8 @@ export const AuthProvider: React.FC = ({ children }) => {
         });
       }
 
+      setAuthToken(token[1] as string);
+
       setLoading(false);
     }
 
@@ -60,6 +63,7 @@ export const AuthProvider: React.FC = ({ children }) => {
     ]);
 
     setData({ user, token });
+    setAuthToken(token);
   }, []);
 
   const signOut = useCallback(async () => {
