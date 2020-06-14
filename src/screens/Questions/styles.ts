@@ -84,3 +84,5 @@ export const QuestionIcon = styled(AnswerIcon)`
 export const QuestionCount = styled.Text`
   color: white;
 `;
+
+export const CreateQuestionButton = styled.TouchableOpacity``;

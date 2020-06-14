@@ -3,12 +3,14 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import Play from '../screens/Play';
 import Questions from '../screens/Questions';
+import CreateQuestion from '../screens/Questions/CreateQuestion';
 import Profile from '../screens/Profile';
 import Settings from '../screens/Settings';
 import Icon from 'react-native-vector-icons/Feather';
 const App = createBottomTabNavigator();
 
 const ProfileStack = createStackNavigator();
+const QuestionsStack = createStackNavigator();
 
 const ProfileStackScreen = () => (
   <ProfileStack.Navigator>
@@ -19,6 +21,17 @@ const ProfileStackScreen = () => (
     />
     <ProfileStack.Screen component={Settings} name="Settings" />
   </ProfileStack.Navigator>
+);
+
+const QuestionsStackScreen = () => (
+  <QuestionsStack.Navigator>
+    <QuestionsStack.Screen
+      component={Questions}
+      name="Questions"
+      options={{ headerShown: false }}
+    />
+    <QuestionsStack.Screen component={CreateQuestion} name="CreateQuestion" />
+  </QuestionsStack.Navigator>
 );
 
 const AppRoutes: React.FC = () => {
@@ -60,7 +73,7 @@ const AppRoutes: React.FC = () => {
       />
       <App.Screen
         name="Questions"
-        component={Questions}
+        component={QuestionsStackScreen}
         options={{
           tabBarIcon: ({ color, size }) => (
             <Icon name="help-circle" color={color} size={size} />
