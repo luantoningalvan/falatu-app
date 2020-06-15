@@ -8,13 +8,16 @@ export interface NewQuestionRequest {
 }
 
 interface QuestionContextData {
-  questions: object;
+  questions: QuestionResponse[];
   loading: boolean;
   newQuestion(credentials: NewQuestionRequest): Promise<void>;
+  getMineQuestions(): Promise<void>;
 }
 
-interface QuestionState {
-  questions: object;
+interface QuestionResponse {
+  id: string;
+  title: string;
+  answers: [];
 }
 
 const QuestionContext = createContext<QuestionContextData>(
@@ -22,8 +25,21 @@ const QuestionContext = createContext<QuestionContextData>(
 );
 
 export const QuestionProvider: React.FC = ({ children }) => {
-  const [data, setData] = useState<QuestionState>({} as QuestionState);
+  const [data, setData] = useState<QuestionResponse[]>([]);
   const [loading, setLoading] = useState(true);
+
+  const getMineQuestions = useCallback(async function getOwnQuestions() {
+    try {
+      setLoading(true);
+      const response = await api.get('/questions/mine');
+      setData(response.data);
+      //console.log(response.data);
+      setLoading(false);
+    } catch (error) {
+      console.log(error);
+      setLoading(false);
+    }
+  }, []);
 
   const newQuestion = useCallback(async ({ title, options, type }) => {
     try {
@@ -42,7 +58,12 @@ export const QuestionProvider: React.FC = ({ children }) => {
 
   return (
     <QuestionContext.Provider
-      value={{ questions: data.questions, loading, newQuestion }}>
+      value={{
+        questions: data,
+        loading,
+        newQuestion,
+        getMineQuestions,
+      }}>
       {children}
     </QuestionContext.Provider>
   );

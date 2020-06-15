@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Container,
   CreateQuestionButton,
@@ -18,16 +18,24 @@ import {
   QuestionIcon,
   QuestionCount,
 } from './styles';
-import { ScrollView, View } from 'react-native';
+import { ScrollView, View, ActivityIndicator } from 'react-native';
 import Header from '../../components/Header';
 import LinearGradient from 'react-native-linear-gradient';
 import { useNavigation } from '@react-navigation/native';
+import { useQuestion } from '../../hooks/Question';
 import Icon from 'react-native-vector-icons/Feather';
-import { Text } from 'react-native-svg';
 
 const Questions: React.FC = () => {
   const [selectedTab, selectTab] = useState('own');
   const navigation = useNavigation();
+  const { questions, loading, getMineQuestions } = useQuestion();
+
+  useEffect(() => {
+    async function getQuestions() {
+      await getMineQuestions();
+    }
+    getQuestions();
+  }, [getMineQuestions]);
   return (
     <Container>
       <LinearGradient colors={['#D90368', '#741960']} style={{ flex: 1 }}>
@@ -73,32 +81,39 @@ const Questions: React.FC = () => {
             </Tabs>
 
             <TabContent>
-              {selectedTab === 'own' && (
-                <View>
-                  <Question>
-                    <QuestionIcon name="image" />
-                    <QuestionTitle>Qual foto?</QuestionTitle>
-                    <QuestionCount>34 respostas</QuestionCount>
-                  </Question>
-                  <Question>
-                    <QuestionIcon name="image" />
-                    <QuestionTitle>Qual foto?</QuestionTitle>
-                    <QuestionCount>34 respostas</QuestionCount>
-                  </Question>
-                  <Question>
-                    <QuestionIcon name="image" />
-                    <QuestionTitle>Qual foto?</QuestionTitle>
-                    <QuestionCount>34 respostas</QuestionCount>
-                  </Question>
-                  <Question>
-                    <QuestionIcon name="image" />
-                    <QuestionTitle>Qual foto?</QuestionTitle>
-                    <QuestionCount>34 respostas</QuestionCount>
-                  </Question>
-                </View>
-              )}
+              {!loading ? (
+                <>
+                  {selectedTab === 'own' && (
+                    <View>
+                      {questions.map(question => (
+                        <Question>
+                          <QuestionIcon name="image" />
+                          <QuestionTitle>{question.title}</QuestionTitle>
+                          <QuestionCount>
+                            {question.answers.length} respostas
+                          </QuestionCount>
+                        </Question>
+                      ))}
+                    </View>
+                  )}
 
-              {selectedTab === 'default' && <Text>Padrões</Text>}
+                  {selectedTab === 'default' && (
+                    <View>
+                      {questions.map(question => (
+                        <Question>
+                          <QuestionIcon name="image" />
+                          <QuestionTitle>{question.title}</QuestionTitle>
+                          <QuestionCount>
+                            {question.answers.length} respostas
+                          </QuestionCount>
+                        </Question>
+                      ))}
+                    </View>
+                  )}
+                </>
+              ) : (
+                <ActivityIndicator />
+              )}
             </TabContent>
           </TabsSwitcher>
         </ScrollView>
