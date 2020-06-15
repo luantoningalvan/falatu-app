@@ -34,11 +34,7 @@ const QuestionsStackScreen = () => (
       component={CreateQuestion}
       options={{
         title: 'Criar Pergunta',
-        headerTintColor: '#fff',
-        headerStyle: {
-          backgroundColor: '#571145',
-          elevation: 0,
-        },
+        headerShown: false,
       }}
       name="CreateQuestion"
     />
