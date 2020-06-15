@@ -35,11 +35,11 @@ export const ProfileName = styled.Text`
 export const InfoCards = styled.View`
   flex-direction: row;
   justify-content: center;
-  margin-top: 32px;
+  margin: 32px;
 `;
 
 export const InfoCard = styled.View`
-  width: 150px;
+  flex: 1;
   background: white;
   border-radius: 16px;
   padding: 16px;
@@ -55,4 +55,24 @@ export const InfoCardNumber = styled.Text`
   font-size: 32px;
   color: ${props => props.theme.palette.pink};
   text-align: center;
+`;
+
+export const SectionTitle = styled.Text`
+  color: white;
+  font-size: 24px;
+  margin: 0px 32px 8px;
+`;
+export const PhotoGrid = styled.View`
+  flex-direction: row;
+  margin: 0px 24px 16px;
+  flex-wrap: wrap;
+`;
+
+export const PhotoGridImage = styled.TouchableOpacity`
+  padding: 40px;
+  border-color: white;
+  margin: 8px;
+  border-width: 1px;
+  border-style: dashed;
+  border-radius: 8px;
 `;
