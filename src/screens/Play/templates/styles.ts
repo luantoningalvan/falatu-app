@@ -96,6 +96,8 @@ export const QuestionTitle = styled.Text`
   font-family: 'Comfortaa-Regular';
   line-height: 18px;
   margin-top: 24px;
+  text-align: center;
+  padding: 8px 0px;
 `;
 
 export const ImageComparisionContainer = styled.View`

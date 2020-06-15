@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import {
   Container,
   ReportButton,
@@ -7,7 +7,6 @@ import {
   SkipButtonText,
   PlayArea,
 } from './styles';
-import { ActivityIndicator } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import Icon from 'react-native-vector-icons/Feather';
 import Header from '../../components/Header';
@@ -15,69 +14,37 @@ import YestOrNot from './templates/YesOrNo';
 import ImageComparision from './templates/ImageComparision';
 import MultiChoice from './templates/MultiChoice';
 import Written from './templates/Written';
-import Add from './templates/Add';
-
-interface QuestionData {
-  id: string;
-  type: string;
-  title: string;
-  data?: object;
-}
-
-let data: QuestionData[] = [
-  {
-    id: '1',
-    type: 'imagecomparision',
-    title: 'Qual ficou melhor',
-  },
-  {
-    id: '1',
-    type: 'multi',
-    title: 'Qual ficou melhor',
-  },
-  {
-    id: '1',
-    type: 'written',
-    title: 'Qual ficou melhor',
-  },
-  {
-    id: '1',
-    type: 'yesornot',
-    title: 'Qual ficou melhor',
-  },
-];
+import { usePlay } from '../../hooks/Play';
+import { Text } from 'react-native';
 
 const Play: React.FC = () => {
-  const [position, setPosition] = useState(0);
-  const [loading, setLoading] = useState(false);
+  const { questions, loading, getRandomQuestions, skipQuestion } = usePlay();
 
-  const templates = {
+  useEffect(() => {
+    async function getQuestions() {
+      await getRandomQuestions();
+    }
+
+    getQuestions();
+  }, [getRandomQuestions]);
+
+  interface TemplateType {
+    [key: string]: any;
+  }
+
+  const templates: TemplateType = {
     yesornot: YestOrNot,
-    imagecomparision: ImageComparision,
+    photocomp: ImageComparision,
     multi: MultiChoice,
     written: Written,
+    undefined: () => <Text>Foda-se</Text>,
   };
 
-  const loadMore = useCallback(() => {
-    setLoading(true);
+  const nextQuestion = useCallback(async () => {
+    await skipQuestion();
+  }, [skipQuestion]);
 
-    setTimeout(() => {
-      const newData = data;
-      data = [...data, ...newData];
-      setLoading(false);
-      nextQuestion();
-    }, 5000);
-  }, []);
-
-  const nextQuestion = useCallback(() => {
-    if (position !== data.length - 1) {
-      setPosition(position + 1);
-    } else {
-      loadMore();
-    }
-  }, [position, loadMore]);
-
-  const Template = templates[data[position].type];
+  const Template = templates[questions[0]?.type];
 
   return (
     <LinearGradient colors={['#D90368', '#741960']} style={{ flex: 1 }}>
@@ -90,14 +57,14 @@ const Play: React.FC = () => {
         </Header>
         {!loading ? (
           <PlayArea>
-            <Template />
+            <Template data={questions[0]} />
             <SkipButton onPress={nextQuestion}>
               <SkipButtonText>Pular</SkipButtonText>
               <Icon size={28} name="skip-forward" color="white" />
             </SkipButton>
           </PlayArea>
         ) : (
-          <Add />
+          <Text>Carrregando</Text>
         )}
       </Container>
     </LinearGradient>

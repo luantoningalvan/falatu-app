@@ -9,7 +9,7 @@ import {
   QuestionTitle,
 } from './styles';
 
-const MultiChoice: React.ComponentType = () => {
+const MultiChoice: React.ComponentType = ({ data }) => {
   return (
     <QuestionWrapper>
       <QuestionCard>
@@ -20,17 +20,13 @@ const MultiChoice: React.ComponentType = () => {
               'https://pbs.twimg.com/profile_images/1263694342247583744/I6oEWdq__400x400.jpg',
           }}
         />
-        <QuestionTitle>O quanto você me acha bonitão?</QuestionTitle>
+        <QuestionTitle>{data.title}</QuestionTitle>
         <Options multi>
-          <Option grow>
-            <OptionText>Bastante</OptionText>
-          </Option>
-          <Option grow>
-            <OptionText>Mais ou menos</OptionText>
-          </Option>
-          <Option grow>
-            <OptionText>Não te acho bonito</OptionText>
-          </Option>
+          {data.options.map(option => (
+            <Option grow>
+              <OptionText>{option.title}</OptionText>
+            </Option>
+          ))}
         </Options>
       </QuestionCard>
     </QuestionWrapper>

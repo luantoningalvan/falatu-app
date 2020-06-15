@@ -10,7 +10,7 @@ import {
 import { TextInput, Container } from '../../../components/Form/styles';
 import Button from '../../../components/Button';
 
-const Written: React.ComponentType = () => {
+const Written: React.ComponentType = ({ data }) => {
   return (
     <QuestionWrapper>
       <QuestionCard>
@@ -18,10 +18,10 @@ const Written: React.ComponentType = () => {
           size="big"
           source={{
             uri:
-              'https://pbs.twimg.com/profile_images/1263694342247583744/I6oEWdq__400x400.jpg',
+              'https://www.nicepng.com/png/detail/73-730154_open-default-profile-picture-png.png',
           }}
         />
-        <QuestionTitle>O quanto você me acha bonitão?</QuestionTitle>
+        <QuestionTitle>{data.title}</QuestionTitle>
         <Options multi>
           <Container>
             <TextInput placeholder="Escreva sua resposta..." />

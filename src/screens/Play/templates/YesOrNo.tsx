@@ -10,7 +10,7 @@ import {
 } from './styles';
 import Icon from 'react-native-vector-icons/Feather';
 
-const YesOrNo: React.FC = () => {
+const YesOrNo: React.FC = ({ data }) => {
   return (
     <QuestionWrapper>
       <QuestionCard>
@@ -22,7 +22,7 @@ const YesOrNo: React.FC = () => {
           }}
         />
 
-        <QuestionTitle>Tenho cara de milionário?</QuestionTitle>
+        <QuestionTitle>{data.title}</QuestionTitle>
         <Options>
           <Option>
             <OptionText>Sim</OptionText>
