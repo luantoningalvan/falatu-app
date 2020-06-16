@@ -1,17 +1,25 @@
 import React, { createContext, useCallback, useState, useContext } from 'react';
 import api from '../services/apiClient';
 
+interface AnswerData {
+  id: string;
+  answer?: string;
+  type: string;
+}
+
 interface PlayContextData {
   questions: QuestionResponse[];
   loading: boolean;
   getRandomQuestions(): Promise<void>;
   skipQuestion(): Promise<void>;
+  answerQuestion(data: AnswerData): Promise<void>;
 }
 
 export interface QuestionResponse {
-  id: string;
+  _id: string;
+  randomUserAvatar?: string;
   title: string;
-  options: [];
+  options?: [];
   type: string;
 }
 
@@ -20,8 +28,6 @@ const PlayContext = createContext<PlayContextData>({} as PlayContextData);
 export const PlayProvider: React.FC = ({ children }) => {
   const [queue, setQueue] = useState<QuestionResponse[]>([]);
   const [loading, setLoading] = useState(true);
-
-  console.log(`Tamanho da fila: ${queue.length}`);
 
   const getRandomQuestions = useCallback(async () => {
     try {
@@ -51,6 +57,15 @@ export const PlayProvider: React.FC = ({ children }) => {
     }
   }, [queue, getRandomQuestions]);
 
+  const answerQuestion = useCallback(async ({ id, answer, type }) => {
+    try {
+      await api.post(`/questions/answer/${id}`, { answer, type });
+      await skipQuestion();
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
+
   return (
     <PlayContext.Provider
       value={{
@@ -58,6 +73,7 @@ export const PlayProvider: React.FC = ({ children }) => {
         loading,
         getRandomQuestions,
         skipQuestion,
+        answerQuestion,
       }}>
       {children}
     </PlayContext.Provider>

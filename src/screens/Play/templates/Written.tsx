@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   QuestionWrapper,
   QuestionCard,
@@ -6,11 +6,26 @@ import {
   Options,
   QuestionTitle,
 } from './styles';
-
+import { usePlay, QuestionResponse } from '../../../hooks/Play';
 import { TextInput, Container } from '../../../components/Form/styles';
 import Button from '../../../components/Button';
 
-const Written: React.ComponentType = ({ data }) => {
+interface WrittenProps {
+  data: QuestionResponse;
+}
+const Written: React.FC<WrittenProps> = ({ data }) => {
+  const { answerQuestion } = usePlay();
+  const [answer, setAnswer] = useState('');
+
+  console.log(data);
+
+  const handleAnswer = async () => {
+    console.log(answer !== '');
+    if (answer !== '') {
+      await answerQuestion({ answer, id: data._id, type: 'written' });
+    }
+  };
+
   return (
     <QuestionWrapper>
       <QuestionCard>
@@ -18,17 +33,22 @@ const Written: React.ComponentType = ({ data }) => {
           size="big"
           source={{
             uri:
+              data.randomUserAvatar ||
               'https://www.nicepng.com/png/detail/73-730154_open-default-profile-picture-png.png',
           }}
         />
         <QuestionTitle>{data.title}</QuestionTitle>
         <Options multi>
           <Container>
-            <TextInput placeholder="Escreva sua resposta..." />
+            <TextInput
+              value={answer}
+              onChangeText={txt => setAnswer(txt)}
+              placeholder="Escreva sua resposta..."
+            />
           </Container>
         </Options>
       </QuestionCard>
-      <Button icon="send" style={{ marginTop: 16 }}>
+      <Button icon="send" style={{ marginTop: 16 }} onPress={handleAnswer}>
         Enviar
       </Button>
     </QuestionWrapper>
