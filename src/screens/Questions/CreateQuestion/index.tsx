@@ -16,13 +16,14 @@ import LinearGradient from 'react-native-linear-gradient';
 import { useNavigation } from '@react-navigation/native';
 
 import Written from './forms/Written';
+import YesOrNot from './forms/YesOrNot';
 
 interface TemplateType {
   [key: string]: any;
 }
 
 const templates: TemplateType = {
-  yesornot: <></>,
+  yesornot: YesOrNot,
   imagecomparision: <></>,
   multi: <></>,
   written: Written,

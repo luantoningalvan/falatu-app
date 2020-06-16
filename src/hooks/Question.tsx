@@ -50,7 +50,7 @@ export const QuestionProvider: React.FC = ({ children }) => {
         type,
       });
       setLoading(false);
-      setData(response.data);
+      setData(old => [response.data, ...old]);
     } catch (error) {
       console.log(error);
     }
