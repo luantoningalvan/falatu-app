@@ -17,10 +17,7 @@ const Written: React.FC<WrittenProps> = ({ data }) => {
   const { answerQuestion } = usePlay();
   const [answer, setAnswer] = useState('');
 
-  console.log(data);
-
   const handleAnswer = async () => {
-    console.log(answer !== '');
     if (answer !== '') {
       await answerQuestion({ answer, id: data._id, type: 'written' });
     }
