@@ -5,6 +5,7 @@ interface AnswerData {
   id: string;
   answer?: string;
   type: string;
+  optionIndex?: number;
 }
 
 interface PlayContextData {
@@ -57,14 +58,21 @@ export const PlayProvider: React.FC = ({ children }) => {
     }
   }, [queue, getRandomQuestions]);
 
-  const answerQuestion = useCallback(async ({ id, answer, type }) => {
-    try {
-      await api.post(`/questions/answer/${id}`, { answer, type });
-      await skipQuestion();
-    } catch (error) {
-      console.log(error);
-    }
-  }, []);
+  const answerQuestion = useCallback(
+    async ({ id, answer, type, optionIndex }) => {
+      try {
+        await api.post(`/questions/answer/${id}`, {
+          answer,
+          optionIndex,
+          type,
+        });
+        await skipQuestion();
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    []
+  );
 
   return (
     <PlayContext.Provider
