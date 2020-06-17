@@ -38,14 +38,16 @@ export const AuthProvider: React.FC = ({ children }) => {
         '@WDYT:user',
       ]);
 
+      setAuthToken(token[1] as string);
+
+      const userData = await api.get('/users/me');
+
       if (token[1] && user[1]) {
         setData({
           token: token[1],
-          user: JSON.parse(user[1]),
+          user: userData.data,
         });
       }
-
-      setAuthToken(token[1] as string);
 
       setLoading(false);
     }
