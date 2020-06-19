@@ -34,15 +34,14 @@ export const AuthProvider: React.FC = ({ children }) => {
   useEffect(() => {
     async function loadStorageData(): Promise<void> {
       const [token, user] = await AsyncStorage.multiGet([
-        '@WDYT:token',
-        '@WDYT:user',
+        '@FALATU:token',
+        '@FALATU:user',
       ]);
 
-      setAuthToken(token[1] as string);
-
-      const userData = await api.get('/users/me');
-
       if (token[1] && user[1]) {
+        setAuthToken(token[1] as string);
+        const userData = await api.get('/users/me');
+
         setData({
           token: token[1],
           user: userData.data,
@@ -57,19 +56,21 @@ export const AuthProvider: React.FC = ({ children }) => {
 
   const signIn = useCallback(async ({ email, password }) => {
     const response = await api.post('/auth/login', { email, password });
-    const { token, user } = response.data;
+    const { token } = response.data;
+
+    setAuthToken(token);
+    const user = await api.get('/users/me');
 
     await AsyncStorage.multiSet([
-      ['@WDYT:token', token],
-      ['@WDYT:user', JSON.stringify(user)],
+      ['@FALATU:token', token],
+      ['@FALATU:user', JSON.stringify(user.data)],
     ]);
 
-    setData({ user, token });
-    setAuthToken(token);
+    setData({ user: user.data, token });
   }, []);
 
   const signOut = useCallback(async () => {
-    await AsyncStorage.multiRemove(['@WDYT:token', '@WDYT:user']);
+    await AsyncStorage.multiRemove(['@FALATU:token', '@FALATU:user']);
 
     setData({} as AuthState);
   }, []);
