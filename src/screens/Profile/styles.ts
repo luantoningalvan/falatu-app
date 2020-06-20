@@ -26,10 +26,10 @@ export const ProfilePicture = styled.Image`
 
 export const ProfileName = styled.Text`
   color: white;
-  font-size: 26px;
+  font-size: 18px;
   font-family: 'Comfortaa-Light';
   margin-top: 8px;
-  letter-spacing: 5px;
+  letter-spacing: 3px;
 `;
 
 export const InfoCards = styled.View`
@@ -68,11 +68,20 @@ export const PhotoGrid = styled.View`
   flex-wrap: wrap;
 `;
 
-export const PhotoGridImage = styled.TouchableOpacity`
+export const PhotoGridImageButton = styled.TouchableOpacity`
   padding: 40px;
   border-color: white;
   margin: 8px;
   border-width: 1px;
   border-style: dashed;
+  border-radius: 8px;
+`;
+
+export const PhotoGridImage = styled.Image`
+  width: 104;
+  height: 104;
+  border-color: white;
+  margin: 8px;
+  border-width: 1px;
   border-radius: 8px;
 `;

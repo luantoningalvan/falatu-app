@@ -13,8 +13,21 @@ interface SingInCredentials {
   password: string;
 }
 
+export interface UserResponse {
+  username: string;
+  email: string;
+  name?: string;
+  answerCount: number;
+  questionCount?: number;
+  avatarList: {
+    url: string;
+    key: string;
+    index: number;
+  }[];
+}
+
 interface AuthContextData {
-  user: object;
+  user: UserResponse;
   loading: boolean;
   signIn(credentials: SingInCredentials): Promise<void>;
   signOut(): void;
@@ -22,7 +35,7 @@ interface AuthContextData {
 
 interface AuthState {
   token: string;
-  user: object;
+  user: UserResponse;
 }
 
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
@@ -40,7 +53,7 @@ export const AuthProvider: React.FC = ({ children }) => {
 
       if (token[1] && user[1]) {
         setAuthToken(token[1] as string);
-        const userData = await api.get('/users/me');
+        const userData = await api.get<UserResponse>('/users/me');
 
         setData({
           token: token[1],

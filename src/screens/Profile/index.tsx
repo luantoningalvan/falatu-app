@@ -10,6 +10,7 @@ import {
   InfoCardNumber,
   SectionTitle,
   PhotoGrid,
+  PhotoGridImageButton,
   PhotoGridImage,
 } from './styles';
 import { ScrollView } from 'react-native';
@@ -29,6 +30,7 @@ import DefaultProfilePicture from '../../../assets/static/default-profile-pictur
 const Profile: React.FC = () => {
   const navigation = useNavigation();
   const { signOut, user } = useAuth();
+  const { avatarList } = user;
   return (
     <Container>
       <LinearGradient colors={['#D90368', '#741960']} style={{ flex: 1 }}>
@@ -49,46 +51,43 @@ const Profile: React.FC = () => {
           </Header>
           <ProfileCard>
             {user.avatarList?.length > 0 ? (
-              <ProfilePicture source={{ uri: user.avatarList[0] }} />
+              <ProfilePicture source={{ uri: user.avatarList[0].url }} />
             ) : (
               <ProfilePicture source={DefaultProfilePicture} />
             )}
-            <ProfileName>@{user.username}</ProfileName>
+            <ProfileName>
+              {user.name
+                ? `${user.name} (@${user.username})`
+                : `@${user.username}`}
+            </ProfileName>
           </ProfileCard>
 
           <InfoCards>
             <InfoCard>
-              <InfoCardNumber>{user.answerCount || 0}</InfoCardNumber>
+              <InfoCardNumber onPress={() => navigation.navigate('Questions')}>
+                {user.answerCount || 0}
+              </InfoCardNumber>
               <InfoCardTitle>respostas</InfoCardTitle>
             </InfoCard>
 
             <InfoCard style={{ marginLeft: 16 }}>
-              <InfoCardNumber>{user.questionCount || 0}</InfoCardNumber>
+              <InfoCardNumber onPress={() => navigation.navigate('Questions')}>
+                {user.questionCount || 0}
+              </InfoCardNumber>
               <InfoCardTitle>perguntas</InfoCardTitle>
             </InfoCard>
           </InfoCards>
 
           <SectionTitle>Suas fotos</SectionTitle>
-
           <PhotoGrid>
-            <PhotoGridImage>
-              <Icon name="image" color="#fff" size={22} />
-            </PhotoGridImage>
-            <PhotoGridImage>
-              <Icon name="image" color="#fff" size={22} />
-            </PhotoGridImage>
-            <PhotoGridImage>
-              <Icon name="image" color="#fff" size={22} />
-            </PhotoGridImage>
-            <PhotoGridImage>
-              <Icon name="image" color="#fff" size={22} />
-            </PhotoGridImage>
-            <PhotoGridImage>
-              <Icon name="image" color="#fff" size={22} />
-            </PhotoGridImage>
-            <PhotoGridImage>
-              <Icon name="image" color="#fff" size={22} />
-            </PhotoGridImage>
+            {avatarList.map(avatar => (
+              <PhotoGridImage source={{ uri: avatar.url }} />
+            ))}
+            {[...Array(6 - avatarList.length)].map(_x => (
+              <PhotoGridImageButton>
+                <Icon name="image" color="#fff" size={22} />
+              </PhotoGridImageButton>
+            ))}
           </PhotoGrid>
         </ScrollView>
       </LinearGradient>
