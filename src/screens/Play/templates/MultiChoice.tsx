@@ -9,7 +9,11 @@ import {
   QuestionTitle,
 } from './styles';
 
-const MultiChoice: React.ComponentType = ({ data }) => {
+import { QuestionResponse } from '../../../hooks/Play';
+
+const MultiChoice: React.ComponentType<{ data: QuestionResponse }> = ({
+  data,
+}) => {
   return (
     <QuestionWrapper>
       <QuestionCard>
@@ -22,7 +26,7 @@ const MultiChoice: React.ComponentType = ({ data }) => {
         />
         <QuestionTitle>{data.title}</QuestionTitle>
         <Options multi>
-          {data.options.map(option => (
+          {data.options!.map(option => (
             <Option grow>
               <OptionText>{option.title}</OptionText>
             </Option>

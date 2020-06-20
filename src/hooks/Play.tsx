@@ -16,12 +16,23 @@ interface PlayContextData {
   answerQuestion(data: AnswerData): Promise<void>;
 }
 
+export enum QuestionTypes {
+  YESORNOT = 'yesornot',
+  MULTI = 'multi',
+  PHOTO_COMPARISON = 'photocomp',
+  WRITTEN = 'written',
+}
+
 export interface QuestionResponse {
   _id: string;
   randomUserAvatar?: string;
   title: string;
-  options?: [];
-  type: string;
+  type: QuestionTypes;
+  options: {
+    title?: string;
+    url?: string;
+    answerCount: number;
+  }[];
 }
 
 const PlayContext = createContext<PlayContextData>({} as PlayContextData);
@@ -71,7 +82,7 @@ export const PlayProvider: React.FC = ({ children }) => {
         console.log(error);
       }
     },
-    []
+    [skipQuestion]
   );
 
   return (

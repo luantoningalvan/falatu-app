@@ -6,8 +6,9 @@ import {
   ImageOptionImage,
   ImageComparisionQuestion,
 } from './styles';
+import { QuestionResponse } from 'src/hooks/Play';
 
-const YesOrNo: React.FC = ({ data }) => {
+const YesOrNo: React.ComponentType<{ data: QuestionResponse }> = ({ data }) => {
   return (
     <ImageComparisionContainer>
       <ImageComparisionQuestion>{data.title}</ImageComparisionQuestion>
@@ -17,14 +18,14 @@ const YesOrNo: React.FC = ({ data }) => {
           <ImageOptionImage
             width={200}
             source={{
-              uri: data.options[0].url,
+              uri: data.options![0].url,
             }}
           />
         </ImageOption>
         <ImageOption>
           <ImageOptionImage
             source={{
-              uri: data.options[1].url,
+              uri: data.options![1].url,
             }}
           />
         </ImageOption>
