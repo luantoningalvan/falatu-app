@@ -30,6 +30,7 @@ const Profile: React.FC = () => {
   const navigation = useNavigation();
   const { signOut, user } = useAuth();
   const { avatarList } = user;
+
   return (
     <Container>
       <LinearGradient colors={['#D90368', '#741960']} style={{ flex: 1 }}>
