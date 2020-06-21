@@ -1,6 +1,6 @@
 /* eslint-disable curly */
-import React from 'react';
-import { Alert, Platform } from 'react-native';
+import React, { useCallback } from 'react';
+import { Alert } from 'react-native';
 import {
   Menu,
   MenuOptions,
@@ -14,7 +14,7 @@ import api from '../../services/apiClient';
 import { PhotoGridImage } from '../TouchablePicture/styles';
 
 interface UploadPicButtonProps {
-  index?: number;
+  index?: number | string;
   externalUri?: string;
   externalFileKey?: string;
 }
@@ -30,7 +30,7 @@ export const UploadPicButton: React.ComponentType<UploadPicButtonProps> = ({
   externalFileKey,
 }) => {
   const [source, setSource] = React.useState<string>('');
-  const [sourceData, setSourceData] = React.useState<SourceData>({
+  const [, setSourceData] = React.useState<SourceData>({
     fileName: '',
     type: '',
   });
@@ -43,26 +43,26 @@ export const UploadPicButton: React.ComponentType<UploadPicButtonProps> = ({
     },
   };
 
-  const uploadImage = async () => {
-    // Create a new multipart/form-data
+  const uploadImage = useCallback(async response => {
     const data = new FormData();
 
-    // Append image to form data
-    data.append('file', {
-      name: sourceData.fileName,
-      type: sourceData.type,
-      uri: Platform.OS === 'android' ? source : source.replace('file://', ''),
-    });
+    data.append('file[uri]', response.uri);
+    data.append('file[name]', response.fileName);
+    data.append('file[type]', response.type);
+    data.append('file[image]', response.type);
 
-    // Send PUT request to server
-    const apiData = await api.put('/users/avatar', data, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    });
+    try {
+      const apiData = await api.put('/users/avatar', data, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
 
-    console.log(apiData.data);
-  };
+      console.log(apiData);
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
 
   const removeImage = async () => {
     // Send DELETE request to server
@@ -81,15 +81,10 @@ export const UploadPicButton: React.ComponentType<UploadPicButtonProps> = ({
       if (response.error) {
         Alert.alert('Erro', response.error);
       }
-      // Store image source in state
       setSource(response.uri);
-
-      console.log(response.fileName, response.type);
-
-      // Store metadata
       setSourceData({ fileName: response.fileName!, type: response.type! });
 
-      await uploadImage();
+      await uploadImage(response);
     });
   };
 
