@@ -10,8 +10,6 @@ import {
   InfoCardNumber,
   SectionTitle,
   PhotoGrid,
-  PhotoGridImageButton,
-  PhotoGridImage,
 } from './styles';
 import { ScrollView } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
@@ -26,6 +24,7 @@ import {
 import Header from '../../components/Header';
 import Icon from 'react-native-vector-icons/Feather';
 import DefaultProfilePicture from '../../../assets/static/default-profile-picture.png';
+import { UploadPicButton } from '../../components/UploadPicButton';
 
 const Profile: React.FC = () => {
   const navigation = useNavigation();
@@ -80,13 +79,15 @@ const Profile: React.FC = () => {
 
           <SectionTitle>Suas fotos</SectionTitle>
           <PhotoGrid>
-            {avatarList.map(avatar => (
-              <PhotoGridImage source={{ uri: avatar.url }} />
+            {avatarList.map((avatar, i) => (
+              <UploadPicButton
+                externalUri={avatar.url}
+                externalFileKey={avatar.key}
+                index={i}
+              />
             ))}
             {[...Array(6 - avatarList.length)].map(_x => (
-              <PhotoGridImageButton>
-                <Icon name="image" color="#fff" size={22} />
-              </PhotoGridImageButton>
+              <UploadPicButton />
             ))}
           </PhotoGrid>
         </ScrollView>
