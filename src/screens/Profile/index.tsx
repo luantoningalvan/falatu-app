@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import {
   Container,
   ProfileCard,
@@ -13,7 +13,7 @@ import {
   PhotoGridImageButton,
   PhotoGridImage,
 } from './styles';
-import { ScrollView } from 'react-native';
+import { ScrollView, Alert } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { useNavigation } from '@react-navigation/native';
 import { useAuth } from '../../hooks/Auth';
@@ -26,11 +26,55 @@ import {
 import Header from '../../components/Header';
 import Icon from 'react-native-vector-icons/Feather';
 import DefaultProfilePicture from '../../../assets/static/default-profile-picture.png';
+import ImagePicker from 'react-native-image-picker';
+import api from '../../services/apiClient';
 
 const Profile: React.FC = () => {
   const navigation = useNavigation();
   const { signOut, user } = useAuth();
   const { avatarList } = user;
+
+  const handleChangeAvatar = useCallback(async () => {
+    ImagePicker.showImagePicker(
+      {
+        title: 'Select Avatar',
+        customButtons: [{ name: 'fb', title: 'Choose Photo from Facebook' }],
+        storageOptions: {
+          skipBackup: true,
+          path: 'images',
+        },
+      },
+      async response => {
+        if (response.didCancel) {
+          return;
+        }
+
+        if (response.error) {
+          Alert.alert('Erro ao tentar selecionar foto');
+          return;
+        }
+
+        const data = new FormData();
+
+        data.append('photo', {
+          uri: response.uri,
+          type: 'image/png',
+          name: 'photo',
+        });
+
+        try {
+          const res = await api.put('/users/avatar', data, {
+            headers: { 'Content-Type': 'multipart/form-data' },
+          });
+
+          console.log(res);
+        } catch (error) {
+          console.log(error);
+        }
+      }
+    );
+  }, []);
+
   return (
     <Container>
       <LinearGradient colors={['#D90368', '#741960']} style={{ flex: 1 }}>
@@ -84,7 +128,7 @@ const Profile: React.FC = () => {
               <PhotoGridImage source={{ uri: avatar.url }} />
             ))}
             {[...Array(6 - avatarList.length)].map(_x => (
-              <PhotoGridImageButton>
+              <PhotoGridImageButton onPress={handleChangeAvatar}>
                 <Icon name="image" color="#fff" size={22} />
               </PhotoGridImageButton>
             ))}
