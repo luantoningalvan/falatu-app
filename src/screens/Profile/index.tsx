@@ -84,11 +84,15 @@ const Profile: React.FC = () => {
               <UploadPicButton
                 externalUri={avatar.url}
                 externalFileKey={avatar.key}
+                key={avatar.key}
                 index={i}
               />
             ))}
-            {[...Array(6 - avatarList.length)].map(_x => (
-              <UploadPicButton />
+            {[...Array(6 - avatarList.length)].map((_x, y) => (
+              <UploadPicButton
+                index={avatarList.length + y}
+                key={avatarList.length + y}
+              />
             ))}
           </PhotoGrid>
         </ScrollView>

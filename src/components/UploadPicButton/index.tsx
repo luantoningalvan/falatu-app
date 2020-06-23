@@ -12,6 +12,7 @@ import Icon from 'react-native-vector-icons/Feather';
 import { ButtonWrapper } from './styles';
 import api from '../../services/apiClient';
 import { PhotoGridImage } from '../TouchablePicture/styles';
+import { BlobService } from '../../services/BlobService';
 
 interface UploadPicButtonProps {
   index?: number | string;
@@ -44,30 +45,28 @@ export const UploadPicButton: React.ComponentType<UploadPicButtonProps> = ({
   };
 
   const uploadImage = useCallback(async response => {
-    const data = new FormData();
+    const blobService = new BlobService();
 
-    data.append('file[uri]', response.uri);
-    data.append('file[name]', response.fileName);
-    data.append('file[type]', response.type);
-    data.append('file[image]', response.type);
-
-    try {
-      const apiData = await api.put('/users/avatar', data, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
+    await blobService.upload(
+      'PUT',
+      '/users/avatar',
+      {
+        'Content-Type': 'multipart/form-data',
+      },
+      [
+        {
+          name: 'file',
+          filename: Date.now() + '.jpg',
+          type: response.type,
+          data: blobService.wrap(response.uri),
         },
-      });
-
-      console.log(apiData);
-    } catch (error) {
-      console.log(error);
-    }
+      ]
+    );
   }, []);
 
   const removeImage = async () => {
     // Send DELETE request to server
-    const data = await api.delete(`/users/avatar/${index}`);
-    console.log(data);
+    await api.delete(`/users/avatar/${index}`);
     setSource('');
     setSourceData({ fileName: '', type: '' });
   };

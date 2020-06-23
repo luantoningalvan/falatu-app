@@ -104,3 +104,8 @@ export function useAuth(): AuthContextData {
 
   return context;
 }
+
+export async function getToken(): Promise<string> {
+  const token = await AsyncStorage.getItem('@FALATU:token');
+  return token as string;
+}
