@@ -22,10 +22,14 @@ interface AnswerResponse {
   answer: string;
 }
 
-interface QuestionResponse {
+export interface QuestionResponse {
   id: string;
   title: string;
-  answers: [];
+  type: string;
+  answers: {
+    _id: string;
+    answer: string;
+  }[];
 }
 
 const QuestionContext = createContext<QuestionContextData>(

@@ -84,7 +84,12 @@ const Questions: React.FC = () => {
                   {selectedTab === 'own' && (
                     <View>
                       {questions.map(question => (
-                        <Question>
+                        <Question
+                          onPress={() =>
+                            navigation.navigate('SeeAnswers', {
+                              question: question,
+                            })
+                          }>
                           <QuestionIcon name="image" />
                           <QuestionTitle>{question.title}</QuestionTitle>
                           <QuestionCount>
@@ -98,7 +103,12 @@ const Questions: React.FC = () => {
                   {selectedTab === 'default' && (
                     <View>
                       {questions.map(question => (
-                        <Question>
+                        <Question
+                          onPress={() =>
+                            navigation.navigate('SeeAnswers', {
+                              question: question,
+                            })
+                          }>
                           <QuestionIcon name="image" />
                           <QuestionTitle>{question.title}</QuestionTitle>
                           <QuestionCount>
