@@ -26,6 +26,7 @@ export interface QuestionResponse {
   id: string;
   title: string;
   type: string;
+  expired: string;
   answers: {
     _id: string;
     answer: string;

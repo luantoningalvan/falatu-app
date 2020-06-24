@@ -26,7 +26,7 @@ import { useQuestion } from '../../hooks/Question';
 import Icon from 'react-native-vector-icons/Feather';
 
 const Questions: React.FC = () => {
-  const [selectedTab, selectTab] = useState('own');
+  const [selectedTab, selectTab] = useState('active');
   const navigation = useNavigation();
   const {
     questions,
@@ -67,55 +67,59 @@ const Questions: React.FC = () => {
           <TabsSwitcher>
             <Tabs>
               <Tab
-                current={selectedTab === 'own'}
-                onPress={() => selectTab('own')}>
-                <TabTitle>Próprias</TabTitle>
+                current={selectedTab === 'active'}
+                onPress={() => selectTab('active')}>
+                <TabTitle>Ativas</TabTitle>
               </Tab>
               <Tab
-                current={selectedTab === 'default'}
-                onPress={() => selectTab('default')}>
-                <TabTitle>Padrões</TabTitle>
+                current={selectedTab === 'expired'}
+                onPress={() => selectTab('expired')}>
+                <TabTitle>Expiradas</TabTitle>
               </Tab>
             </Tabs>
 
             <TabContent>
               {!loading ? (
                 <>
-                  {selectedTab === 'own' && (
+                  {selectedTab === 'active' && (
                     <View>
-                      {questions.map(question => (
-                        <Question
-                          onPress={() =>
-                            navigation.navigate('SeeAnswers', {
-                              question: question,
-                            })
-                          }>
-                          <QuestionIcon name="image" />
-                          <QuestionTitle>{question.title}</QuestionTitle>
-                          <QuestionCount>
-                            {question.answers.length} respostas
-                          </QuestionCount>
-                        </Question>
-                      ))}
+                      {questions
+                        .filter(q => !q.expired)
+                        .map(question => (
+                          <Question
+                            onPress={() =>
+                              navigation.navigate('SeeAnswers', {
+                                question: question,
+                              })
+                            }>
+                            <QuestionIcon name="image" />
+                            <QuestionTitle>{question.title}</QuestionTitle>
+                            <QuestionCount>
+                              {question.answers.length} respostas
+                            </QuestionCount>
+                          </Question>
+                        ))}
                     </View>
                   )}
 
-                  {selectedTab === 'default' && (
+                  {selectedTab === 'expired' && (
                     <View>
-                      {questions.map(question => (
-                        <Question
-                          onPress={() =>
-                            navigation.navigate('SeeAnswers', {
-                              question: question,
-                            })
-                          }>
-                          <QuestionIcon name="image" />
-                          <QuestionTitle>{question.title}</QuestionTitle>
-                          <QuestionCount>
-                            {question.answers.length} respostas
-                          </QuestionCount>
-                        </Question>
-                      ))}
+                      {questions
+                        .filter(q => q.expired)
+                        .map(question => (
+                          <Question
+                            onPress={() =>
+                              navigation.navigate('SeeAnswers', {
+                                question: question,
+                              })
+                            }>
+                            <QuestionIcon name="image" />
+                            <QuestionTitle>{question.title}</QuestionTitle>
+                            <QuestionCount>
+                              {question.answers.length} respostas
+                            </QuestionCount>
+                          </Question>
+                        ))}
                     </View>
                   )}
                 </>
