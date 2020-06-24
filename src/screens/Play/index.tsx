@@ -45,7 +45,7 @@ const Play: React.FC = () => {
   }, [skipQuestion]);
 
   const Template = templates[questions[0]?.type];
-
+  console.log(questions[0]);
   return (
     <LinearGradient colors={['#D90368', '#741960']} style={{ flex: 1 }}>
       <Container>

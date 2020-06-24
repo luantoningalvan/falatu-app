@@ -9,9 +9,17 @@ export interface NewQuestionRequest {
 
 interface QuestionContextData {
   questions: QuestionResponse[];
+  answers: AnswerResponse[];
   loading: boolean;
   newQuestion(credentials: NewQuestionRequest): Promise<void>;
   getMineQuestions(): Promise<void>;
+  getLastAnswers(): Promise<void>;
+}
+
+interface AnswerResponse {
+  id: string;
+  title: string;
+  answer: string;
 }
 
 interface QuestionResponse {
@@ -25,18 +33,29 @@ const QuestionContext = createContext<QuestionContextData>(
 );
 
 export const QuestionProvider: React.FC = ({ children }) => {
-  const [data, setData] = useState<QuestionResponse[]>([]);
+  const [questions, setQuestions] = useState<QuestionResponse[]>([]);
+  const [answers, setAnswers] = useState<AnswerResponse[]>([]);
   const [loading, setLoading] = useState(true);
 
   const getMineQuestions = useCallback(async function getOwnQuestions() {
     try {
       setLoading(true);
       const response = await api.get('/questions/mine');
-      setData(response.data);
-      //console.log(response.data);
+      setQuestions(response.data);
       setLoading(false);
     } catch (error) {
       console.log(error);
+      setLoading(false);
+    }
+  }, []);
+
+  const getLastAnswers = useCallback(async () => {
+    try {
+      setLoading(true);
+      const response = await api.get('/questions/recent');
+      setAnswers(response.data);
+      setLoading(false);
+    } catch (error) {
       setLoading(false);
     }
   }, []);
@@ -50,7 +69,7 @@ export const QuestionProvider: React.FC = ({ children }) => {
         type,
       });
       setLoading(false);
-      setData(old => [response.data, ...old]);
+      setQuestions(old => [response.data, ...old]);
     } catch (error) {
       console.log(error);
     }
@@ -59,10 +78,12 @@ export const QuestionProvider: React.FC = ({ children }) => {
   return (
     <QuestionContext.Provider
       value={{
-        questions: data,
+        questions,
+        answers,
         loading,
         newQuestion,
         getMineQuestions,
+        getLastAnswers,
       }}>
       {children}
     </QuestionContext.Provider>

@@ -7,7 +7,7 @@ import {
   Answer,
   AnswerIcon,
   AnswerTitle,
-  AnswerTime,
+  AnswerAnswer,
   TabsSwitcher,
   Tabs,
   Tab,
@@ -28,14 +28,20 @@ import Icon from 'react-native-vector-icons/Feather';
 const Questions: React.FC = () => {
   const [selectedTab, selectTab] = useState('own');
   const navigation = useNavigation();
-  const { questions, loading, getMineQuestions } = useQuestion();
+  const {
+    questions,
+    answers,
+    loading,
+    getMineQuestions,
+    getLastAnswers,
+  } = useQuestion();
 
   useEffect(() => {
     async function getQuestions() {
-      await getMineQuestions();
+      Promise.all([getMineQuestions(), getLastAnswers()]);
     }
     getQuestions();
-  }, [getMineQuestions]);
+  }, [getMineQuestions, getLastAnswers]);
   return (
     <Container>
       <LinearGradient colors={['#D90368', '#741960']} style={{ flex: 1 }}>
@@ -48,21 +54,13 @@ const Questions: React.FC = () => {
         <ScrollView style={{ flex: 1 }}>
           <SectionTitle>Respostas Recentes</SectionTitle>
           <Answers>
-            <Answer>
-              <AnswerIcon name="message-square" />
-              <AnswerTitle>Quantos anos eu aparento ter?</AnswerTitle>
-              <AnswerTime>32s</AnswerTime>
-            </Answer>
-            <Answer>
-              <AnswerIcon name="image" />
-              <AnswerTitle>Qual bermuda eu compro?</AnswerTitle>
-              <AnswerTime>1min</AnswerTime>
-            </Answer>
-            <Answer>
-              <AnswerIcon name="image" />
-              <AnswerTitle>Qual bermuda eu compro?</AnswerTitle>
-              <AnswerTime>2min</AnswerTime>
-            </Answer>
+            {answers.map(answer => (
+              <Answer>
+                <AnswerIcon name="message-square" />
+                <AnswerTitle>{answer.title}</AnswerTitle>
+                <AnswerAnswer>{answer.answer}</AnswerAnswer>
+              </Answer>
+            ))}
           </Answers>
 
           <SectionTitle>Suas perguntas</SectionTitle>

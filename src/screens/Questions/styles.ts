@@ -28,14 +28,20 @@ export const AnswerIcon = styled(Icon)`
   font-size: 16px;
 `;
 export const AnswerTitle = styled.Text`
-  color: #333;
-  flex: 1;
+  color: #000;
   font-size: 16px;
-  margin: 0px 16px;
+  margin: 0px 8px;
 `;
+
+export const AnswerAnswer = styled.Text`
+  color: #888;
+  font-size: 16px;
+`;
+
 export const AnswerTime = styled.Text`
   color: #333;
   font-size: 16px;
+  flex: 1;
 `;
 
 export const TabsSwitcher = styled.View``;
@@ -78,6 +84,7 @@ export const Question = styled.TouchableOpacity`
 export const QuestionTitle = styled(AnswerTitle)`
   color: white;
 `;
+
 export const QuestionIcon = styled(AnswerIcon)`
   color: white;
 `;
