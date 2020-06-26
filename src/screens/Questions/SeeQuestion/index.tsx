@@ -9,12 +9,20 @@ import {
   Answer,
   AnswerText,
   AnswerAvatar,
+  SectionTitle,
 } from './styles';
 import LinearGradient from 'react-native-linear-gradient';
 import { useNavigation } from '@react-navigation/native';
 import { QuestionResponse } from '../../../hooks/Question';
 import defaultUserAvatar from '../../../../assets/static/default-profile-picture.png';
-
+import {
+  Menu,
+  MenuOptions,
+  MenuOption,
+  MenuTrigger,
+} from 'react-native-popup-menu';
+import Icon from 'react-native-vector-icons/Feather';
+import { useQuestion } from '../../../hooks/Question';
 interface Props {
   route: {
     params: {
@@ -22,9 +30,15 @@ interface Props {
     };
   };
 }
-const SeeAnswers: React.FC<Props> = ({ route }) => {
+const SeeQuestion: React.FC<Props> = ({ route }) => {
   const { goBack } = useNavigation();
-  const { title, answers, type } = route.params.question;
+  const { _id, title, answers, type } = route.params.question;
+  const { deleteQuestion } = useQuestion();
+
+  const handleDeleteQuestion = async () => {
+    await deleteQuestion(_id);
+    goBack();
+  };
 
   return (
     <Container>
@@ -33,9 +47,19 @@ const SeeAnswers: React.FC<Props> = ({ route }) => {
           <HeaderBackIcon name="arrow-left" />
         </HeaderBackButton>
         <HeaderTitle>{title}</HeaderTitle>
+        <Menu>
+          <MenuTrigger>
+            <Icon name="more-vertical" size={24} color="#fff" />
+          </MenuTrigger>
+          <MenuOptions>
+            <MenuOption onSelect={handleDeleteQuestion} text="Excluir" />
+          </MenuOptions>
+        </Menu>
       </Header>
       <LinearGradient colors={['#D90368', '#741960']} style={{ flex: 1 }}>
         <Content>
+          <SectionTitle>Respostas</SectionTitle>
+
           {type === 'written' && (
             <>
               {answers.map(answer => (
@@ -52,4 +76,4 @@ const SeeAnswers: React.FC<Props> = ({ route }) => {
   );
 };
 
-export default SeeAnswers;
+export default SeeQuestion;

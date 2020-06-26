@@ -88,7 +88,7 @@ const Questions: React.FC = () => {
                         .map(question => (
                           <Question
                             onPress={() =>
-                              navigation.navigate('SeeAnswers', {
+                              navigation.navigate('SeeQuestion', {
                                 question: question,
                               })
                             }>
@@ -109,7 +109,7 @@ const Questions: React.FC = () => {
                         .map(question => (
                           <Question
                             onPress={() =>
-                              navigation.navigate('SeeAnswers', {
+                              navigation.navigate('SeeQuestion', {
                                 question: question,
                               })
                             }>

@@ -52,3 +52,9 @@ export const AnswerText = styled.Text`
   border-radius: 8px;
   padding: 16px;
 `;
+
+export const SectionTitle = styled.Text`
+  font-size: 24px;
+  color: white;
+  margin-bottom: 16px;
+`;

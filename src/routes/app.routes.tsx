@@ -4,7 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Play from '../screens/Play';
 import Questions from '../screens/Questions';
 import CreateQuestion from '../screens/Questions/CreateQuestion';
-import SeeAnswers from '../screens/Questions/SeeAnswers';
+import SeeQuestion from '../screens/Questions/SeeQuestion';
 import Profile from '../screens/Profile';
 import Settings from '../screens/Settings';
 import Icon from 'react-native-vector-icons/Feather';
@@ -37,9 +37,9 @@ const QuestionsStackScreen = () => (
       name="CreateQuestion"
     />
     <QuestionsStack.Screen
-      component={SeeAnswers}
+      component={SeeQuestion}
       options={{ headerShown: false }}
-      name="SeeAnswers"
+      name="SeeQuestion"
     />
   </QuestionsStack.Navigator>
 );

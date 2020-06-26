@@ -12,6 +12,7 @@ interface QuestionContextData {
   answers: AnswerResponse[];
   loading: boolean;
   newQuestion(credentials: NewQuestionRequest): Promise<void>;
+  deleteQuestion(id: string): Promise<void>;
   getMineQuestions(): Promise<void>;
   getLastAnswers(): Promise<void>;
 }
@@ -80,6 +81,16 @@ export const QuestionProvider: React.FC = ({ children }) => {
     }
   }, []);
 
+  const deleteQuestion = useCallback(async id => {
+    try {
+      setLoading(true);
+      await api.delete(`/questions/${id}`);
+      setQuestions(old => old.filter(question => question.id !== id));
+      setLoading(false);
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
   return (
     <QuestionContext.Provider
       value={{
@@ -89,6 +100,7 @@ export const QuestionProvider: React.FC = ({ children }) => {
         newQuestion,
         getMineQuestions,
         getLastAnswers,
+        deleteQuestion,
       }}>
       {children}
     </QuestionContext.Provider>
