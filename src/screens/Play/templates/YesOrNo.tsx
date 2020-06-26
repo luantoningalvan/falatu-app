@@ -34,7 +34,7 @@ const YesOrNo: React.FC<YesOrNoProps> = ({ data }) => {
           size="big"
           source={{
             uri:
-              data.randomUserAvatar ||
+              data.randomUserAvatar?.url ||
               'https://pbs.twimg.com/profile_images/1263694342247583744/I6oEWdq__400x400.jpg',
           }}
         />

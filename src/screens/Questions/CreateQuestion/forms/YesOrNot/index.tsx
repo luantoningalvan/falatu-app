@@ -8,11 +8,12 @@ import {
   Option,
   OptionText,
 } from './styles';
-import Input from '../../../../components/Form/Input';
-import Button from '../../../../components/Button';
-import { useQuestion } from '../../../../hooks/Question';
+import Input from '../../../../../components/Form/Input';
+import Button from '../../../../../components/Button';
+import { useQuestion } from '../../../../../hooks/Question';
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Feather';
+import DefaultProfilePicture from '../../../../../../assets/static/default-profile-picture.png';
 
 const YesOrNot: React.FC = () => {
   const formRef = useRef(null);
@@ -35,12 +36,7 @@ const YesOrNot: React.FC = () => {
   return (
     <Form onSubmit={handleSubmit} ref={formRef}>
       <QuestionCard>
-        <QuestionAvatar
-          source={{
-            uri:
-              'https://pbs.twimg.com/profile_images/1263694342247583744/I6oEWdq__400x400.jpg',
-          }}
-        />
+        <QuestionAvatar source={DefaultProfilePicture} />
 
         <Input name="title" placeholder="Digite a sua pergunta..." />
         <Options>

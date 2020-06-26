@@ -2,10 +2,11 @@ import React, { useRef, useCallback } from 'react';
 import { Alert } from 'react-native';
 import { Form } from '@unform/mobile';
 import { QuestionAvatar, QuestionCard } from './styles';
-import Input from '../../../../components/Form/Input';
-import Button from '../../../../components/Button';
-import { useQuestion } from '../../../../hooks/Question';
+import Input from '../../../../../components/Form/Input';
+import Button from '../../../../../components/Button';
+import { useQuestion } from '../../../../../hooks/Question';
 import { useNavigation } from '@react-navigation/native';
+import DefaultProfilePicture from '../../../../../../assets/static/default-profile-picture.png';
 
 const Written: React.FC = () => {
   const formRef = useRef(null);
@@ -28,12 +29,7 @@ const Written: React.FC = () => {
   return (
     <Form onSubmit={handleSubmit} ref={formRef}>
       <QuestionCard>
-        <QuestionAvatar
-          source={{
-            uri:
-              'https://pbs.twimg.com/profile_images/1263694342247583744/I6oEWdq__400x400.jpg',
-          }}
-        />
+        <QuestionAvatar source={DefaultProfilePicture} />
 
         <Input name="title" placeholder="Digite a sua pergunta..." />
       </QuestionCard>
