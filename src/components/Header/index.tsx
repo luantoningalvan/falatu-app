@@ -1,5 +1,5 @@
 import React from 'react';
-import Logo from '../../../assets/static/wdyt-logo.svg';
+import Logo from '../../../assets/static/falatu-logo.svg';
 import { Container } from './styles';
 
 const Header: React.FC = ({ children }) => (

@@ -22,7 +22,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import * as Yup from 'yup';
 import getValidationErrros from '../../utils/getValidationErrors';
 import api from '../../services/apiClient';
-import Logo from '../../../assets/static/wdyt-logo.svg';
+import Logo from '../../../assets/static/falatu-logo.svg';
 
 interface SignupFormData {
   email: string;

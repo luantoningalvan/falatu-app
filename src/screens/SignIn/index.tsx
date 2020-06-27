@@ -18,7 +18,7 @@ import {
 import { useNavigation } from '@react-navigation/native';
 import { Form } from '@unform/mobile';
 import LinearGradient from 'react-native-linear-gradient';
-import Logo from '../../../assets/static/wdyt-logo.svg';
+import Logo from '../../../assets/static/falatu-logo.svg';
 import { useAuth } from '../../hooks/Auth';
 import * as Yup from 'yup';
 import getValidationErrros from '../../utils/getValidationErrors';
