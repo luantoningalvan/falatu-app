@@ -18,12 +18,13 @@ import {
   QuestionIcon,
   QuestionCount,
 } from './styles';
-import { ScrollView, View, ActivityIndicator } from 'react-native';
+import { ScrollView, View } from 'react-native';
 import Header from '../../components/Header';
 import LinearGradient from 'react-native-linear-gradient';
 import { useNavigation } from '@react-navigation/native';
 import { useQuestion } from '../../hooks/Question';
 import Icon from 'react-native-vector-icons/Feather';
+import Loader from '../../components/Loader';
 
 const Questions: React.FC = () => {
   const [selectedTab, selectTab] = useState('active');
@@ -53,16 +54,19 @@ const Questions: React.FC = () => {
         </Header>
         <ScrollView style={{ flex: 1 }}>
           <SectionTitle>Respostas Recentes</SectionTitle>
-          <Answers>
-            {answers.map(answer => (
-              <Answer>
-                <AnswerIcon name="message-square" />
-                <AnswerTitle>{answer.title}</AnswerTitle>
-                <AnswerAnswer>{answer.answer}</AnswerAnswer>
-              </Answer>
-            ))}
-          </Answers>
-
+          {!loading ? (
+            <Answers>
+              {answers.map(answer => (
+                <Answer>
+                  <AnswerIcon name="message-square" />
+                  <AnswerTitle>{answer.title}</AnswerTitle>
+                  <AnswerAnswer>{answer.answer}</AnswerAnswer>
+                </Answer>
+              ))}
+            </Answers>
+          ) : (
+            <Loader />
+          )}
           <SectionTitle>Suas perguntas</SectionTitle>
           <TabsSwitcher>
             <Tabs>
@@ -124,7 +128,7 @@ const Questions: React.FC = () => {
                   )}
                 </>
               ) : (
-                <ActivityIndicator />
+                <Loader />
               )}
             </TabContent>
           </TabsSwitcher>

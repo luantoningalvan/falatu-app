@@ -4,8 +4,8 @@ import LinearGradient from 'react-native-linear-gradient';
 import Icon from 'react-native-vector-icons/Feather';
 import Header from '../../components/Header';
 import { usePlay } from '../../hooks/Play';
-import { Text } from 'react-native';
 import ReportButton from '../../components/ReportButton';
+import Loader from '../../components/Loader';
 
 import Error from './templates/Error';
 import YestOrNot from './templates/YesOrNo';
@@ -55,7 +55,7 @@ const Play: React.FC = () => {
             </SkipButton>
           </PlayArea>
         ) : (
-          <Text>Carrregando</Text>
+          <Loader />
         )}
       </Container>
     </LinearGradient>
