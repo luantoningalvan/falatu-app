@@ -3,13 +3,15 @@ import { Container, SkipButton, SkipButtonText, PlayArea } from './styles';
 import LinearGradient from 'react-native-linear-gradient';
 import Icon from 'react-native-vector-icons/Feather';
 import Header from '../../components/Header';
+import { usePlay } from '../../hooks/Play';
+import { Text } from 'react-native';
+import ReportButton from '../../components/ReportButton';
+
+import Error from './templates/Error';
 import YestOrNot from './templates/YesOrNo';
 import ImageComparision from './templates/ImageComparision';
 import MultiChoice from './templates/MultiChoice';
 import Written from './templates/Written';
-import { usePlay } from '../../hooks/Play';
-import { Text } from 'react-native';
-import ReportButton from '../../components/ReportButton';
 
 const Play: React.FC = () => {
   const { questions, loading, getRandomQuestions, skipQuestion } = usePlay();
@@ -31,7 +33,7 @@ const Play: React.FC = () => {
     photocomp: ImageComparision,
     multi: MultiChoice,
     written: Written,
-    undefined: () => <Text>Foda-se</Text>,
+    undefined: Error,
   };
 
   const nextQuestion = useCallback(async () => {
@@ -39,7 +41,7 @@ const Play: React.FC = () => {
   }, [skipQuestion]);
 
   const Template = templates[questions[0]?.type];
-  console.log(questions[0]);
+
   return (
     <LinearGradient colors={['#D90368', '#741960']} style={{ flex: 1 }}>
       <Container>
