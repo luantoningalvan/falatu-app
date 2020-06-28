@@ -34,7 +34,7 @@ const YesOrNot: React.FC = () => {
   );
 
   return (
-    <Form onSubmit={handleSubmit} ref={formRef}>
+    <Form onSubmit={handleSubmit} ref={formRef} style={{ width: '100%' }}>
       <QuestionCard>
         <QuestionAvatar source={DefaultProfilePicture} />
 

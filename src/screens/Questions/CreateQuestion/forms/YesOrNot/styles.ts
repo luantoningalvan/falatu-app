@@ -22,6 +22,7 @@ export const QuestionAvatar = styled.Image`
 export const Options = styled.View`
   flex-direction: row;
   align-items: center;
+  justify-content: center;
   margin-top: 16px;
   width: 100%;
 `;

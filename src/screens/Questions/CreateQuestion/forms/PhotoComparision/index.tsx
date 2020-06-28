@@ -27,7 +27,7 @@ const Written: React.FC = () => {
   );
 
   return (
-    <Form onSubmit={handleSubmit} ref={formRef}>
+    <Form onSubmit={handleSubmit} ref={formRef} style={{ width: '100%' }}>
       <QuestionCard>
         <Input name="title" placeholder="Digite a sua pergunta..." />
 
