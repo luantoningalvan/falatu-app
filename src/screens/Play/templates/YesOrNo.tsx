@@ -10,6 +10,7 @@ import {
 } from './styles';
 import Icon from 'react-native-vector-icons/Feather';
 import { usePlay, QuestionResponse } from '../../../hooks/Play';
+import defaultProfilePicture from '../../../../assets/static/default-profile-picture.png';
 
 interface YesOrNoProps {
   data: QuestionResponse;
@@ -19,7 +20,6 @@ const YesOrNo: React.FC<YesOrNoProps> = ({ data }) => {
   const { answerQuestion } = usePlay();
 
   const handleAnswer = async (choice: number) => {
-    console.log(choice);
     await answerQuestion({
       id: data._id,
       optionIndex: choice,
@@ -32,11 +32,11 @@ const YesOrNo: React.FC<YesOrNoProps> = ({ data }) => {
       <QuestionCard>
         <QuestionAvatar
           size="big"
-          source={{
-            uri:
-              data.randomUserAvatar?.url ||
-              'https://pbs.twimg.com/profile_images/1263694342247583744/I6oEWdq__400x400.jpg',
-          }}
+          source={
+            data.randomUserAvatar
+              ? { uri: data.randomUserAvatar.url }
+              : defaultProfilePicture
+          }
         />
 
         <QuestionTitle>{data.title}</QuestionTitle>

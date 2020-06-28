@@ -31,7 +31,10 @@ export enum QuestionTypes {
 
 export interface QuestionResponse {
   _id: string;
-  randomUserAvatar?: string;
+  randomUserAvatar?: {
+    _id: string;
+    url: string;
+  };
   title: string;
   type: QuestionTypes;
   options: {

@@ -9,6 +9,7 @@ import {
 import { usePlay, QuestionResponse } from '../../../hooks/Play';
 import { TextInput, Container } from '../../../components/Form/styles';
 import Button from '../../../components/Button';
+import defaultProfilePicture from '../../../../assets/static/default-profile-picture.png';
 
 interface WrittenProps {
   data: QuestionResponse;
@@ -28,11 +29,11 @@ const Written: React.FC<WrittenProps> = ({ data }) => {
       <QuestionCard>
         <QuestionAvatar
           size="big"
-          source={{
-            uri:
-              data.randomUserAvatar ||
-              'https://www.nicepng.com/png/detail/73-730154_open-default-profile-picture-png.png',
-          }}
+          source={
+            data.randomUserAvatar
+              ? { uri: data.randomUserAvatar.url }
+              : defaultProfilePicture
+          }
         />
         <QuestionTitle>{data.title}</QuestionTitle>
         <Options multi>

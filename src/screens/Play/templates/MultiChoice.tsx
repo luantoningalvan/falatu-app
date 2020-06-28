@@ -8,6 +8,7 @@ import {
   OptionText,
   QuestionTitle,
 } from './styles';
+import defaultProfilePicture from '../../../../assets/static/default-profile-picture.png';
 
 import { QuestionResponse } from '../../../hooks/Play';
 
@@ -19,10 +20,11 @@ const MultiChoice: React.ComponentType<{ data: QuestionResponse }> = ({
       <QuestionCard>
         <QuestionAvatar
           size="big"
-          source={{
-            uri:
-              'https://pbs.twimg.com/profile_images/1263694342247583744/I6oEWdq__400x400.jpg',
-          }}
+          source={
+            data.randomUserAvatar
+              ? { uri: data.randomUserAvatar.url }
+              : defaultProfilePicture
+          }
         />
         <QuestionTitle>{data.title}</QuestionTitle>
         <Options multi>
