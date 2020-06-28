@@ -19,17 +19,6 @@ export const PlayArea = styled.View`
   padding: 0px 32px 16px;
 `;
 
-export const ReportButton = styled.TouchableOpacity`
-  flex-direction: row;
-  align-items: center;
-`;
-export const ReportButtonText = styled.Text`
-  color: white;
-  font-size: 16px;
-  margin-right: 8px;
-  font-family: 'Comfortaa-Regular';
-`;
-
 export const SkipButton = styled.TouchableOpacity`
   flex-direction: row;
   align-items: center;

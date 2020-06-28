@@ -1,12 +1,5 @@
 import React, { useEffect, useCallback } from 'react';
-import {
-  Container,
-  ReportButton,
-  ReportButtonText,
-  SkipButton,
-  SkipButtonText,
-  PlayArea,
-} from './styles';
+import { Container, SkipButton, SkipButtonText, PlayArea } from './styles';
 import LinearGradient from 'react-native-linear-gradient';
 import Icon from 'react-native-vector-icons/Feather';
 import Header from '../../components/Header';
@@ -16,6 +9,7 @@ import MultiChoice from './templates/MultiChoice';
 import Written from './templates/Written';
 import { usePlay } from '../../hooks/Play';
 import { Text } from 'react-native';
+import ReportButton from '../../components/ReportButton';
 
 const Play: React.FC = () => {
   const { questions, loading, getRandomQuestions, skipQuestion } = usePlay();
@@ -45,16 +39,11 @@ const Play: React.FC = () => {
   }, [skipQuestion]);
 
   const Template = templates[questions[0]?.type];
-  console.log(questions[0]);
+
   return (
     <LinearGradient colors={['#D90368', '#741960']} style={{ flex: 1 }}>
       <Container>
-        <Header>
-          <ReportButton>
-            <ReportButtonText>DENUNCIAR</ReportButtonText>
-            <Icon name="info" size={24} color="#fff" />
-          </ReportButton>
-        </Header>
+        <Header>{!loading && <ReportButton question={questions[0]} />}</Header>
         {!loading ? (
           <PlayArea>
             <Template data={questions[0]} />

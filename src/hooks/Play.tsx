@@ -8,12 +8,18 @@ interface AnswerData {
   optionIndex?: number;
 }
 
+interface ReportData {
+  question: string;
+  reportReason: string;
+}
+
 interface PlayContextData {
   questions: QuestionResponse[];
   loading: boolean;
   getRandomQuestions(): Promise<void>;
   skipQuestion(): Promise<void>;
   answerQuestion(data: AnswerData): Promise<void>;
+  reportQuestion(data: ReportData): Promise<void>;
 }
 
 export enum QuestionTypes {
@@ -85,6 +91,18 @@ export const PlayProvider: React.FC = ({ children }) => {
     [skipQuestion]
   );
 
+  const reportQuestion = useCallback(
+    async ({ question, reportReason }) => {
+      await api.post('/reports', {
+        question,
+        reportReason,
+      });
+
+      await skipQuestion();
+    },
+    [skipQuestion]
+  );
+
   return (
     <PlayContext.Provider
       value={{
@@ -93,6 +111,7 @@ export const PlayProvider: React.FC = ({ children }) => {
         getRandomQuestions,
         skipQuestion,
         answerQuestion,
+        reportQuestion,
       }}>
       {children}
     </PlayContext.Provider>
