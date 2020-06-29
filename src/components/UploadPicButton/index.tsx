@@ -12,7 +12,6 @@ import Icon from 'react-native-vector-icons/Feather';
 import { ButtonWrapper } from './styles';
 import api from '../../services/apiClient';
 import { PhotoGridImage } from '../TouchablePicture/styles';
-import { BlobService } from '../../services/BlobService';
 
 interface UploadPicButtonProps {
   index?: number | string;
@@ -45,23 +44,23 @@ export const UploadPicButton: React.ComponentType<UploadPicButtonProps> = ({
   };
 
   const uploadImage = useCallback(async response => {
-    const blobService = new BlobService();
+    const data = new FormData();
+    console.log('chegou');
+    data.append('file', {
+      uri: response.uri,
+      type: 'image/png',
+      name: 'file',
+    });
 
-    await blobService.upload(
-      'PUT',
-      '/users/avatar',
-      {
-        'Content-Type': 'multipart/form-data',
-      },
-      [
-        {
-          name: 'file',
-          filename: Date.now() + '.jpg',
-          type: response.type,
-          data: blobService.wrap(response.uri),
-        },
-      ]
-    );
+    try {
+      const res = await api.put('/users/avatar', data, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      });
+
+      console.log(res);
+    } catch (error) {
+      console.log(error);
+    }
   }, []);
 
   const removeImage = async () => {
