@@ -16,7 +16,7 @@ export const Options = styled.View`
   flex: 1;
 `;
 
-export const Option = styled.View`
+export const Option = styled.TouchableOpacity`
   margin: 8px 8px;
   border-radius: 8px;
   border-style: dashed;
@@ -26,4 +26,10 @@ export const Option = styled.View`
   height: 280px;
   justify-content: center;
   align-items: center;
+`;
+
+export const OptionImage = styled.Image`
+  flex: 1;
+  width: 100%;
+  height: 280px;
 `;
