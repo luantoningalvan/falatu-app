@@ -66,14 +66,12 @@ export const QuestionProvider: React.FC = ({ children }) => {
     }
   }, []);
 
-  const newQuestion = useCallback(async ({ title, options, type }) => {
+  const newQuestion = useCallback(async question => {
     try {
       setLoading(true);
-      const response = await api.post('/questions', {
-        title,
-        options,
-        type,
-      });
+      const formData = new FormData();
+      Object.keys(question).forEach(key => formData.append(key, question[key]));
+      const response = await api.post('/questions', formData);
       setLoading(false);
       setQuestions(old => [response.data, ...old]);
     } catch (error) {

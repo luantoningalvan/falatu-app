@@ -27,7 +27,17 @@ const YesOrNot: React.FC = () => {
 
   const handleSubmit = useCallback(async () => {
     try {
-      await newQuestion({ type: 'multi', title, options });
+      let optionsObject: { [key: string]: string } = {};
+
+      options.map(
+        (opt, index) => (optionsObject[`title${index + 1}`] = opt.title)
+      );
+
+      await newQuestion({
+        type: 'multi',
+        title,
+        ...optionsObject,
+      });
       navigate('Questions');
       Alert.alert('Pergunta criada com sucesso');
     } catch (error) {
