@@ -7,6 +7,7 @@ import CreateQuestion from '../screens/Questions/CreateQuestion';
 import SeeQuestion from '../screens/Questions/SeeQuestion';
 import Profile from '../screens/Profile';
 import Settings from '../screens/Settings';
+import BottomNavigator from '../components/BottomNavigator';
 import Icon from 'react-native-vector-icons/Feather';
 const App = createBottomTabNavigator();
 
@@ -47,21 +48,12 @@ const QuestionsStackScreen = () => (
 const AppRoutes: React.FC = () => {
   return (
     <App.Navigator
+      tabBar={BottomNavigator}
       tabBarOptions={{
         showLabel: false,
         activeTintColor: '#571145',
         inactiveTintColor: '#fff',
         activeBackgroundColor: '#fff',
-        style: {
-          borderTopWidth: 0,
-          height: 60,
-          shadowColor: '#000',
-          elevation: 0,
-          backgroundColor: '#571145',
-          shadowOpacity: 0,
-          shadowRadius: 0,
-          shadowOffset: { width: 0, height: 0 },
-        },
       }}>
       <App.Screen
         name="Profile"
