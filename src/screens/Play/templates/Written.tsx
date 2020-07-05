@@ -16,7 +16,7 @@ interface WrittenProps {
 }
 const Written: React.FC<WrittenProps> = ({ data }) => {
   const { answerQuestion } = usePlay();
-  const [answer, setAnswer] = useState('');
+  const [answer, setAnswer] = useState<string>('');
 
   const handleAnswer = async () => {
     if (answer !== '') {

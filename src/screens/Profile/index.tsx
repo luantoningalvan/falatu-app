@@ -11,7 +11,7 @@ import {
   SectionTitle,
   PhotoGrid,
 } from './styles';
-import { ScrollView } from 'react-native';
+import { ScrollView, RefreshControl } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { useNavigation } from '@react-navigation/native';
 import { useAuth } from '../../hooks/Auth';
@@ -28,13 +28,28 @@ import { UploadPicButton } from '../../components/UploadPicButton';
 
 const Profile: React.FC = () => {
   const navigation = useNavigation();
-  const { signOut, user } = useAuth();
+  const { signOut, refreshMe, user } = useAuth();
   const { avatarList } = user;
+
+  // Control for refresh page
+  const [isRefreshing, setRefreshing] = React.useState<boolean>(false);
+
+  const handleRefresh = async () => {
+    setRefreshing(true);
+    await refreshMe();
+    setRefreshing(false);
+  };
 
   return (
     <Container>
       <LinearGradient colors={['#D90368', '#741960']} style={{ flex: 1 }}>
-        <ScrollView>
+        <ScrollView
+          refreshControl={
+            <RefreshControl
+              refreshing={isRefreshing}
+              onRefresh={handleRefresh}
+            />
+          }>
           <Header>
             <Menu>
               <MenuTrigger>

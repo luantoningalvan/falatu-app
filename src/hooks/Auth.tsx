@@ -31,6 +31,7 @@ interface AuthContextData {
   loading: boolean;
   signIn(credentials: SingInCredentials): Promise<void>;
   signOut(): void;
+  refreshMe(): Promise<void>;
 }
 
 interface AuthState {
@@ -67,6 +68,11 @@ export const AuthProvider: React.FC = ({ children }) => {
     loadStorageData();
   }, []);
 
+  const refreshMe = useCallback(async () => {
+    const response = await api.get('/users/me');
+    setData(prev => ({ ...prev, user: response.data }));
+  }, []);
+
   const signIn = useCallback(async ({ email, password }) => {
     const response = await api.post('/auth/login', { email, password });
     const { token } = response.data;
@@ -89,7 +95,8 @@ export const AuthProvider: React.FC = ({ children }) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user: data.user, loading, signIn, signOut }}>
+    <AuthContext.Provider
+      value={{ user: data.user, loading, signIn, signOut, refreshMe }}>
       {children}
     </AuthContext.Provider>
   );

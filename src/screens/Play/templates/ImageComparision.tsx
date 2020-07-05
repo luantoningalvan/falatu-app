@@ -6,7 +6,7 @@ import {
   ImageOptionImage,
   ImageComparisionQuestion,
 } from './styles';
-import { QuestionResponse, usePlay } from 'src/hooks/Play';
+import { QuestionResponse, usePlay } from '../../../hooks/Play';
 
 const YesOrNo: React.ComponentType<{ data: QuestionResponse }> = ({ data }) => {
   const { answerQuestion } = usePlay();
