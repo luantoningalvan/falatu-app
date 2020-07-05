@@ -78,21 +78,25 @@ export const QuestionProvider: React.FC = ({ children }) => {
         delete question.files;
 
         Object.keys(question).forEach(key =>
-          formData.append(key, question[key])
+          formData.append(key, (question as any)[key])
         );
 
         for (var x = 0; x < files.length; x++) {
-          formData.append('files[]', files[x]);
+          formData.append('files', files[x] as any);
         }
       } else {
         Object.keys(question).forEach(key =>
-          formData.append(key, question[key])
+          formData.append(key, (question as any)[key])
         );
       }
 
       console.log(formData);
 
-      const response = await api.post('/questions', formData);
+      const response = await api.post('/questions', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
       setLoading(false);
       setQuestions(old => [response.data, ...old]);
     } catch (error) {
