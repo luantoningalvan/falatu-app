@@ -6,15 +6,25 @@ import {
   ImageOptionImage,
   ImageComparisionQuestion,
 } from './styles';
-import { QuestionResponse } from 'src/hooks/Play';
+import { QuestionResponse, usePlay } from 'src/hooks/Play';
 
 const YesOrNo: React.ComponentType<{ data: QuestionResponse }> = ({ data }) => {
+  const { answerQuestion } = usePlay();
+
+  const handleAnswer = async (index: number) => {
+    await answerQuestion({
+      id: data._id,
+      type: 'photocomp',
+      optionIndex: index,
+    });
+  };
+
   return (
     <ImageComparisionContainer>
       <ImageComparisionQuestion>{data.title}</ImageComparisionQuestion>
 
       <ImageOptions>
-        <ImageOption>
+        <ImageOption onPress={() => handleAnswer(0)}>
           <ImageOptionImage
             width={200}
             source={{
@@ -22,7 +32,7 @@ const YesOrNo: React.ComponentType<{ data: QuestionResponse }> = ({ data }) => {
             }}
           />
         </ImageOption>
-        <ImageOption>
+        <ImageOption onPress={() => handleAnswer(1)}>
           <ImageOptionImage
             source={{
               uri: data.options![1].url,

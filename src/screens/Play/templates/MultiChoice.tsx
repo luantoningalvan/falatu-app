@@ -10,11 +10,21 @@ import {
 } from './styles';
 import defaultProfilePicture from '../../../../assets/static/default-profile-picture.png';
 
-import { QuestionResponse } from '../../../hooks/Play';
+import { QuestionResponse, usePlay } from '../../../hooks/Play';
 
 const MultiChoice: React.ComponentType<{ data: QuestionResponse }> = ({
   data,
 }) => {
+  const { answerQuestion } = usePlay();
+
+  const handleAnswer = async (index: number) => {
+    await answerQuestion({
+      id: data._id,
+      type: 'multi',
+      optionIndex: index,
+    });
+  };
+
   return (
     <QuestionWrapper>
       <QuestionCard>
@@ -28,8 +38,8 @@ const MultiChoice: React.ComponentType<{ data: QuestionResponse }> = ({
         />
         <QuestionTitle>{data.title}</QuestionTitle>
         <Options multi>
-          {data.options!.map(option => (
-            <Option grow>
+          {data.options!.map((option, index) => (
+            <Option grow onPress={() => handleAnswer(index)} key={option.title}>
               <OptionText>{option.title}</OptionText>
             </Option>
           ))}
