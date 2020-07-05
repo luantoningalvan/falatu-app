@@ -9,11 +9,11 @@ export const SectionTitle = styled.Text`
   color: white;
   font-family: 'Comfortaa-Bold';
   font-size: 24px;
-  margin: 16px 32px;
+  margin: 16px;
 `;
 
 export const Answers = styled.View`
-  padding: 0px 32px;
+  padding: 0px 16px;
 `;
 export const Answer = styled.TouchableOpacity`
   flex-direction: row;
@@ -93,3 +93,13 @@ export const QuestionCount = styled.Text`
 `;
 
 export const CreateQuestionButton = styled.TouchableOpacity``;
+export const NoContent = styled.Text`
+  flex-direction: row;
+  padding: 16px;
+  border-radius: 4px;
+  background: white;
+  align-items: center;
+  margin: 0px 16px 8px;
+  font-size: 16px;
+  font-family: 'Comfortaa-Regular';
+`;

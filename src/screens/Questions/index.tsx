@@ -17,6 +17,7 @@ import {
   QuestionTitle,
   QuestionIcon,
   QuestionCount,
+  NoContent,
 } from './styles';
 import { ScrollView, View } from 'react-native';
 import Header from '../../components/Header';
@@ -55,15 +56,21 @@ const Questions: React.FC = () => {
         <ScrollView style={{ flex: 1 }}>
           <SectionTitle>Respostas Recentes</SectionTitle>
           {!loading ? (
-            <Answers>
-              {answers.map(answer => (
-                <Answer>
-                  <AnswerIcon name="message-square" />
-                  <AnswerTitle>{answer.title}</AnswerTitle>
-                  <AnswerAnswer>{answer.answer}</AnswerAnswer>
-                </Answer>
-              ))}
-            </Answers>
+            <>
+              {answers.length > 0 ? (
+                <Answers>
+                  {answers.map(answer => (
+                    <Answer>
+                      <AnswerIcon name="message-square" />
+                      <AnswerTitle>{answer.title}</AnswerTitle>
+                      <AnswerAnswer>{answer.answer}</AnswerAnswer>
+                    </Answer>
+                  ))}
+                </Answers>
+              ) : (
+                <NoContent>Nenhuma resposta encontrada</NoContent>
+              )}
+            </>
           ) : (
             <Loader />
           )}
