@@ -27,25 +27,22 @@ const PhotoComparision: React.FC = () => {
 
   const handleSubmit = useCallback(
     async data => {
-      const images = new FormData();
-
-      images.append('file[0]', {
-        uri: options[0].uri,
-        type: 'image/png',
-        name: options[0].name,
-      });
-
-      images.append('file[1]', {
-        uri: options[1].uri,
-        type: 'image/png',
-        name: options[1].name,
-      });
-
       try {
         await newQuestion({
           type: 'photocomp',
           title: data.title,
-          options: images,
+          files: [
+            {
+              uri: options[0].uri,
+              type: 'image/png',
+              name: options[0].name,
+            },
+            {
+              uri: options[1].uri,
+              type: 'image/png',
+              name: options[1].name,
+            },
+          ],
         });
         navigate('Questions');
         Alert.alert('Pergunta criada com sucesso');

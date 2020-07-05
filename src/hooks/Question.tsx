@@ -2,16 +2,17 @@ import React, { createContext, useCallback, useState, useContext } from 'react';
 import api from '../services/apiClient';
 
 export interface NewQuestionRequest {
+  type: string;
   title: string;
   options?: Object;
-  type: string;
+  files?: Object[];
 }
 
 interface QuestionContextData {
   questions: QuestionResponse[];
   answers: AnswerResponse[];
   loading: boolean;
-  newQuestion(credentials: NewQuestionRequest): Promise<void>;
+  newQuestion(question: NewQuestionRequest): Promise<void>;
   deleteQuestion(id: string): Promise<void>;
   getMineQuestions(): Promise<void>;
   getLastAnswers(): Promise<void>;
@@ -66,11 +67,31 @@ export const QuestionProvider: React.FC = ({ children }) => {
     }
   }, []);
 
-  const newQuestion = useCallback(async question => {
+  const newQuestion = useCallback(async (question: NewQuestionRequest) => {
     try {
       setLoading(true);
-      const formData = new FormData();
-      Object.keys(question).forEach(key => formData.append(key, question[key]));
+
+      let formData = new FormData();
+
+      if (question.files) {
+        const files = question.files;
+        delete question.files;
+
+        Object.keys(question).forEach(key =>
+          formData.append(key, question[key])
+        );
+
+        for (var x = 0; x < files.length; x++) {
+          formData.append('files[]', files[x]);
+        }
+      } else {
+        Object.keys(question).forEach(key =>
+          formData.append(key, question[key])
+        );
+      }
+
+      console.log(formData);
+
       const response = await api.post('/questions', formData);
       setLoading(false);
       setQuestions(old => [response.data, ...old]);
