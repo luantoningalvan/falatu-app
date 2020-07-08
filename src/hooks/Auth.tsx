@@ -27,7 +27,7 @@ export interface UserResponse {
 }
 
 interface AuthContextData {
-  user: UserResponse;
+  user: UserResponse | null;
   loading: boolean;
   signIn(credentials: SingInCredentials): Promise<void>;
   signOut(): void;
@@ -35,8 +35,8 @@ interface AuthContextData {
 }
 
 interface AuthState {
-  token: string;
-  user: UserResponse;
+  token: string | null;
+  user: UserResponse | null;
 }
 
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
@@ -54,12 +54,19 @@ export const AuthProvider: React.FC = ({ children }) => {
 
       if (token[1] && user[1]) {
         setAuthToken(token[1] as string);
-        const userData = await api.get<UserResponse>('/users/me');
-
-        setData({
-          token: token[1],
-          user: userData.data,
-        });
+        try {
+          const userData = await api.get<UserResponse>('/users/me');
+          setData({
+            token: token[1],
+            user: userData.data,
+          });
+        } catch (error) {
+          setData({
+            token: null,
+            user: null,
+          });
+          AsyncStorage.clear();
+        }
       }
 
       setLoading(false);
