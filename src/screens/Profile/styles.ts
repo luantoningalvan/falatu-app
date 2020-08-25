@@ -62,26 +62,8 @@ export const SectionTitle = styled.Text`
   font-size: 24px;
   margin: 0px 32px 8px;
 `;
-export const PhotoGrid = styled.View`
+export const PhotoGrid = styled.FlatList`
   flex-direction: row;
   margin: 0px 24px 16px;
   flex-wrap: wrap;
-`;
-
-export const PhotoGridImageButton = styled.TouchableOpacity`
-  padding: 40px;
-  border-color: white;
-  margin: 8px;
-  border-width: 1px;
-  border-style: dashed;
-  border-radius: 8px;
-`;
-
-export const PhotoGridImage = styled.Image`
-  width: 104;
-  height: 104;
-  border-color: white;
-  margin: 8px;
-  border-width: 1px;
-  border-radius: 8px;
 `;

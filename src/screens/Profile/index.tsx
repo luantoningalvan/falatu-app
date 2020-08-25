@@ -94,22 +94,21 @@ const Profile: React.FC = () => {
           </InfoCards>
 
           <SectionTitle>Suas fotos</SectionTitle>
-          <PhotoGrid>
-            {avatarList.map((avatar, i) => (
+          <PhotoGrid
+            data={[
+              ...avatarList,
+              ...Array.from(Array(6 - avatarList.length).keys()),
+            ]}
+            keyExtractor={(item, index: number) => item._id || 'empty' + index}
+            numColumns={3}
+            renderItem={({ item }, index: number) => (
               <UploadPicButton
-                externalUri={avatar.url}
-                externalFileKey={avatar.key}
-                key={avatar.key}
-                index={i}
+                externalUri={item.url}
+                externalFileKey={item.key}
+                index={index}
               />
-            ))}
-            {[...Array(6 - avatarList.length)].map((_x, y) => (
-              <UploadPicButton
-                index={avatarList.length + y}
-                key={avatarList.length + y}
-              />
-            ))}
-          </PhotoGrid>
+            )}
+          />
         </ScrollView>
       </LinearGradient>
     </Container>
