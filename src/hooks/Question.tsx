@@ -19,13 +19,13 @@ interface QuestionContextData {
 }
 
 interface AnswerResponse {
-  id: string;
+  _id: string;
   title: string;
   answer: string;
 }
 
 export interface QuestionResponse {
-  id: string;
+  _id: string;
   title: string;
   type: string;
   expired: string;
@@ -108,7 +108,7 @@ export const QuestionProvider: React.FC = ({ children }) => {
     try {
       setLoading(true);
       await api.delete(`/questions/${id}`);
-      setQuestions(old => old.filter(question => question.id !== id));
+      setQuestions(old => old.filter(question => question._id !== id));
       setLoading(false);
     } catch (error) {
       console.log(error);

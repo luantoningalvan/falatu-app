@@ -42,10 +42,15 @@ const Play: React.FC = () => {
 
   const Template = templates[questions[0]?.type];
 
+  console.log(questions[0]);
   return (
     <LinearGradient colors={['#D90368', '#741960']} style={{ flex: 1 }}>
       <Container>
-        <Header>{!loading && <ReportButton question={questions[0]} />}</Header>
+        <Header>
+          {!loading && questions[0] !== undefined && (
+            <ReportButton question={questions[0]} />
+          )}
+        </Header>
         {!loading ? (
           <PlayArea>
             <Template data={questions[0]} />

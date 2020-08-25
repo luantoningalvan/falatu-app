@@ -21,7 +21,22 @@ const ProfileStackScreen = () => (
       name="Profile"
       options={{ headerShown: false }}
     />
-    <ProfileStack.Screen component={Settings} name="Settings" />
+    <ProfileStack.Screen
+      component={Settings}
+      name="Settings"
+      options={{
+        title: 'Configurações',
+        headerTitleStyle: {
+          fontFamily: 'Comfortaa-Regular',
+          color: 'white',
+        },
+        headerStyle: {
+          elevation: 0,
+          backgroundColor: '#581145',
+        },
+        headerTintColor: 'white',
+      }}
+    />
   </ProfileStack.Navigator>
 );
 
