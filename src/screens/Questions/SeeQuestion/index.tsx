@@ -10,6 +10,11 @@ import {
   AnswerText,
   AnswerAvatar,
   SectionTitle,
+  YesOrNotAnswer,
+  NegativeAnswer,
+  NegativeAnswerText,
+  PositiveAnswer,
+  PositiveAnswerText,
 } from './styles';
 import LinearGradient from 'react-native-linear-gradient';
 import { useNavigation } from '@react-navigation/native';
@@ -23,6 +28,7 @@ import {
 } from 'react-native-popup-menu';
 import Icon from 'react-native-vector-icons/Feather';
 import { useQuestion } from '../../../hooks/Question';
+
 interface Props {
   route: {
     params: {
@@ -38,6 +44,25 @@ const SeeQuestion: React.FC<Props> = ({ route }) => {
   const handleDeleteQuestion = async () => {
     await deleteQuestion(_id);
     goBack();
+  };
+
+  const getPercentage = () => {
+    return route.params.question.answers.reduce(
+      (acumulator: { yes: number; no: number }, currentValue) => {
+        if (currentValue.index === 0) {
+          return {
+            yes: acumulator.yes,
+            no: acumulator.no + 1,
+          };
+        } else {
+          return {
+            yes: acumulator.yes + 1,
+            no: acumulator.no,
+          };
+        }
+      },
+      { yes: 0, no: 0 }
+    );
   };
 
   return (
@@ -69,6 +94,23 @@ const SeeQuestion: React.FC<Props> = ({ route }) => {
                 </Answer>
               ))}
             </>
+          )}
+
+          {type === 'yesornot' && (
+            <YesOrNotAnswer>
+              <PositiveAnswer
+                percentage={(getPercentage().yes * 100) / answers.length}>
+                <PositiveAnswerText>
+                  {(getPercentage().yes * 100) / answers.length}%
+                </PositiveAnswerText>
+              </PositiveAnswer>
+              <NegativeAnswer
+                percentage={(getPercentage().no * 100) / answers.length}>
+                <NegativeAnswerText>
+                  {(getPercentage().no * 100) / answers.length}%
+                </NegativeAnswerText>
+              </NegativeAnswer>
+            </YesOrNotAnswer>
           )}
         </Content>
       </LinearGradient>

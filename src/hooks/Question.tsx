@@ -32,6 +32,7 @@ export interface QuestionResponse {
   answers: {
     _id: string;
     answer: string;
+    index: number;
   }[];
 }
 

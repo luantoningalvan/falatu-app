@@ -44,6 +44,8 @@ const Questions: React.FC = () => {
     }
     getQuestions();
   }, [getMineQuestions, getLastAnswers]);
+
+  console.log(answers);
   return (
     <Container>
       <LinearGradient colors={['#D90368', '#741960']} style={{ flex: 1 }}>

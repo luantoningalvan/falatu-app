@@ -81,18 +81,23 @@ export const AuthProvider: React.FC = ({ children }) => {
   }, []);
 
   const signIn = useCallback(async ({ email, password }) => {
-    const response = await api.post('/auth/login', { email, password });
-    const { token } = response.data;
+    try {
+      console.log(email, password);
+      const response = await api.post('/auth/login', { email, password });
+      const { token } = response.data;
 
-    setAuthToken(token);
-    const user = await api.get('/users/me');
+      setAuthToken(token);
+      const user = await api.get('/users/me');
 
-    await AsyncStorage.multiSet([
-      ['@FALATU:token', token],
-      ['@FALATU:user', JSON.stringify(user.data)],
-    ]);
+      await AsyncStorage.multiSet([
+        ['@FALATU:token', token],
+        ['@FALATU:user', JSON.stringify(user.data)],
+      ]);
 
-    setData({ user: user.data, token });
+      setData({ user: user.data, token });
+    } catch (error) {
+      console.log(error.response.data);
+    }
   }, []);
 
   const signOut = useCallback(async () => {

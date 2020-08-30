@@ -34,7 +34,7 @@ export const Content = styled.View`
   width: 100%;
 `;
 
-export const Answer = styled.View`
+export const Answer = styled.View<{ key: string }>`
   margin-bottom: 8px;
   flex-direction: row;
 `;
@@ -57,4 +57,36 @@ export const SectionTitle = styled.Text`
   font-size: 24px;
   color: white;
   margin-bottom: 16px;
+`;
+
+export const YesOrNotAnswer = styled.View`
+  height: 200px;
+  flex-direction: row;
+  border-radius: 4px;
+  overflow: hidden;
+`;
+
+export const PositiveAnswer = styled.View<{ percentage: number }>`
+  width: ${props => props.percentage}%;
+  background: #fd0079;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const NegativeAnswer = styled.View<{ percentage: number }>`
+  width: ${props => props.percentage}%;
+  background: #fff;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const NegativeAnswerText = styled.Text`
+  color: #fd0079;
+  font-size: 20px;
+  font-family: 'Comfortaa-Bold';
+`;
+export const PositiveAnswerText = styled.Text`
+  color: #fff;
+  font-size: 20px;
+  font-family: 'Comfortaa-Bold';
 `;
