@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import { View, Alert } from 'react-native';
+import { Alert } from 'react-native';
 import Button from '../../components/Button';
 import { Input } from '../../components/Form';
 import { FormHandles } from '@unform/core';
@@ -17,7 +17,6 @@ import {
 } from './styles';
 import { useNavigation } from '@react-navigation/native';
 import { Form } from '@unform/mobile';
-import LinearGradient from 'react-native-linear-gradient';
 import Logo from '../../../assets/static/falatu-logo.svg';
 import { useAuth } from '../../hooks/Auth';
 import * as Yup from 'yup';
@@ -55,6 +54,7 @@ const SignIn: React.FC = () => {
 
           return;
         }
+        console.log(err);
         Alert.alert('Erro na autenticação', 'Tá errado essa porra');
       }
     },
@@ -62,16 +62,8 @@ const SignIn: React.FC = () => {
   );
   return (
     <Container>
-      <Header>
-        <View
-          style={{
-            width: '100%',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}>
-          <Logo width={150} height={150} />
-        </View>
-        <LinearGradient colors={['#D90368', '#543A6A']} style={{ flex: 1 }} />
+      <Header colors={['#D90368', '#543A6A']}>
+        <Logo width={150} height={150} />
       </Header>
       <FormContainer>
         <Title>ENTRAR</Title>

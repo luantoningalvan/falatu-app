@@ -1,27 +1,25 @@
 import styled from 'styled-components/native';
+import LinearGradient from 'react-native-linear-gradient';
 
-export const Container = styled.View`
+export const Container = styled.ScrollView`
   flex: 1;
   background: #ececec;
-  align-items: center;
-  justify-content: center;
 `;
 
-export const Header = styled.View`
+export const Header = styled(LinearGradient)`
   background: ${props => props.theme.palette.pink};
-  position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
-  height: 40%;
+  flex: 1;
+  height: 200px;
+  align-items: center;
 `;
 
 export const FormContainer = styled.View`
   background: white;
-  margin: 16px;
+  margin: 24px;
   padding: 24px;
   border-radius: 16px;
-  margin-top: 64px;
+  margin-top: -64px;
 `;
 
 export const Title = styled.Text`

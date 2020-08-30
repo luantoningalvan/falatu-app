@@ -1,6 +1,5 @@
 import React, { useCallback, useRef } from 'react';
 import { Alert } from 'react-native';
-import { View } from 'react-native';
 import Button from '../../components/Button';
 import { Input } from '../../components/Form';
 import { FormHandles } from '@unform/core';
@@ -18,7 +17,6 @@ import {
 } from './styles';
 import { useNavigation } from '@react-navigation/native';
 import { Form } from '@unform/mobile';
-import LinearGradient from 'react-native-linear-gradient';
 import * as Yup from 'yup';
 import getValidationErrros from '../../utils/getValidationErrors';
 import api from '../../services/apiClient';
@@ -70,16 +68,8 @@ const SignUp: React.FC = () => {
 
   return (
     <Container>
-      <Header>
-        <View
-          style={{
-            width: '100%',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}>
-          <Logo width={150} height={150} />
-        </View>
-        <LinearGradient colors={['#D90368', '#543A6A']} style={{ flex: 1 }} />
+      <Header colors={['#D90368', '#543A6A']}>
+        <Logo width={150} height={150} />
       </Header>
       <FormContainer>
         <Title>CADASTRO</Title>
