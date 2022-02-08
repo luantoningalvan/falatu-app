@@ -9,7 +9,7 @@ import {MenuProvider} from 'react-native-popup-menu';
 const App = () => {
   return (
     <NavigationContainer>
-      <StatusBar barStyle="light-content" backgroundColor="#D90368" />
+      <StatusBar barStyle="light-content" backgroundColor="#7100FF" />
       <HooksProvider>
         <StyleProvider>
           <MenuProvider>

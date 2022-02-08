@@ -2,9 +2,9 @@ import styled from 'styled-components/native';
 import FeatherIcon from 'react-native-vector-icons/Feather';
 
 export const ButtonContainer = styled.TouchableOpacity<{grow?: boolean}>`
-  padding: 16px;
-  border-radius: 24px;
-  background-color: ${props => props.theme.palette.purple};
+  padding: 12px;
+  border-radius: 8px;
+  background-color: ${props => props.theme.palette.violet};
   justify-content: center;
   align-items: center;
   flex-direction: row;

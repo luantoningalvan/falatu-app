@@ -83,12 +83,12 @@ const SignIn: React.FC = () => {
           />
 
           <Button grow onPress={() => (formRef.current as any).submitForm()}>
-            Entrar
+            ENTRAR
           </Button>
 
           <SignUp onPress={() => navigation.navigate('SignUp')}>
-            <SignUpText>ainda não tem uma conta? </SignUpText>
-            <SignUpTextHighlighted>CADASTRE-SE</SignUpTextHighlighted>
+            <SignUpText>ainda não tem uma conta?</SignUpText>
+            <SignUpTextHighlighted>Criar conta</SignUpTextHighlighted>
           </SignUp>
         </Form>
       </FormContainer>

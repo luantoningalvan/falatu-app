@@ -2,11 +2,10 @@ import styled from 'styled-components/native';
 
 export const Container = styled.ScrollView`
   flex: 1;
-  background: #ececec;
 `;
 
 export const Header = styled.View`
-  background: ${props => props.theme.palette.pink};
+  background: ${props => props.theme.palette.violet};
   width: 100%;
   flex: 1;
   height: 200px;
@@ -22,8 +21,8 @@ export const FormContainer = styled.View`
 `;
 
 export const Title = styled.Text`
-  font-family: 'Poppins-Bold';
-  font-size: 28px;
+  font-family: 'Poppins-Regular';
+  font-size: 24px;
   text-align: center;
   margin-bottom: 24px;
 `;
@@ -42,7 +41,7 @@ export const SignInText = styled.Text`
 `;
 
 export const SignInTextHighlighted = styled(SignInText)`
-  color: ${props => props.theme.palette.pink};
+  color: ${props => props.theme.palette.violet};
   font-weight: bold;
   margin-left: 4px;
 `;

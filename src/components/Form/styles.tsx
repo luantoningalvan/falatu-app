@@ -8,10 +8,11 @@ interface ContainerProps {
 
 export const Container = styled.View<ContainerProps>`
   width: 100%;
-  height: 60px;
-  background: #efefef;
-  padding: 0 16px;
-  border-radius: 10px;
+  height: 48px;
+  padding: 0 12px;
+  border-radius: 8px;
+  border-width: 1px;
+  border-color: #dbdbdb;
   margin-bottom: 12px;
   flex-direction: row;
   align-items: center;
@@ -33,8 +34,10 @@ export const TextInput = styled.TextInput`
   color: #333;
   font-size: 16px;
   font-family: 'Poppins-Regular';
+  line-height: 48px;
+  height: 48px;
 `;
 
 export const Icon = styled(FeatherIcon)`
-  margin-right: 16px;
+  margin-right: 12px;
 `;

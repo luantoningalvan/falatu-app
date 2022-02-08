@@ -94,8 +94,8 @@ const SignUp: React.FC = () => {
           </Button>
 
           <SignIn onPress={() => navigation.navigate('SignIn')}>
-            <SignInText>já tem uma conta? </SignInText>
-            <SignInTextHighlighted>ENTRAR</SignInTextHighlighted>
+            <SignInText>já possui uma conta?</SignInText>
+            <SignInTextHighlighted>Fazer login</SignInTextHighlighted>
           </SignIn>
         </Form>
       </FormContainer>
