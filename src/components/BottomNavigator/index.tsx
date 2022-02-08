@@ -1,25 +1,19 @@
 import React from 'react';
-import {
-  View,
-  TouchableOpacity,
-  Text,
-  Dimensions,
-  StyleSheet,
-} from 'react-native';
-import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
+import {View, TouchableOpacity, Dimensions, StyleSheet} from 'react-native';
+import {BottomTabBarProps} from '@react-navigation/bottom-tabs';
 import posed from 'react-native-pose';
 
 const windowWidth = Dimensions.get('window').width;
 const tabWidth = windowWidth / 3;
 const SpotLight = posed.View({
-  route0: { x: 0 },
-  route1: { x: tabWidth },
-  route2: { x: tabWidth * 2 },
+  route0: {x: 0},
+  route1: {x: tabWidth},
+  route2: {x: tabWidth * 2},
 });
 
 const Scaler = posed.View({
-  active: { scale: 1.25 },
-  inactive: { scale: 1 },
+  active: {scale: 1.25},
+  inactive: {scale: 1},
 });
 
 const S = StyleSheet.create({
@@ -30,7 +24,7 @@ const S = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#551145',
   },
-  tabButton: { flex: 1 },
+  tabButton: {flex: 1},
   spotLight: {
     width: tabWidth,
     height: '100%',
@@ -43,7 +37,7 @@ const S = StyleSheet.create({
     backgroundColor: '#fff',
     borderRadius: 40,
   },
-  scaler: { flex: 1, alignItems: 'center', justifyContent: 'center' },
+  scaler: {flex: 1, alignItems: 'center', justifyContent: 'center'},
 });
 
 const TabBar = ({
@@ -68,7 +62,7 @@ const TabBar = ({
       </View>
 
       {state.routes.map((route, index) => {
-        const { options } = descriptors[route.key];
+        const {options} = descriptors[route.key];
         const Icon = options.tabBarIcon;
         const isFocused = state.index === index;
 

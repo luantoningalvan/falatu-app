@@ -43,9 +43,7 @@ export const QuestionAvatar = styled.Image<QuestionAvatarProps>`
   margin-top: -80px;
 `;
 
-export const SmallQuestionButton = styled.TouchableOpacity<
-  SmallQuestionButtonProps
->`
+export const SmallQuestionButton = styled.TouchableOpacity<SmallQuestionButtonProps>`
   flex-direction: ${props => (props.side === 'right' ? 'row' : 'row-reverse')};
   border-radius: 16px;
   background-color: ${props => props.theme.palette.grey};

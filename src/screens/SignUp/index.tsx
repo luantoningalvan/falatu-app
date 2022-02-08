@@ -1,8 +1,8 @@
-import React, { useCallback, useRef } from 'react';
-import { Alert } from 'react-native';
+import React, {useCallback, useRef} from 'react';
+import {Alert} from 'react-native';
 import Button from '../../components/Button';
-import { Input } from '../../components/Form';
-import { FormHandles } from '@unform/core';
+import {Input} from '../../components/Form';
+import {FormHandles} from '@unform/core';
 import {
   Container,
   SignIn,
@@ -15,8 +15,8 @@ import {
   BottomInfoLink,
   BottomInfoLinkText,
 } from './styles';
-import { useNavigation } from '@react-navigation/native';
-import { Form } from '@unform/mobile';
+import {useNavigation} from '@react-navigation/native';
+import {Form} from '@unform/mobile';
 import * as Yup from 'yup';
 import getValidationErrros from '../../utils/getValidationErrors';
 import api from '../../services/apiClient';
@@ -47,7 +47,7 @@ const SignUp: React.FC = () => {
             .min(6, 'Sua senha precisa ter no mínimo 6 letras'),
         });
 
-        await schema.validate(data, { abortEarly: false });
+        await schema.validate(data, {abortEarly: false});
         await api.post('/users/signup', data);
         Alert.alert('Sucesso', 'Cadastro realizado com sucesso');
         navigation.navigate('SignIn');
@@ -59,16 +59,16 @@ const SignUp: React.FC = () => {
 
         Alert.alert(
           'Erro no cadastro',
-          'Ocorreu um erro ao realizar seu cadastro'
+          'Ocorreu um erro ao realizar seu cadastro',
         );
       }
     },
-    [navigation]
+    [navigation],
   );
 
   return (
     <Container>
-      <Header colors={['#D90368', '#543A6A']}>
+      <Header>
         <Logo width={150} height={150} />
       </Header>
       <FormContainer>

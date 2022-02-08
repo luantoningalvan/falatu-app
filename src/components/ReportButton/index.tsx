@@ -1,6 +1,6 @@
-import React, { useState, useCallback } from 'react';
-import { Alert } from 'react-native';
-import { Dimensions } from 'react-native';
+import React, {useState, useCallback} from 'react';
+import {Alert} from 'react-native';
+import {Dimensions} from 'react-native';
 import {
   Container,
   Text,
@@ -12,7 +12,7 @@ import {
   ReasonText,
 } from './style';
 import Icon from 'react-native-vector-icons/Feather';
-import { usePlay } from '../../hooks/Play';
+import {usePlay} from '../../hooks/Play';
 import Modal from 'react-native-modal';
 
 interface ReportButtonProps {
@@ -21,8 +21,8 @@ interface ReportButtonProps {
   };
 }
 
-const ReportButton = ({ question }: ReportButtonProps) => {
-  const { reportQuestion } = usePlay();
+const ReportButton = ({question}: ReportButtonProps) => {
+  const {reportQuestion} = usePlay();
   const [isOpen, setIsOpen] = useState(false);
 
   const deviceWidth = Dimensions.get('window').width;
@@ -42,14 +42,14 @@ const ReportButton = ({ question }: ReportButtonProps) => {
   const handleReport = useCallback(
     async (reason: string) => {
       try {
-        await reportQuestion({ question: question._id, reportReason: reason });
+        await reportQuestion({question: question._id, reportReason: reason});
         setIsOpen(false);
         Alert.alert('Denúncia efetuada com sucesso!');
       } catch (error) {
         Alert.alert('Erro');
       }
     },
-    [question._id, reportQuestion]
+    [question._id, reportQuestion],
   );
   return (
     <>

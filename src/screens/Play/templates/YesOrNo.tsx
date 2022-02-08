@@ -9,15 +9,15 @@ import {
   QuestionTitle,
 } from './styles';
 import Icon from 'react-native-vector-icons/Feather';
-import { usePlay, QuestionResponse } from '../../../hooks/Play';
+import {usePlay, QuestionResponse} from '../../../hooks/Play';
 import defaultProfilePicture from '../../../../assets/static/default-profile-picture.png';
 
 interface YesOrNoProps {
   data: QuestionResponse;
 }
 
-const YesOrNo: React.FC<YesOrNoProps> = ({ data }) => {
-  const { answerQuestion } = usePlay();
+const YesOrNo: React.FC<YesOrNoProps> = ({data}) => {
+  const {answerQuestion} = usePlay();
 
   const handleAnswer = async (choice: number) => {
     await answerQuestion({
@@ -34,7 +34,7 @@ const YesOrNo: React.FC<YesOrNoProps> = ({ data }) => {
           size="big"
           source={
             data.randomUserAvatar
-              ? { uri: data.randomUserAvatar.url }
+              ? {uri: data.randomUserAvatar.url}
               : defaultProfilePicture
           }
         />

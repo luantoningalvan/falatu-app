@@ -6,9 +6,9 @@ import React, {
   useState,
   useCallback,
 } from 'react';
-import { Container, TextInput, Icon } from './styles';
-import { TextInputProps } from 'react-native';
-import { useField } from '@unform/core';
+import {Container, TextInput, Icon} from './styles';
+import {TextInputProps} from 'react-native';
+import {useField} from '@unform/core';
 
 interface InputProps extends TextInputProps {
   name: string;
@@ -23,13 +23,13 @@ interface InputRef {
 }
 
 const Input: React.RefForwardingComponent<InputRef, InputProps> = (
-  { name, icon, ...rest },
-  ref
+  {name, icon, ...rest},
+  ref,
 ) => {
-  const { registerField, defaultValue, fieldName, error } = useField(name);
+  const {registerField, defaultValue, fieldName, error} = useField(name);
 
   const inputElementRef = useRef<any>(null);
-  const inputValueRef = useRef<InputValueRereference>({ value: defaultValue });
+  const inputValueRef = useRef<InputValueRereference>({value: defaultValue});
 
   const [isFocused, setIsFocused] = useState(false);
   const [isFilled, setIsFilled] = useState(false);
@@ -56,7 +56,7 @@ const Input: React.RefForwardingComponent<InputRef, InputProps> = (
       path: 'value',
       setValue(value) {
         inputValueRef.current.value = value;
-        inputElementRef.current.setNativeProps({ text: value });
+        inputElementRef.current.setNativeProps({text: value});
       },
       clearValue() {
         inputValueRef.current.value = '';

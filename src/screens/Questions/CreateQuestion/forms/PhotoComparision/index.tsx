@@ -1,11 +1,11 @@
-import React, { useState, useRef, useCallback } from 'react';
-import { Alert } from 'react-native';
-import { Form } from '@unform/mobile';
-import { QuestionCard, Options, Option, OptionImage } from './styles';
+import React, {useState, useRef, useCallback} from 'react';
+import {Alert} from 'react-native';
+import {Form} from '@unform/mobile';
+import {QuestionCard, Options, Option, OptionImage} from './styles';
 import Input from '../../../../../components/Form/Input';
 import Button from '../../../../../components/Button';
-import { useQuestion } from '../../../../../hooks/Question';
-import { useNavigation } from '@react-navigation/native';
+import {useQuestion} from '../../../../../hooks/Question';
+import {useNavigation} from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Feather';
 import ImagePicker from 'react-native-image-picker';
 
@@ -22,8 +22,8 @@ const PhotoComparision: React.FC = () => {
     {},
   ] as SourceData[]);
 
-  const { newQuestion } = useQuestion();
-  const { navigate } = useNavigation();
+  const {newQuestion} = useQuestion();
+  const {navigate} = useNavigation();
 
   const handleSubmit = useCallback(
     async data => {
@@ -50,7 +50,7 @@ const PhotoComparision: React.FC = () => {
         Alert.alert('Erro ao criar pergunta');
       }
     },
-    [newQuestion, navigate, options]
+    [newQuestion, navigate, options],
   );
 
   const showImagePicker = async (index: number) => {
@@ -79,14 +79,14 @@ const PhotoComparision: React.FC = () => {
                 type: 'image/png',
                 name: 'file',
               }
-            : cItem
-        )
+            : cItem,
+        ),
       );
     });
   };
 
   return (
-    <Form onSubmit={handleSubmit} ref={formRef} style={{ width: '100%' }}>
+    <Form onSubmit={handleSubmit} ref={formRef} style={{width: '100%'}}>
       <QuestionCard>
         <Input name="title" placeholder="Digite a sua pergunta..." />
 
@@ -96,7 +96,7 @@ const PhotoComparision: React.FC = () => {
               <Option onPress={() => showImagePicker(i)}>
                 {Object.keys(opt).length !== 0 ? (
                   <OptionImage
-                    source={{ uri: opt.uri }}
+                    source={{uri: opt.uri}}
                     height={200}
                     width={200}
                   />

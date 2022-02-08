@@ -1,6 +1,6 @@
 import React from 'react';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { createStackNavigator } from '@react-navigation/stack';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {createStackNavigator} from '@react-navigation/stack';
 import Play from '../screens/Play';
 import Questions from '../screens/Questions';
 import CreateQuestion from '../screens/Questions/CreateQuestion';
@@ -19,7 +19,7 @@ const ProfileStackScreen = () => (
     <ProfileStack.Screen
       component={Profile}
       name="Profile"
-      options={{ headerShown: false }}
+      options={{headerShown: false}}
     />
     <ProfileStack.Screen
       component={Settings}
@@ -45,16 +45,16 @@ const QuestionsStackScreen = () => (
     <QuestionsStack.Screen
       component={Questions}
       name="Questions"
-      options={{ headerShown: false }}
+      options={{headerShown: false}}
     />
     <QuestionsStack.Screen
       component={CreateQuestion}
-      options={{ headerShown: false }}
+      options={{headerShown: false}}
       name="CreateQuestion"
     />
     <QuestionsStack.Screen
       component={SeeQuestion}
-      options={{ headerShown: false }}
+      options={{headerShown: false}}
       name="SeeQuestion"
     />
   </QuestionsStack.Navigator>
@@ -74,7 +74,7 @@ const AppRoutes: React.FC = () => {
         name="Profile"
         component={ProfileStackScreen}
         options={{
-          tabBarIcon: ({ color, size }) => (
+          tabBarIcon: ({color, size}) => (
             <Icon name="user" color={color} size={size} />
           ),
         }}
@@ -83,7 +83,7 @@ const AppRoutes: React.FC = () => {
         name="Play"
         component={Play}
         options={{
-          tabBarIcon: ({ color, size }) => (
+          tabBarIcon: ({color, size}) => (
             <Icon name="play-circle" color={color} size={size} />
           ),
         }}
@@ -92,7 +92,7 @@ const AppRoutes: React.FC = () => {
         name="Questions"
         component={QuestionsStackScreen}
         options={{
-          tabBarIcon: ({ color, size }) => (
+          tabBarIcon: ({color, size}) => (
             <Icon name="help-circle" color={color} size={size} />
           ),
         }}

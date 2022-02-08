@@ -1,9 +1,8 @@
-import React, { useEffect, useCallback } from 'react';
-import { Container, SkipButton, SkipButtonText, PlayArea } from './styles';
-import LinearGradient from 'react-native-linear-gradient';
+import React, {useEffect, useCallback} from 'react';
+import {Container, SkipButton, SkipButtonText, PlayArea} from './styles';
 import Icon from 'react-native-vector-icons/Feather';
 import Header from '../../components/Header';
-import { usePlay } from '../../hooks/Play';
+import {usePlay} from '../../hooks/Play';
 import ReportButton from '../../components/ReportButton';
 import Loader from '../../components/Loader';
 
@@ -14,7 +13,7 @@ import MultiChoice from './templates/MultiChoice';
 import Written from './templates/Written';
 
 const Play: React.FC = () => {
-  const { questions, loading, getRandomQuestions, skipQuestion } = usePlay();
+  const {questions, loading, getRandomQuestions, skipQuestion} = usePlay();
 
   useEffect(() => {
     async function getQuestions() {
@@ -44,26 +43,24 @@ const Play: React.FC = () => {
 
   console.log(questions[0]);
   return (
-    <LinearGradient colors={['#D90368', '#741960']} style={{ flex: 1 }}>
-      <Container>
-        <Header>
-          {!loading && questions[0] !== undefined && (
-            <ReportButton question={questions[0]} />
-          )}
-        </Header>
-        {!loading ? (
-          <PlayArea>
-            <Template data={questions[0]} />
-            <SkipButton onPress={nextQuestion}>
-              <SkipButtonText>Pular</SkipButtonText>
-              <Icon size={28} name="skip-forward" color="white" />
-            </SkipButton>
-          </PlayArea>
-        ) : (
-          <Loader />
+    <Container>
+      <Header>
+        {!loading && questions[0] !== undefined && (
+          <ReportButton question={questions[0]} />
         )}
-      </Container>
-    </LinearGradient>
+      </Header>
+      {!loading ? (
+        <PlayArea>
+          <Template data={questions[0]} />
+          <SkipButton onPress={nextQuestion}>
+            <SkipButtonText>Pular</SkipButtonText>
+            <Icon size={28} name="skip-forward" color="white" />
+          </SkipButton>
+        </PlayArea>
+      ) : (
+        <Loader />
+      )}
+    </Container>
   );
 };
 

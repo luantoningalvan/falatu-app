@@ -1,5 +1,4 @@
-/* eslint-disable no-shadow */
-import styled, { css } from 'styled-components/native';
+import styled, {css} from 'styled-components/native';
 import FeatherIcon from 'react-native-vector-icons/Feather';
 
 interface ContainerProps {
@@ -25,7 +24,7 @@ export const Container = styled.View<ContainerProps>`
   ${props =>
     props.isFocused &&
     css`
-      color: ${props => props.theme.palette.purple};
+      color: ${props.theme.palette.purple};
     `}
 `;
 

@@ -6,10 +6,10 @@ import {
   ImageOptionImage,
   ImageComparisionQuestion,
 } from './styles';
-import { QuestionResponse, usePlay } from '../../../hooks/Play';
+import {QuestionResponse, usePlay} from '../../../hooks/Play';
 
-const YesOrNo: React.ComponentType<{ data: QuestionResponse }> = ({ data }) => {
-  const { answerQuestion } = usePlay();
+const YesOrNo: React.ComponentType<{data: QuestionResponse}> = ({data}) => {
+  const {answerQuestion} = usePlay();
 
   const handleAnswer = async (index: number) => {
     await answerQuestion({

@@ -1,4 +1,4 @@
-import React, { createContext, useCallback, useState, useContext } from 'react';
+import React, {createContext, useCallback, useState, useContext} from 'react';
 import api from '../services/apiClient';
 
 export interface NewQuestionRequest {
@@ -37,10 +37,10 @@ export interface QuestionResponse {
 }
 
 const QuestionContext = createContext<QuestionContextData>(
-  {} as QuestionContextData
+  {} as QuestionContextData,
 );
 
-export const QuestionProvider: React.FC = ({ children }) => {
+export const QuestionProvider: React.FC = ({children}) => {
   const [questions, setQuestions] = useState<QuestionResponse[]>([]);
   const [answers, setAnswers] = useState<AnswerResponse[]>([]);
   const [loading, setLoading] = useState(true);
@@ -79,7 +79,7 @@ export const QuestionProvider: React.FC = ({ children }) => {
         delete question.files;
 
         Object.keys(question).forEach(key =>
-          formData.append(key, (question as any)[key])
+          formData.append(key, (question as any)[key]),
         );
 
         for (var x = 0; x < files.length; x++) {
@@ -87,7 +87,7 @@ export const QuestionProvider: React.FC = ({ children }) => {
         }
       } else {
         Object.keys(question).forEach(key =>
-          formData.append(key, (question as any)[key])
+          formData.append(key, (question as any)[key]),
         );
       }
 

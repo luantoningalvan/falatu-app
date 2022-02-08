@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import {
   QuestionWrapper,
   QuestionCard,
@@ -6,21 +6,21 @@ import {
   Options,
   QuestionTitle,
 } from './styles';
-import { usePlay, QuestionResponse } from '../../../hooks/Play';
-import { TextInput, Container } from '../../../components/Form/styles';
+import {usePlay, QuestionResponse} from '../../../hooks/Play';
+import {TextInput, Container} from '../../../components/Form/styles';
 import Button from '../../../components/Button';
 import defaultProfilePicture from '../../../../assets/static/default-profile-picture.png';
 
 interface WrittenProps {
   data: QuestionResponse;
 }
-const Written: React.FC<WrittenProps> = ({ data }) => {
-  const { answerQuestion } = usePlay();
+const Written: React.FC<WrittenProps> = ({data}) => {
+  const {answerQuestion} = usePlay();
   const [answer, setAnswer] = useState<string>('');
 
   const handleAnswer = async () => {
     if (answer !== '') {
-      await answerQuestion({ answer, id: data._id, type: 'written' });
+      await answerQuestion({answer, id: data._id, type: 'written'});
     }
   };
 
@@ -31,7 +31,7 @@ const Written: React.FC<WrittenProps> = ({ data }) => {
           size="big"
           source={
             data.randomUserAvatar
-              ? { uri: data.randomUserAvatar.url }
+              ? {uri: data.randomUserAvatar.url}
               : defaultProfilePicture
           }
         />
@@ -46,7 +46,7 @@ const Written: React.FC<WrittenProps> = ({ data }) => {
           </Container>
         </Options>
       </QuestionCard>
-      <Button icon="send" style={{ marginTop: 16 }} onPress={handleAnswer}>
+      <Button icon="send" style={{marginTop: 16}} onPress={handleAnswer}>
         Enviar
       </Button>
     </QuestionWrapper>

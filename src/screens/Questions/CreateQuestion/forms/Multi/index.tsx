@@ -1,5 +1,5 @@
-import React, { useCallback, useState } from 'react';
-import { Alert } from 'react-native';
+import React, {useCallback, useState} from 'react';
+import {Alert} from 'react-native';
 import {
   QuestionAvatar,
   QuestionCard,
@@ -10,27 +10,27 @@ import {
   AddMoreButton,
   AddMoreText,
 } from './styles';
-import { TextInput } from '../../../../../components/Form/styles';
+import {TextInput} from '../../../../../components/Form/styles';
 import Button from '../../../../../components/Button';
-import { useQuestion } from '../../../../../hooks/Question';
-import { useNavigation } from '@react-navigation/native';
+import {useQuestion} from '../../../../../hooks/Question';
+import {useNavigation} from '@react-navigation/native';
 import DefaultProfilePicture from '../../../../../../assets/static/default-profile-picture.png';
 import Icon from 'react-native-vector-icons/Feather';
 
 const YesOrNot: React.FC = () => {
-  const { newQuestion } = useQuestion();
-  const { navigate } = useNavigation();
+  const {newQuestion} = useQuestion();
+  const {navigate} = useNavigation();
 
   const [title, setTitle] = useState('');
-  const [options, setOptions] = useState([{ title: '' }, { title: '' }]);
+  const [options, setOptions] = useState([{title: ''}, {title: ''}]);
   const [height, setHeight] = useState(42);
 
   const handleSubmit = useCallback(async () => {
     try {
-      let optionsObject: { [key: string]: string } = {};
+      let optionsObject: {[key: string]: string} = {};
 
       options.map(
-        (opt, index) => (optionsObject[`title${index + 1}`] = opt.title)
+        (opt, index) => (optionsObject[`title${index + 1}`] = opt.title),
       );
 
       await newQuestion({
@@ -47,13 +47,13 @@ const YesOrNot: React.FC = () => {
 
   const handleChangeOption = (index: number, text: string) => {
     const newArray = [...options];
-    newArray[index] = { title: text };
+    newArray[index] = {title: text};
     setOptions(newArray);
   };
 
   const handleAddOption = () => {
     if (options.length < 4) {
-      setOptions(current => [...current, { title: '' }]);
+      setOptions(current => [...current, {title: ''}]);
     }
   };
 
@@ -75,7 +75,7 @@ const YesOrNot: React.FC = () => {
             placeholder="Digite a sua pergunta..."
             value={title}
             onChangeText={t => setTitle(t)}
-            style={{ maxHeight: height }}
+            style={{maxHeight: height}}
             multiline
             onContentSizeChange={e =>
               setHeight(e.nativeEvent.contentSize.height)

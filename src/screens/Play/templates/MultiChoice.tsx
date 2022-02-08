@@ -10,12 +10,10 @@ import {
 } from './styles';
 import defaultProfilePicture from '../../../../assets/static/default-profile-picture.png';
 
-import { QuestionResponse, usePlay } from '../../../hooks/Play';
+import {QuestionResponse, usePlay} from '../../../hooks/Play';
 
-const MultiChoice: React.ComponentType<{ data: QuestionResponse }> = ({
-  data,
-}) => {
-  const { answerQuestion } = usePlay();
+const MultiChoice: React.ComponentType<{data: QuestionResponse}> = ({data}) => {
+  const {answerQuestion} = usePlay();
 
   const handleAnswer = async (index: number) => {
     await answerQuestion({
@@ -32,7 +30,7 @@ const MultiChoice: React.ComponentType<{ data: QuestionResponse }> = ({
           size="big"
           source={
             data.randomUserAvatar
-              ? { uri: data.randomUserAvatar.url }
+              ? {uri: data.randomUserAvatar.url}
               : defaultProfilePicture
           }
         />

@@ -1,4 +1,4 @@
-import React, { createContext, useCallback, useState, useContext } from 'react';
+import React, {createContext, useCallback, useState, useContext} from 'react';
 import api from '../services/apiClient';
 
 interface AnswerData {
@@ -46,7 +46,7 @@ export interface QuestionResponse {
 
 const PlayContext = createContext<PlayContextData>({} as PlayContextData);
 
-export const PlayProvider: React.FC = ({ children }) => {
+export const PlayProvider: React.FC = ({children}) => {
   const [queue, setQueue] = useState<QuestionResponse[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -79,7 +79,7 @@ export const PlayProvider: React.FC = ({ children }) => {
   }, [queue, getRandomQuestions]);
 
   const answerQuestion = useCallback(
-    async ({ id, answer, type, optionIndex }) => {
+    async ({id, answer, type, optionIndex}) => {
       try {
         await api.post(`/questions/answer/${id}`, {
           answer,
@@ -91,11 +91,11 @@ export const PlayProvider: React.FC = ({ children }) => {
         console.log(error);
       }
     },
-    [skipQuestion]
+    [skipQuestion],
   );
 
   const reportQuestion = useCallback(
-    async ({ question, reportReason }) => {
+    async ({question, reportReason}) => {
       await api.post('/reports', {
         question,
         reportReason,
@@ -103,7 +103,7 @@ export const PlayProvider: React.FC = ({ children }) => {
 
       await skipQuestion();
     },
-    [skipQuestion]
+    [skipQuestion],
   );
 
   return (

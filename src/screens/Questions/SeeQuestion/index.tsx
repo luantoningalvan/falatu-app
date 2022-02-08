@@ -16,9 +16,8 @@ import {
   PositiveAnswer,
   PositiveAnswerText,
 } from './styles';
-import LinearGradient from 'react-native-linear-gradient';
-import { useNavigation } from '@react-navigation/native';
-import { QuestionResponse } from '../../../hooks/Question';
+import {useNavigation} from '@react-navigation/native';
+import {QuestionResponse} from '../../../hooks/Question';
 import defaultUserAvatar from '../../../../assets/static/default-profile-picture.png';
 import {
   Menu,
@@ -27,7 +26,7 @@ import {
   MenuTrigger,
 } from 'react-native-popup-menu';
 import Icon from 'react-native-vector-icons/Feather';
-import { useQuestion } from '../../../hooks/Question';
+import {useQuestion} from '../../../hooks/Question';
 
 interface Props {
   route: {
@@ -36,10 +35,10 @@ interface Props {
     };
   };
 }
-const SeeQuestion: React.FC<Props> = ({ route }) => {
-  const { goBack } = useNavigation();
-  const { _id, title, answers, type } = route.params.question;
-  const { deleteQuestion } = useQuestion();
+const SeeQuestion: React.FC<Props> = ({route}) => {
+  const {goBack} = useNavigation();
+  const {_id, title, answers, type} = route.params.question;
+  const {deleteQuestion} = useQuestion();
 
   const handleDeleteQuestion = async () => {
     await deleteQuestion(_id);
@@ -48,7 +47,7 @@ const SeeQuestion: React.FC<Props> = ({ route }) => {
 
   const getPercentage = () => {
     return route.params.question.answers.reduce(
-      (acumulator: { yes: number; no: number }, currentValue) => {
+      (acumulator: {yes: number; no: number}, currentValue) => {
         if (currentValue.index === 0) {
           return {
             yes: acumulator.yes,
@@ -61,7 +60,7 @@ const SeeQuestion: React.FC<Props> = ({ route }) => {
           };
         }
       },
-      { yes: 0, no: 0 }
+      {yes: 0, no: 0},
     );
   };
 
@@ -81,39 +80,37 @@ const SeeQuestion: React.FC<Props> = ({ route }) => {
           </MenuOptions>
         </Menu>
       </Header>
-      <LinearGradient colors={['#D90368', '#741960']} style={{ flex: 1 }}>
-        <Content>
-          <SectionTitle>Respostas</SectionTitle>
+      <Content>
+        <SectionTitle>Respostas</SectionTitle>
 
-          {type === 'written' && (
-            <>
-              {answers.map(answer => (
-                <Answer index={answer._id}>
-                  <AnswerAvatar source={defaultUserAvatar} />
-                  <AnswerText>{answer.answer}</AnswerText>
-                </Answer>
-              ))}
-            </>
-          )}
+        {type === 'written' && (
+          <>
+            {answers.map(answer => (
+              <Answer index={answer._id}>
+                <AnswerAvatar source={defaultUserAvatar} />
+                <AnswerText>{answer.answer}</AnswerText>
+              </Answer>
+            ))}
+          </>
+        )}
 
-          {type === 'yesornot' && (
-            <YesOrNotAnswer>
-              <PositiveAnswer
-                percentage={(getPercentage().yes * 100) / answers.length}>
-                <PositiveAnswerText>
-                  {(getPercentage().yes * 100) / answers.length}%
-                </PositiveAnswerText>
-              </PositiveAnswer>
-              <NegativeAnswer
-                percentage={(getPercentage().no * 100) / answers.length}>
-                <NegativeAnswerText>
-                  {(getPercentage().no * 100) / answers.length}%
-                </NegativeAnswerText>
-              </NegativeAnswer>
-            </YesOrNotAnswer>
-          )}
-        </Content>
-      </LinearGradient>
+        {type === 'yesornot' && (
+          <YesOrNotAnswer>
+            <PositiveAnswer
+              percentage={(getPercentage().yes * 100) / answers.length}>
+              <PositiveAnswerText>
+                {(getPercentage().yes * 100) / answers.length}%
+              </PositiveAnswerText>
+            </PositiveAnswer>
+            <NegativeAnswer
+              percentage={(getPercentage().no * 100) / answers.length}>
+              <NegativeAnswerText>
+                {(getPercentage().no * 100) / answers.length}%
+              </NegativeAnswerText>
+            </NegativeAnswer>
+          </YesOrNotAnswer>
+        )}
+      </Content>
     </Container>
   );
 };

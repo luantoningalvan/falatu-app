@@ -1,12 +1,11 @@
 import styled from 'styled-components/native';
-import LinearGradient from 'react-native-linear-gradient';
 
 export const Container = styled.ScrollView`
   flex: 1;
   background: #ececec;
 `;
 
-export const Header = styled(LinearGradient)`
+export const Header = styled.View`
   background: ${props => props.theme.palette.pink};
   width: 100%;
   flex: 1;

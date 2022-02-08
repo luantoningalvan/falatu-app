@@ -1,6 +1,6 @@
 import React from 'react';
-import { TouchableOpacity, TouchableOpacityProps } from 'react-native';
-import { PhotoGridImage } from './styles';
+import {TouchableOpacity, TouchableOpacityProps} from 'react-native';
+import {PhotoGridImage} from './styles';
 
 interface TouchablePictureProps extends TouchableOpacityProps {
   uri: string;
@@ -13,7 +13,7 @@ export const TouchablePicture: React.ComponentType<TouchablePictureProps> = ({
 }) => {
   return (
     <TouchableOpacity onPress={onPress} {...rest}>
-      <PhotoGridImage source={{ uri }} />
+      <PhotoGridImage source={{uri}} />
     </TouchableOpacity>
   );
 };

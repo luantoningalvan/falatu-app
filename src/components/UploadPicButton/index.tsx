@@ -1,6 +1,6 @@
 /* eslint-disable curly */
-import React, { useCallback } from 'react';
-import { Alert } from 'react-native';
+import React, {useCallback} from 'react';
+import {Alert} from 'react-native';
 import {
   Menu,
   MenuOptions,
@@ -9,9 +9,9 @@ import {
 } from 'react-native-popup-menu';
 import ImagePicker from 'react-native-image-picker';
 import Icon from 'react-native-vector-icons/Feather';
-import { ButtonWrapper } from './styles';
+import {ButtonWrapper} from './styles';
 import api from '../../services/apiClient';
-import { PhotoGridImage } from '../TouchablePicture/styles';
+import {PhotoGridImage} from '../TouchablePicture/styles';
 
 interface UploadPicButtonProps {
   index?: number | string;
@@ -54,7 +54,7 @@ export const UploadPicButton: React.ComponentType<UploadPicButtonProps> = ({
 
     try {
       const res = await api.put('/users/avatar', data, {
-        headers: { 'Content-Type': 'multipart/form-data' },
+        headers: {'Content-Type': 'multipart/form-data'},
       });
 
       console.log(res);
@@ -67,7 +67,7 @@ export const UploadPicButton: React.ComponentType<UploadPicButtonProps> = ({
     // Send DELETE request to server
     await api.delete(`/users/avatar/${index}`);
     setSource('');
-    setSourceData({ fileName: '', type: '' });
+    setSourceData({fileName: '', type: ''});
   };
 
   const showImagePicker = async () => {
@@ -80,7 +80,7 @@ export const UploadPicButton: React.ComponentType<UploadPicButtonProps> = ({
         Alert.alert('Erro', response.error);
       }
       setSource(response.uri);
-      setSourceData({ fileName: response.fileName!, type: response.type! });
+      setSourceData({fileName: response.fileName!, type: response.type!});
 
       await uploadImage(response);
     });
@@ -89,14 +89,14 @@ export const UploadPicButton: React.ComponentType<UploadPicButtonProps> = ({
   React.useEffect(() => {
     if (externalUri && externalFileKey) {
       setSource(externalUri);
-      setSourceData({ fileName: externalFileKey, type: 'image/jpg' });
+      setSourceData({fileName: externalFileKey, type: 'image/jpg'});
     }
   }, [externalUri, externalFileKey]);
 
   return source !== '' ? (
     <Menu>
       <MenuTrigger>
-        <PhotoGridImage source={{ uri: source }} />
+        <PhotoGridImage source={{uri: source}} />
       </MenuTrigger>
       <MenuOptions>
         <MenuOption onSelect={() => removeImage()} text="Remover" />

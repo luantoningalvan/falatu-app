@@ -6,7 +6,7 @@ import React, {
   useContext,
 } from 'react';
 import api from '../services/apiClient';
-import AsyncStorage from '@react-native-community/async-storage';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import setAuthToken from '../utils/setAuthToken';
 interface SingInCredentials {
   email: string;
@@ -41,7 +41,7 @@ interface AuthState {
 
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
-export const AuthProvider: React.FC = ({ children }) => {
+export const AuthProvider: React.FC = ({children}) => {
   const [data, setData] = useState<AuthState>({} as AuthState);
   const [loading, setLoading] = useState(true);
 
@@ -56,11 +56,13 @@ export const AuthProvider: React.FC = ({ children }) => {
         setAuthToken(token[1] as string);
         try {
           const userData = await api.get<UserResponse>('/users/me');
+          console.log(userData);
           setData({
             token: token[1],
             user: userData.data,
           });
         } catch (error) {
+          console.log(error);
           setData({
             token: null,
             user: null,
@@ -77,14 +79,14 @@ export const AuthProvider: React.FC = ({ children }) => {
 
   const refreshMe = useCallback(async () => {
     const response = await api.get('/users/me');
-    setData(prev => ({ ...prev, user: response.data }));
+    setData(prev => ({...prev, user: response.data}));
   }, []);
 
-  const signIn = useCallback(async ({ email, password }) => {
+  const signIn = useCallback(async ({email, password}) => {
     try {
       console.log(email, password);
-      const response = await api.post('/auth/login', { email, password });
-      const { token } = response.data;
+      const response = await api.post('/auth/login', {email, password});
+      const {token} = response.data;
 
       setAuthToken(token);
       const user = await api.get('/users/me');
@@ -94,9 +96,9 @@ export const AuthProvider: React.FC = ({ children }) => {
         ['@FALATU:user', JSON.stringify(user.data)],
       ]);
 
-      setData({ user: user.data, token });
+      setData({user: user.data, token});
     } catch (error) {
-      console.log(error.response.data);
+      console.log('Sei lá');
     }
   }, []);
 
@@ -108,7 +110,7 @@ export const AuthProvider: React.FC = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ user: data.user, loading, signIn, signOut, refreshMe }}>
+      value={{user: data.user, loading, signIn, signOut, refreshMe}}>
       {children}
     </AuthContext.Provider>
   );

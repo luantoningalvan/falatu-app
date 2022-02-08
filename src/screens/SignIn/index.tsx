@@ -1,8 +1,8 @@
-import React, { useCallback } from 'react';
-import { Alert } from 'react-native';
+import React, {useCallback} from 'react';
+import {Alert} from 'react-native';
 import Button from '../../components/Button';
-import { Input } from '../../components/Form';
-import { FormHandles } from '@unform/core';
+import {Input} from '../../components/Form';
+import {FormHandles} from '@unform/core';
 import {
   Container,
   SignUp,
@@ -15,10 +15,10 @@ import {
   BottomInfoLink,
   BottomInfoLinkText,
 } from './styles';
-import { useNavigation } from '@react-navigation/native';
-import { Form } from '@unform/mobile';
+import {useNavigation} from '@react-navigation/native';
+import {Form} from '@unform/mobile';
 import Logo from '../../../assets/static/falatu-logo.svg';
-import { useAuth } from '../../hooks/Auth';
+import {useAuth} from '../../hooks/Auth';
 import * as Yup from 'yup';
 import getValidationErrros from '../../utils/getValidationErrors';
 
@@ -31,7 +31,7 @@ const SignIn: React.FC = () => {
   const formRef = React.useRef<FormHandles>(null);
   const navigation = useNavigation();
 
-  const { signIn } = useAuth();
+  const {signIn} = useAuth();
 
   const handleSubmit = useCallback(
     async (data: SignInFormData) => {
@@ -45,8 +45,8 @@ const SignIn: React.FC = () => {
           password: Yup.string().required('A senha é obrigatória'),
         });
 
-        await schema.validate(data, { abortEarly: false });
-        await signIn({ email: data.email, password: data.password });
+        await schema.validate(data, {abortEarly: false});
+        await signIn({email: data.email, password: data.password});
       } catch (err) {
         if (err instanceof Yup.ValidationError) {
           const errors = getValidationErrros(err);
@@ -58,11 +58,11 @@ const SignIn: React.FC = () => {
         Alert.alert('Erro na autenticação', 'Tá errado essa porra');
       }
     },
-    [signIn]
+    [signIn],
   );
   return (
     <Container>
-      <Header colors={['#D90368', '#543A6A']}>
+      <Header>
         <Logo width={150} height={150} />
       </Header>
       <FormContainer>

@@ -1,14 +1,9 @@
 import React from 'react';
-import { ActivityIndicator, View } from 'react-native';
+import {ActivityIndicator} from 'react-native';
+import {Container} from './styles';
 
 export default () => (
-  <View
-    style={{
-      flex: 1,
-      width: '100%',
-      justifyContent: 'center',
-      alignItems: 'center',
-    }}>
+  <Container>
     <ActivityIndicator size="large" color="#fff" />
-  </View>
+  </Container>
 );

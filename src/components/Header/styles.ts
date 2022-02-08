@@ -1,9 +1,8 @@
 import styled from 'styled-components/native';
 
 export const Container = styled.View`
-  flex-direction: row;
-  justify-content: space-between;
+  flex: 1;
+  width: 100%;
+  justify-content: center;
   align-items: center;
-  height: 64px;
-  padding: 0px 16px;
 `;
