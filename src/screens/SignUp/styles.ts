@@ -22,7 +22,7 @@ export const FormContainer = styled.View`
 `;
 
 export const Title = styled.Text`
-  font-family: 'Comfortaa-Bold';
+  font-family: 'Poppins-Bold';
   font-size: 28px;
   text-align: center;
   margin-bottom: 24px;

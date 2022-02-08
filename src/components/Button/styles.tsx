@@ -12,7 +12,7 @@ export const ButtonContainer = styled.TouchableOpacity<{grow?: boolean}>`
 
 export const ButtonText = styled.Text`
   color: ${props => props.theme.palette.grey};
-  font-family: 'Comfortaa-Regular';
+  font-family: 'Poppins-Regular';
   font-size: 16px;
 `;
 

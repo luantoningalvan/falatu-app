@@ -32,7 +32,7 @@ export const TextInput = styled.TextInput`
   flex: 1;
   color: #333;
   font-size: 16px;
-  font-family: 'Comfortaa-Regular';
+  font-family: 'Poppins-Regular';
 `;
 
 export const Icon = styled(FeatherIcon)`

@@ -20,7 +20,7 @@ export const HeaderBackIcon = styled(Icon)`
 export const HeaderTitle = styled.Text`
   font-size: 18px;
   color: white;
-  font-family: 'Comfortaa-Regular';
+  font-family: 'Poppins-Regular';
   flex: 1;
 `;
 
@@ -42,7 +42,7 @@ export const ScreenDescription = styled.Text`
   color: white;
   text-align: center;
   font-size: 28px;
-  font-family: 'Comfortaa-Regular';
+  font-family: 'Poppins-Regular';
   margin-bottom: 16px;
 `;
 
@@ -64,7 +64,7 @@ export const Type = styled.TouchableOpacity`
 export const TypeTitle = styled.Text`
   color: white;
   font-size: 18px;
-  font-family: 'Comfortaa-Regular';
+  font-family: 'Poppins-Regular';
 `;
 export const TypeIcon = styled(Icon)`
   color: white;

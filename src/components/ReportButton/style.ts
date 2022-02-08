@@ -8,7 +8,7 @@ export const Text = styled.Text`
   color: white;
   font-size: 16px;
   margin-right: 8px;
-  font-family: 'Comfortaa-Regular';
+  font-family: 'Poppins-Regular';
 `;
 
 export const Paper = styled.View`
@@ -29,7 +29,7 @@ export const Reason = styled.TouchableOpacity`
 `;
 export const ReasonText = styled.Text`
   font-size: 17px;
-  font-family: 'Comfortaa-Regular';
+  font-family: 'Poppins-Regular';
 `;
 
 export const ModalIcon = styled.View`
@@ -51,5 +51,5 @@ export const ModaTitle = styled.Text`
   padding-bottom: 16px;
   border-bottom-width: 1px;
   border-bottom-color: #ececec;
-  font-family: 'Comfortaa-Bold';
+  font-family: 'Poppins-Bold';
 `;

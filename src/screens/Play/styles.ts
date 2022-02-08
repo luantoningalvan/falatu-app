@@ -27,5 +27,5 @@ export const SkipButtonText = styled.Text`
   color: white;
   font-size: 20px;
   margin-right: 8px;
-  font-family: 'Comfortaa-Regular';
+  font-family: 'Poppins-Regular';
 `;

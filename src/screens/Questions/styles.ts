@@ -7,7 +7,7 @@ export const Container = styled.View`
 
 export const SectionTitle = styled.Text`
   color: white;
-  font-family: 'Comfortaa-Bold';
+  font-family: 'Poppins-Bold';
   font-size: 24px;
   margin: 16px;
 `;
@@ -67,7 +67,7 @@ export const TabTitle = styled.Text`
   text-align: center;
   font-size: 18px;
   color: white;
-  font-family: 'Comfortaa-Regular';
+  font-family: 'Poppins-Regular';
 `;
 export const TabContent = styled.View``;
 
@@ -101,5 +101,5 @@ export const NoContent = styled.Text`
   align-items: center;
   margin: 0px 16px 8px;
   font-size: 16px;
-  font-family: 'Comfortaa-Regular';
+  font-family: 'Poppins-Regular';
 `;

@@ -39,6 +39,6 @@ export const Option = styled.View`
 
 export const OptionText = styled.Text`
   font-size: 24px;
-  font-family: 'Comfortaa-Regular';
+  font-family: 'Poppins-Regular';
   line-height: 24px;
 `;

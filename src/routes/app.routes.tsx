@@ -27,7 +27,7 @@ const ProfileStackScreen = () => (
       options={{
         title: 'Configurações',
         headerTitleStyle: {
-          fontFamily: 'Comfortaa-Regular',
+          fontFamily: 'Poppins-Regular',
           color: 'white',
         },
         headerStyle: {

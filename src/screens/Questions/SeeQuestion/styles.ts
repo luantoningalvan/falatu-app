@@ -20,7 +20,7 @@ export const HeaderBackIcon = styled(Icon)`
 export const HeaderTitle = styled.Text`
   font-size: 18px;
   color: white;
-  font-family: 'Comfortaa-Regular';
+  font-family: 'Poppins-Regular';
   flex: 1;
 `;
 
@@ -34,7 +34,7 @@ export const Content = styled.View`
   width: 100%;
 `;
 
-export const Answer = styled.View<{ key: string }>`
+export const Answer = styled.View<{key: string}>`
   margin-bottom: 8px;
   flex-direction: row;
 `;
@@ -66,14 +66,14 @@ export const YesOrNotAnswer = styled.View`
   overflow: hidden;
 `;
 
-export const PositiveAnswer = styled.View<{ percentage: number }>`
+export const PositiveAnswer = styled.View<{percentage: number}>`
   width: ${props => props.percentage}%;
   background: #fd0079;
   align-items: center;
   justify-content: center;
 `;
 
-export const NegativeAnswer = styled.View<{ percentage: number }>`
+export const NegativeAnswer = styled.View<{percentage: number}>`
   width: ${props => props.percentage}%;
   background: #fff;
   align-items: center;
@@ -83,10 +83,10 @@ export const NegativeAnswer = styled.View<{ percentage: number }>`
 export const NegativeAnswerText = styled.Text`
   color: #fd0079;
   font-size: 20px;
-  font-family: 'Comfortaa-Bold';
+  font-family: 'Poppins-Bold';
 `;
 export const PositiveAnswerText = styled.Text`
   color: #fff;
   font-size: 20px;
-  font-family: 'Comfortaa-Bold';
+  font-family: 'Poppins-Bold';
 `;

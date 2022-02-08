@@ -27,7 +27,7 @@ export const ProfilePicture = styled.Image`
 export const ProfileName = styled.Text`
   color: white;
   font-size: 18px;
-  font-family: 'Comfortaa-Light';
+  font-family: 'Poppins-Light';
   margin-top: 8px;
   letter-spacing: 3px;
 `;
@@ -46,12 +46,12 @@ export const InfoCard = styled.View`
   box-shadow: 0px 0px 10px black;
 `;
 export const InfoCardTitle = styled.Text`
-  font-family: 'Comfortaa-Regular';
+  font-family: 'Poppins-Regular';
   font-size: 16px;
   text-align: center;
 `;
 export const InfoCardNumber = styled.Text`
-  font-family: 'Comfortaa-Bold';
+  font-family: 'Poppins-Bold';
   font-size: 32px;
   color: ${props => props.theme.palette.pink};
   text-align: center;

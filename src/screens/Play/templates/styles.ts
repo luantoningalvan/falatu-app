@@ -52,7 +52,7 @@ export const SmallQuestionButton = styled.TouchableOpacity<SmallQuestionButtonPr
 
 export const QuestionButtonText = styled.Text<QuestionButtonTextProps>`
   font-family: ${props =>
-    props.weight === 'bold' ? 'Comfortaa-Bold' : 'Comfortaa-Regular'};
+    props.weight === 'bold' ? 'Poppins-Bold' : 'Poppins-Regular'};
   color: ${props => props.theme.palette.dark};
   font-size: ${props => (props.size === 'big' ? '24px' : '14px')};
 `;
@@ -85,13 +85,13 @@ export const Option = styled.TouchableOpacity<OptionProps>`
 
 export const OptionText = styled.Text`
   font-size: 24px;
-  font-family: 'Comfortaa-Regular';
+  font-family: 'Poppins-Regular';
   line-height: 24px;
 `;
 
 export const QuestionTitle = styled.Text`
   font-size: 18px;
-  font-family: 'Comfortaa-Regular';
+  font-family: 'Poppins-Regular';
   line-height: 18px;
   margin-top: 24px;
   text-align: center;
@@ -110,7 +110,7 @@ export const ImageComparisionContainer = styled.View`
 export const ImageComparisionQuestion = styled.Text`
   padding: 16px;
   font-size: 18px;
-  font-family: 'Comfortaa-Regular';
+  font-family: 'Poppins-Regular';
   line-height: 18px;
   text-align: center;
 `;
