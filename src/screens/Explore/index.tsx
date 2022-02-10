@@ -2,12 +2,12 @@ import React from 'react';
 
 import {View, Text, StyleSheet} from 'react-native';
 
-const Profile: React.FC = () => {
+const Explore: React.FC = () => {
   return (
     <View style={StyleSheet.absoluteFill}>
-      <Text>Tela de perfil</Text>
+      <Text>Tela de explorar</Text>
     </View>
   );
 };
 
-export default Profile;
+export default Explore;
