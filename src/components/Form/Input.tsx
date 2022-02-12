@@ -7,10 +7,11 @@ import React, {
   useCallback,
 } from 'react';
 import {Container, TextInput, Icon} from './styles';
-import {TextInputProps} from 'react-native';
+import {TextInput as RNTextInput} from 'react-native';
 import {useField} from '@unform/core';
+import {useTheme} from 'styled-components';
 
-interface InputProps extends TextInputProps {
+interface InputProps extends Partial<RNTextInput> {
   name: string;
   icon?: string;
 }
@@ -30,6 +31,7 @@ const Input: React.RefForwardingComponent<InputRef, InputProps> = (
 
   const inputElementRef = useRef<any>(null);
   const inputValueRef = useRef<InputValueRereference>({value: defaultValue});
+  const theme = useTheme();
 
   const [isFocused, setIsFocused] = useState(false);
   const [isFilled, setIsFilled] = useState(false);
@@ -71,7 +73,7 @@ const Input: React.RefForwardingComponent<InputRef, InputProps> = (
         <Icon
           name={icon}
           size={20}
-          color={isFocused || isFilled ? '#543A6A' : '#949494'}
+          color={isFocused || isFilled ? theme.palette.violet : '#949494'}
         />
       )}
       <TextInput
