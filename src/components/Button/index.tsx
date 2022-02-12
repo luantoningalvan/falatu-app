@@ -1,14 +1,27 @@
 import React from 'react';
-import {TouchableOpacityProps} from 'react-native';
-import {ButtonContainer, ButtonText, ButtonIcon} from './styles';
+import {useTheme} from 'styled-components';
+import {
+  ButtonContainer,
+  ButtonText,
+  ButtonIcon,
+  getVariantProps,
+} from './styles';
+import {ButtonProps} from './types';
 
-const Button: React.ComponentType<
-  TouchableOpacityProps & {grow?: boolean; icon?: string}
-> = ({children, icon, ...rest}) => {
+const Button: React.FC<ButtonProps> = props => {
+  const {children, icon, size = 'md', variant = 'filled', ...rest} = props;
+  const theme = useTheme();
+
   return (
-    <ButtonContainer {...rest}>
-      {icon && <ButtonIcon name={icon} size={20} color="#E5E5E5" />}
-      <ButtonText>{children}</ButtonText>
+    <ButtonContainer size={size} variant={variant} {...rest}>
+      {icon && (
+        <ButtonIcon
+          name={icon}
+          size={20}
+          color={getVariantProps(variant, theme).textColor}
+        />
+      )}
+      <ButtonText variant={variant}>{children}</ButtonText>
     </ButtonContainer>
   );
 };
