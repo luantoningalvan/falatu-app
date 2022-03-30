@@ -41,14 +41,6 @@ const Play: React.FC = () => {
         <ToggleNavigationMode />
         <Avatar size="sm" name="Cassandra Luiza" />
       </PlayHeader>
-
-      <Carousel
-        data={questions}
-        renderItem={({item}) => <Template question={item} />}
-        sliderWidth={Dimensions.get('window').width}
-        itemWidth={Dimensions.get('window').width}
-        lockScrollWhileSnapping
-      />
     </PlayContainer>
   );
 };

@@ -2,7 +2,7 @@ import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Play from '../screens/Play';
 import Questions from '../screens/Questions';
-import Explore from '../screens/Explore';
+import Ask from '../screens/Ask';
 import Profile from '../screens/Profile';
 import BottomNavigator from '../components/BottomNavigator';
 import Icon from 'react-native-vector-icons/Feather';
@@ -23,12 +23,12 @@ const AppRoutes: React.FC = () => {
         }}
       />
       <App.Screen
-        name="Explore"
-        component={Explore}
+        name="Ask"
+        component={Ask}
         options={{
           headerShown: false,
           tabBarIcon: ({color, size}) => (
-            <Icon name="globe" color={color} size={size} />
+            <Icon name="plus-circle" color={color} size={size} />
           ),
         }}
       />
