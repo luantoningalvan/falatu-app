@@ -1,8 +1,8 @@
-import React, {useCallback, useRef} from 'react';
-import {Alert} from 'react-native';
-import Button from '../../components/Button';
-import {Input} from '../../components/Form';
-import {FormHandles} from '@unform/core';
+import React, { useCallback, useRef } from "react";
+import { Alert } from "react-native";
+import Button from "../../components/Button";
+import { Input } from "../../components/Form";
+import { FormHandles } from "@unform/core";
 import {
   Container,
   SignIn,
@@ -14,13 +14,13 @@ import {
   BottomInfo,
   BottomInfoLink,
   BottomInfoLinkText,
-} from './styles';
-import {useNavigation} from '@react-navigation/native';
-import {Form} from '@unform/mobile';
-import * as Yup from 'yup';
-import getValidationErrros from '../../utils/getValidationErrors';
-import api from '../../services/apiClient';
-import Logo from '../../../assets/static/falatu-logo.svg';
+} from "./styles";
+import { useNavigation } from "@react-navigation/native";
+import { Form } from "@unform/mobile";
+import * as Yup from "yup";
+import getValidationErrros from "../../utils/getValidationErrors";
+import api from "../../services/apiClient";
+import Logo from "../../assets/falatu-logo.svg";
 
 interface SignupFormData {
   email: string;
@@ -38,32 +38,33 @@ const SignUp: React.FC = () => {
         formRef.current?.setErrors({});
 
         const schema = Yup.object().shape({
-          username: Yup.string().required('O nome é obrigatório'),
+          username: Yup.string().required("O nome é obrigatório"),
           email: Yup.string()
-            .required('O e-mail é obrigatório')
-            .email('E-mail inválido'),
+            .required("O e-mail é obrigatório")
+            .email("E-mail inválido"),
           password: Yup.string()
             .required()
-            .min(6, 'Sua senha precisa ter no mínimo 6 letras'),
+            .min(6, "Sua senha precisa ter no mínimo 6 letras"),
         });
 
-        await schema.validate(data, {abortEarly: false});
-        await api.post('/users/signup', data);
-        Alert.alert('Sucesso', 'Cadastro realizado com sucesso');
-        navigation.navigate('SignIn');
+        await schema.validate(data, { abortEarly: false });
+        await api.post("/users", data);
+        Alert.alert("Sucesso", "Cadastro realizado com sucesso");
+        navigation.navigate("SignIn");
       } catch (err) {
+        console.log(err);
         if (err instanceof Yup.ValidationError) {
           const errors = getValidationErrros(err);
           return formRef.current?.setErrors(errors);
         }
 
         Alert.alert(
-          'Erro no cadastro',
-          'Ocorreu um erro ao realizar seu cadastro',
+          "Erro no cadastro",
+          "Ocorreu um erro ao realizar seu cadastro"
         );
       }
     },
-    [navigation],
+    [navigation]
   );
 
   return (
@@ -93,7 +94,7 @@ const SignUp: React.FC = () => {
             CRIAR CONTA
           </Button>
 
-          <SignIn onPress={() => navigation.navigate('SignIn')}>
+          <SignIn onPress={() => navigation.navigate("SignIn")}>
             <SignInText>já possui uma conta?</SignInText>
             <SignInTextHighlighted>Fazer login</SignInTextHighlighted>
           </SignIn>

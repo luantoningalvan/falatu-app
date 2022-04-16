@@ -5,13 +5,13 @@ import React, {
   forwardRef,
   useState,
   useCallback,
-} from 'react';
-import {Container, TextInput, Icon} from './styles';
-import {TextInput as RNTextInput} from 'react-native';
-import {useField} from '@unform/core';
-import {useTheme} from 'styled-components';
+} from "react";
+import { Container, TextInput, Icon } from "./styles";
+import { TextInputProps } from "react-native";
+import { useField } from "@unform/core";
+import { useTheme } from "styled-components";
 
-interface InputProps extends Partial<RNTextInput> {
+interface InputProps extends TextInputProps {
   name: string;
   icon?: string;
 }
@@ -24,13 +24,13 @@ interface InputRef {
 }
 
 const Input: React.RefForwardingComponent<InputRef, InputProps> = (
-  {name, icon, ...rest},
-  ref,
+  { name, icon, ...rest },
+  ref
 ) => {
-  const {registerField, defaultValue, fieldName, error} = useField(name);
+  const { registerField, defaultValue, fieldName, error } = useField(name);
 
   const inputElementRef = useRef<any>(null);
-  const inputValueRef = useRef<InputValueRereference>({value: defaultValue});
+  const inputValueRef = useRef<InputValueRereference>({ value: defaultValue });
   const theme = useTheme();
 
   const [isFocused, setIsFocused] = useState(false);
@@ -55,13 +55,13 @@ const Input: React.RefForwardingComponent<InputRef, InputProps> = (
     registerField<string>({
       name: fieldName,
       ref: inputValueRef.current,
-      path: 'value',
+      path: "value",
       setValue(value) {
         inputValueRef.current.value = value;
-        inputElementRef.current.setNativeProps({text: value});
+        inputElementRef.current.setNativeProps({ text: value });
       },
       clearValue() {
-        inputValueRef.current.value = '';
+        inputValueRef.current.value = "";
         inputElementRef.current.clear();
       },
     });
@@ -73,7 +73,7 @@ const Input: React.RefForwardingComponent<InputRef, InputProps> = (
         <Icon
           name={icon}
           size={20}
-          color={isFocused || isFilled ? theme.palette.violet : '#949494'}
+          color={isFocused || isFilled ? theme.palette.violet : "#949494"}
         />
       )}
       <TextInput
@@ -83,7 +83,7 @@ const Input: React.RefForwardingComponent<InputRef, InputProps> = (
         defaultValue={defaultValue}
         onFocus={handleInputFocus}
         onBlur={handleInputBlur}
-        onChangeText={value => {
+        onChangeText={(value) => {
           inputValueRef.current.value = value;
         }}
         {...rest}

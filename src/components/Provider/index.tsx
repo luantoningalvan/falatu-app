@@ -1,8 +1,8 @@
-import React from 'react';
-import {ThemeProvider} from 'styled-components';
-import theme from './theme';
+import React from "react";
+import { ThemeProvider } from "styled-components";
+import theme from "./theme";
 
-const StyleProvider: React.ComponentType = ({children}) => (
+const StyleProvider: React.FC = ({ children }) => (
   <ThemeProvider theme={theme}>{children}</ThemeProvider>
 );
 

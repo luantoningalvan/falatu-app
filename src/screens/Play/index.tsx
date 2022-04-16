@@ -1,25 +1,24 @@
-import React from 'react';
-import {StatusBar} from 'react-native';
+import React from "react";
+import { StatusBar } from "react-native";
 
-import {PlayContainer, PlayHeader} from './styles';
-import LogoSmall from '../../../assets/static/falatu-logo-small.svg';
-import {Avatar} from '../../components/Avatar';
-import {ToggleNavigationMode} from '../../components/ToggleNavigationMode';
+import { PlayContainer, PlayHeader, ContentArea } from "./styles";
+import LogoSmall from "../../assets/falatu-logo-small.svg";
+import { Avatar } from "../../components/Avatar";
+import { ToggleNavigationMode } from "../../components/ToggleNavigationMode";
 
-import TextQuestion from './cards/TextQuestion';
-import BinaryQuestion from './cards/BinaryQuestion';
-import ComparisonQuestion from './cards/ComparisonQuestion';
-import MultiQuestion from './cards/MultiQuestion';
-import VideoQuestion from './cards/VideoQuestion';
+import TextQuestion from "./cards/TextQuestion";
+import BinaryQuestion from "./cards/BinaryQuestion";
+import ComparisonQuestion from "./cards/ComparisonQuestion";
+import MultiQuestion from "./cards/MultiQuestion";
+import VideoQuestion from "./cards/VideoQuestion";
 
-import {Question, usePlay} from '../../hooks/Play';
-import Carousel from 'react-native-snap-carousel';
-import {Dimensions} from 'react-native';
+import { Question, usePlay } from "../../hooks/Play";
+import { ScrollView } from "react-native";
 
 const Play: React.FC = () => {
-  const {questions} = usePlay();
+  const { questions } = usePlay();
 
-  const cards: {[key: string]: any} = {
+  const cards: { [key: string]: any } = {
     text: TextQuestion,
     binary: BinaryQuestion,
     comparison: ComparisonQuestion,
@@ -27,7 +26,7 @@ const Play: React.FC = () => {
     video: VideoQuestion,
   };
 
-  const Template = ({question}: {question: Question}) => {
+  const Template = ({ question }: { question: Question }) => {
     const PickCard = cards[question.mode];
     return <PickCard question={question} />;
   };
@@ -41,6 +40,14 @@ const Play: React.FC = () => {
         <ToggleNavigationMode />
         <Avatar size="sm" name="Cassandra Luiza" />
       </PlayHeader>
+
+      <ScrollView>
+        {questions.map((question) => (
+          <ContentArea>
+            <Template question={question} />
+          </ContentArea>
+        ))}
+      </ScrollView>
     </PlayContainer>
   );
 };

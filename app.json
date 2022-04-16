@@ -1,4 +1,12 @@
 {
-  "name": "app",
-  "displayName": "app"
+  "expo": {
+    "name": "FalaTu",
+    "slug": "falatu",
+    "version": "1.0.0",
+    "splash": {
+      "image": "./assets/splash.png",
+      "backgroundColor": "#7100FF"
+    },
+    "assetBundlePatterns": ["**/*"]
+  }
 }

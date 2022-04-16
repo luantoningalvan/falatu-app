@@ -1,10 +1,10 @@
-import {TouchableOpacity} from 'react-native';
-import {CommonStyle} from '../../utils/generateCommonStyles';
+import { TouchableOpacityProps } from "react-native";
+import { CommonStyle } from "../../utils/generateCommonStyles";
 
-export type ButtonVariants = 'filled' | 'outlined';
-export type ButtonSizes = 'sm' | 'md';
+export type ButtonVariants = "filled" | "outlined";
+export type ButtonSizes = "sm" | "md";
 
-export type ButtonProps = Partial<TouchableOpacity> & {
+export type ButtonProps = TouchableOpacityProps & {
   grow?: boolean;
   icon?: string;
   size?: ButtonSizes;

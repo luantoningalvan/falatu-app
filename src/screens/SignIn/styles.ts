@@ -1,11 +1,11 @@
-import styled from 'styled-components/native';
+import styled from "styled-components/native";
 
 export const Container = styled.ScrollView`
   flex: 1;
 `;
 
 export const Header = styled.View`
-  background: ${props => props.theme.palette.violet};
+  background: ${(props) => props.theme.palette.violet};
   width: 100%;
   flex: 1;
   height: 200px;
@@ -21,7 +21,7 @@ export const FormContainer = styled.View`
 `;
 
 export const Title = styled.Text`
-  font-family: 'Poppins-Regular';
+  font-family: "Poppins_400Regular";
   font-size: 24px;
   text-align: center;
   margin-bottom: 24px;
@@ -41,7 +41,7 @@ export const SignUpText = styled.Text`
 `;
 
 export const SignUpTextHighlighted = styled(SignUpText)`
-  color: ${props => props.theme.palette.violet};
+  color: ${(props) => props.theme.palette.violet};
   font-weight: bold;
   margin-left: 4px;
 `;
@@ -58,6 +58,6 @@ export const BottomInfoLink = styled.TouchableOpacity`
 `;
 
 export const BottomInfoLinkText = styled.Text`
-  color: ${props => props.theme.palette.dark};
+  color: ${(props) => props.theme.palette.dark};
   font-size: 14px;
 `;

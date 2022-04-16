@@ -1,20 +1,19 @@
-import React, {useRef, useState} from 'react';
+import React, { useRef, useState } from "react";
 
-import Button from '../../../components/Button';
-import {Question} from '../../../hooks/Play';
-import {ScrollView} from 'react-native-gesture-handler';
-import {VideoPlayer, VideoQuestionCard, VideoThumb} from '../styles';
-import {VideoProperties} from 'react-native-video';
-import {TouchableOpacity} from 'react-native';
+import Button from "../../../components/Button";
+import { Question } from "../../../hooks/Play";
+import { ScrollView } from "react-native-gesture-handler";
+import { VideoPlayer, VideoQuestionCard, VideoThumb } from "../styles";
+import { TouchableOpacity } from "react-native";
 
-const VideoQuestion = ({question}: {question: Question}) => {
-  const playerRef = useRef<VideoProperties | null>(null);
+const VideoQuestion = ({ question }: { question: Question }) => {
+  const playerRef = useRef<any | null>(null);
   const [currentVideo, setCurrentVideo] = useState(0);
 
   return (
     <>
       <VideoPlayer
-        source={{uri: question.media[currentVideo].url}}
+        source={{ uri: question.media[currentVideo].url }}
         ref={() => playerRef}
         repeat
         resizeMode="cover"
@@ -24,7 +23,7 @@ const VideoQuestion = ({question}: {question: Question}) => {
           {question?.options?.map((opt, i) => (
             <TouchableOpacity onPress={() => setCurrentVideo(i)}>
               <VideoThumb
-                source={{uri: opt.thumb}}
+                source={{ uri: opt.thumb }}
                 selected={currentVideo === i}
               />
             </TouchableOpacity>

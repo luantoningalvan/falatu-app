@@ -1,8 +1,8 @@
-import React, {useCallback} from 'react';
-import {Alert} from 'react-native';
-import Button from '../../components/Button';
-import {Input} from '../../components/Form';
-import {FormHandles} from '@unform/core';
+import React, { useCallback } from "react";
+import { Alert } from "react-native";
+import Button from "../../components/Button";
+import { Input } from "../../components/Form";
+import { FormHandles } from "@unform/core";
 import {
   Container,
   SignUp,
@@ -14,13 +14,13 @@ import {
   BottomInfo,
   BottomInfoLink,
   BottomInfoLinkText,
-} from './styles';
-import {useNavigation} from '@react-navigation/native';
-import {Form} from '@unform/mobile';
-import Logo from '../../../assets/static/falatu-logo.svg';
-import {useAuth} from '../../hooks/Auth';
-import * as Yup from 'yup';
-import getValidationErrros from '../../utils/getValidationErrors';
+} from "./styles";
+import { useNavigation } from "@react-navigation/native";
+import { Form } from "@unform/mobile";
+import Logo from "../../assets/falatu-logo.svg";
+import { useAuth } from "../../hooks/Auth";
+import * as Yup from "yup";
+import getValidationErrros from "../../utils/getValidationErrors";
 
 interface SignInFormData {
   email: string;
@@ -31,7 +31,7 @@ const SignIn: React.FC = () => {
   const formRef = React.useRef<FormHandles>(null);
   const navigation = useNavigation();
 
-  const {signIn} = useAuth();
+  const { signIn } = useAuth();
 
   const handleSubmit = useCallback(
     async (data: SignInFormData) => {
@@ -40,13 +40,13 @@ const SignIn: React.FC = () => {
 
         const schema = Yup.object().shape({
           email: Yup.string()
-            .required('O e-mail é obrigatório')
-            .email('E-mail inválido'),
-          password: Yup.string().required('A senha é obrigatória'),
+            .required("O e-mail é obrigatório")
+            .email("E-mail inválido"),
+          password: Yup.string().required("A senha é obrigatória"),
         });
 
-        await schema.validate(data, {abortEarly: false});
-        await signIn({email: data.email, password: data.password});
+        await schema.validate(data, { abortEarly: false });
+        await signIn({ email: data.email, password: data.password });
       } catch (err) {
         if (err instanceof Yup.ValidationError) {
           const errors = getValidationErrros(err);
@@ -55,10 +55,10 @@ const SignIn: React.FC = () => {
           return;
         }
         console.log(err);
-        Alert.alert('Erro na autenticação', 'Tá errado essa porra');
+        Alert.alert("Erro na autenticação", "Tá errado essa porra");
       }
     },
-    [signIn],
+    [signIn]
   );
   return (
     <Container>
@@ -72,6 +72,7 @@ const SignIn: React.FC = () => {
             icon="user"
             name="email"
             keyboardType="email-address"
+            autoCapitalize="none"
             placeholder="voce@email.com"
           />
 
@@ -86,7 +87,7 @@ const SignIn: React.FC = () => {
             ENTRAR
           </Button>
 
-          <SignUp onPress={() => navigation.navigate('SignUp')}>
+          <SignUp onPress={() => navigation.navigate("SignUp")}>
             <SignUpText>ainda não tem uma conta?</SignUpText>
             <SignUpTextHighlighted>Criar conta</SignUpTextHighlighted>
           </SignUp>

@@ -4,10 +4,10 @@ import React, {
   useCallback,
   useState,
   useContext,
-} from 'react';
-import api from '../services/apiClient';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import setAuthToken from '../utils/setAuthToken';
+} from "react";
+import api from "../services/apiClient";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import setAuthToken from "../utils/setAuthToken";
 interface SingInCredentials {
   email: string;
   password: string;
@@ -41,21 +41,21 @@ interface AuthState {
 
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
-export const AuthProvider: React.FC = ({children}) => {
+export const AuthProvider: React.FC = ({ children }) => {
   const [data, setData] = useState<AuthState>({} as AuthState);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function loadStorageData(): Promise<void> {
       const [token, user] = await AsyncStorage.multiGet([
-        '@FALATU:token',
-        '@FALATU:user',
+        "@FALATU:token",
+        "@FALATU:user",
       ]);
 
       if (token[1] && user[1]) {
         setAuthToken(token[1] as string);
         try {
-          const userData = await api.get<UserResponse>('/users/me');
+          const userData = await api.get<UserResponse>("/users/me");
           console.log(userData);
           setData({
             token: token[1],
@@ -78,37 +78,39 @@ export const AuthProvider: React.FC = ({children}) => {
   }, []);
 
   const refreshMe = useCallback(async () => {
-    const response = await api.get('/users/me');
-    setData(prev => ({...prev, user: response.data}));
+    const response = await api.get("/users/me");
+    setData((prev) => ({ ...prev, user: response.data }));
   }, []);
 
-  const signIn = useCallback(async ({email, password}) => {
+  const signIn = useCallback(async ({ email, password }) => {
+    console.log("aaa");
     try {
-      const response = await api.post('/sessions', {email, password});
-      const {token, user} = response.data;
+      const response = await api.post("/sessions", { email, password });
+      const { token, user } = response.data;
 
       setAuthToken(token);
 
       await AsyncStorage.multiSet([
-        ['@FALATU:token', token],
-        ['@FALATU:user', JSON.stringify(user)],
+        ["@FALATU:token", token],
+        ["@FALATU:user", JSON.stringify(user)],
       ]);
 
-      setData({user: user, token});
+      setData({ user: user, token });
     } catch (error) {
       console.log(error);
     }
   }, []);
 
   const signOut = useCallback(async () => {
-    await AsyncStorage.multiRemove(['@FALATU:token', '@FALATU:user']);
+    await AsyncStorage.multiRemove(["@FALATU:token", "@FALATU:user"]);
 
     setData({} as AuthState);
   }, []);
 
   return (
     <AuthContext.Provider
-      value={{user: data.user, loading, signIn, signOut, refreshMe}}>
+      value={{ user: data.user, loading, signIn, signOut, refreshMe }}
+    >
       {children}
     </AuthContext.Provider>
   );
@@ -118,13 +120,13 @@ export function useAuth(): AuthContextData {
   const context = useContext(AuthContext);
 
   if (!context) {
-    throw new Error('useAuth most be used within an AuthProvider');
+    throw new Error("useAuth most be used within an AuthProvider");
   }
 
   return context;
 }
 
 export async function getToken(): Promise<string> {
-  const token = await AsyncStorage.getItem('@FALATU:token');
+  const token = await AsyncStorage.getItem("@FALATU:token");
   return token as string;
 }
