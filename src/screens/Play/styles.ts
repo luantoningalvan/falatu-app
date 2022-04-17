@@ -71,6 +71,7 @@ export const VideoThumb = styled.Image<{ selected?: boolean }>`
     props.selected ? `2px solid ${props.theme.palette.violet}` : "transparent"};
 `;
 
-export const ContentArea = styled.ScrollView`
+export const ContentArea = styled.View`
   flex: 1;
+  background: red;
 `;
